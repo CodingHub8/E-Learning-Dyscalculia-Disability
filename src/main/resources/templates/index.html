@@ -1,14 +1,323 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Home</title>
-        <link rel="stylesheet" href="/css/style.css">
-        <script src="/js/script.js" defer></script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>Topic Listing Bootstrap 5 Template</title>
+
+        <!-- CSS FILES -->        
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans&display=swap" rel="stylesheet">
+                        
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+
+        <link href="css/bootstrap-icons.css" rel="stylesheet">
+
+        <link href="css/style.css" rel="stylesheet">      
+
     </head>
-    <body>
-        <h1>Welcome to E-Learning Dyscalculia Disability</h1>
-        <button onclick="sayHello()">Click Me</button>
+    
+    <body id="top">
+
+        <main>
+
+            <nav class="navbar navbar-expand-lg">
+                <div class="container">
+                    <a class="navbar-brand" href="#top">
+                        <i class="bi-back"></i>
+                        <span>E-Learning Dyscalculia</span>
+                    </a>
+
+                    <div class="d-lg-none ms-auto me-4">
+                        <a href="#top" class="btn btn-primary rounded">Sign Up</a>
+                    </div>                    
+    
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+    
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav ms-lg-5 me-lg-auto">
+                            <li class="nav-item">
+                                <a class="nav-link click-scroll" href="#section_1">Home</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link click-scroll" href="#section_2">Browse Topic</a>
+                            </li>
+    
+                            <li class="nav-item">
+                                <a class="nav-link click-scroll" href="#section_2">How does it work?</a>
+                            </li>
+    
+                            <li class="nav-item">
+                                <a class="nav-link click-scroll" href="#section_5">Contact</a>
+                            </li>
+                        </ul>
+
+                        <div class="d-none d-lg-block">
+                            <a href="#top" class="navbar-icon bi-person smoothscroll"></a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            
+            <section class="hero-section d-flex justify-content-center align-items-center" id="section_1">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-lg-8 col-12 mx-auto">
+                            <h1 class="text-white text-center">Discover. Learn. Enjoy</h1>
+
+                            <h6 class="text-center">platform for Dyscalculia Disability</h6>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+
+            <section class="featured-section">
+                <div class="container">
+                    <div class="row justify-content-center">
+
+                        <div class="col-lg-4 col-12 mb-4 mb-lg-0">
+                            <div class="custom-block bg-white shadow-lg">
+                
+                                <div class="d-flex">
+                                    <div>
+                                        <h3 class="mb-2">Interactive Lessons</h5>
+
+                                        <p class="mb-0">Offer interactive lessons tailored to support children with dyscalculia. These lessons can include visual aids, animations, and step-by-step tutorials to make learning math concepts easier.</p>
+                                        <p class="mb-0">Our interactive lessons break down complex math topics into simple, digestible pieces, making learning fun and accessible for all students.</p>
+                                    </div>
+                                </div>
+
+                                    <img src="images/topics/kid1.jpg" class="custom-block-image img-fluid rounded" alt="">
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-12">
+                            <div class="custom-block custom-block-overlay">
+                                <div class="d-flex flex-column h-100">
+                                    <img src="images/topics/kid2.jpg" class="custom-block-image img-fluid" alt="">
+
+                                    <div class="custom-block-overlay-text d-flex">
+                                        <div>
+                                            <h5 class="text-white mb-2">Quizzes and Assessments</h5>
+
+                                            <p class="text-white">Provide quizzes and assessments to reinforce learning and track student progress. These can be designed to be engaging and rewarding.</p>
+                                            <p class="text-white">Quizzes and assessments are a great way to test students' understanding of math concepts and identify areas where they need additional support.</p>
+
+                                            <a href="#" class="btn custom-btn mt-2 mt-lg-3">Learn More</a>
+                                        </div>
+                                    </div>
+
+                                    <div class="section-overlay"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+
+            <section class="explore-section section-padding" id="section_2">
+                <div class="container">
+
+                        <div class="col-12 text-center">
+                            <h2 class="mb-4">Browse Topics</h1>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="container-fluid">
+                    <div class="row">
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <span class="nav-link active" id="design-tab" role="tab" aria-controls="design-tab-pane" aria-selected="true">Topic</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>                
+
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-12">
+                            <div class="tab-content" id="myTabContent">
+                                <div class="tab-pane fade show active" id="design-tab-pane" role="tabpanel" aria-labelledby="design-tab" tabindex="0">
+                                    <div class="row">
+                                        <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
+                                            <div class="custom-block bg-white shadow-lg">
+                                                
+                                            <div class="d-flex">
+                                                    <div>
+                                                        <h5 class="mb-2">Basic Arithmetic</h5>
+                                                            
+                                                        <ul>
+                                                            <li>Addition and Subtraction</li>
+                                                            <li>Multiplication and Division</li>
+                                                            <li>Using visual aids like number line and counter</li>
+                                                        </ul>
+                                                        
+                                                    </div>
+                                                </div>
+
+                                                <img src="images/topics/mathsym.jpg" class="rounded img-fluid img-thumbnail img-fluid" alt="">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
+                                            <div class="custom-block bg-white shadow-lg">
+                                                    <div class="d-flex">
+                                                    <div>
+                                                        <h5 class="mb-2">Understanding Numbers</h5>
+
+                                                        <ul>
+                                                            <li>Comparing and Ordering Numbers</li>
+                                                            <li>Even and Odd Numbers</li>
+                                                        </ul>                                                        
+                                                    </div>
+                                                </div>
+
+                                                <img src="images/topics/number.jpg" class="rounded img-fluid img-thumbnail img-fluid" alt="">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-4 col-md-6 col-12">
+                                            <div class="custom-block bg-white shadow-lg">
+                                                    <div class="d-flex">
+                                                        <div>
+                                                            <h5 class="mb-2">Time and Money</h5>
+
+                                                            <ul>
+                                                                <li>Reading Clocks (analog and digital)</li>
+                                                                <li>Understanding Calendars (days, weeks, months)</li>
+                                                                <li>Counting Money (coins and bills)</li>
+                                                            </ul>                                                         
+                                                        </div>
+
+                                                    </div>
+
+                                                    <img src="images/topics/money.jpg" class="custom-block-image img-fluid" alt="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <section class="timeline-section section-padding" id="section_3">
+                <div class="section-overlay"></div>
+
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-12 text-center">
+                            <h2 class="text-white mb-4">How does it work?</h1>
+                        </div>
+
+                        <div class="col-lg-10 col-12 mx-auto">
+                            <div class="timeline-container">
+                                <ul class="vertical-scrollable-timeline" id="vertical-scrollable-timeline">
+                                    <div class="list-progress">
+                                        <div class="inner"></div>
+                                    </div>
+
+                                    <li>
+                                        <h4 class="text-white mb-3">Sign Up and Log In</h4>
+
+                                        <p class="text-white">Create a new account or log in to your existing account to access personalized learning content.</p>
+
+                                        <div class="icon-holder">
+                                          <i class="bi-search"></i>
+                                        </div>
+                                    </li>
+                                    
+                                    <li>
+                                        <h4 class="text-white mb-3">Interactive Lessons</h4>
+
+                                        <p class="text-white">Browse through a variety of interactive lessons designed specifically for children with dyscalculia. These lessons are visually engaging and easy to follow.</p>
+
+                                        <div class="icon-holder">
+                                          <i class="bi-book"></i>
+                                        </div>
+                                    </li>
+
+                                    <li>
+                                        <h4 class="text-white mb-3">Take Quizzes</h4>
+
+                                        <p class="text-white">Participate in gamified learning paths and earn points, badges, and rewards for completing challenges and quizzes.</p>
+
+                                        <div class="icon-holder">
+                                          <i class="bi-bookmark"></i>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+<footer class="site-footer section-padding" id="section_5">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-3 col-12 mb-4 pb-2">
+                        <a class="navbar-brand mb-2" href="index.html">
+                            <i class="bi-back"></i>
+                            <span>E-Learning Dyscalculia</span>
+                        </a>
+                    </div>
+
+                    <div class="col-lg-3 col-md-4 col-6 mb-4 mb-lg-0">
+                        <h6 class="site-footer-title mb-3">Information</h6>
+
+                        <p class="mb-1">
+                            <a href="#" class="site-footer-link">About Us</a>
+                        </p>
+
+                        <p class="text-white d-flex mb-1">
+                            <a href="#" class="site-footer-link">1800 0000 0000</a>
+                        </p>
+
+                        <p class="text-white d-flex">
+                            <a href="mailto:elearning@company.com" class="site-footer-link">elearning@company.com</a>
+                        </p>
+
+                        <p class="text-white d-flex mb-1">
+                            <a href="#" class="site-footer-link">Address: 
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+
+        <!-- JAVASCRIPT FILES -->
+        <script src="js/jquery.min.js"></script>
+        <script src="js/bootstrap.bundle.min.js"></script>
+        <script src="js/jquery.sticky.js"></script>
+        <script src="js/click-scroll.js"></script>
+        <script src="js/custom.js"></script>
+
     </body>
 </html>
