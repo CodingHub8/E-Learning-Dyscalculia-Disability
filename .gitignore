@@ -31,5 +31,3 @@ build/
 
 ### VS Code ###
 .vscode/
-src/main/resources/static/css/style.old.css
-src/main/resources/templates/indexOri.html
