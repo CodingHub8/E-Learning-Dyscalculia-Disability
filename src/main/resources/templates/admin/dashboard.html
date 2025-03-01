@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/admin.css">
+    <script src="/js/script.js"></script>
+</head>
+
+<body>
+
+    <div class="d-flex" id="wrapper">
+
+
+
+        <!-- Toggle Button -->
+        <button class="toggle-btn" id="toggleBtn">☰</button>
+
+        <!-- Overlay -->
+        <div class="overlay" id="overlay"></div>
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <h3>Admin Panel</h3>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link active" href="/admin/dashboard"> Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin/update_question"> Manage Question Bank</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin/manage_user">Manage User</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Logout</a>
+                </li>
+            </ul>
+        </div>
+
+
+
+        <!-- Main Content -->
+        <div id="page-content-wrapper" class="container mt-4">
+            <h2 class="mb-4">Admin Dashboard</h2>
+
+            <div class="row">
+                <!-- Total Questions -->
+                <div class="col-md-3">
+                    <div class="card text-white bg-info mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">Total Questions</h5>
+                            <h3 id="total-questions">150</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Total Users -->
+                <div class="col-md-3">
+                    <div class="card text-white bg-danger mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">Total Users</h5>
+                            <h3 id="total-users">250</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quizzes Attempted -->
+                <div class="col-md-3">
+                    <div class="card text-white bg-success mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">Quiz Attempted</h5>
+                            <h3 id="quizzes-attempted">120</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Average Score -->
+                <div class="col-md-3">
+                    <div class="card text-white bg-warning mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">Avg. Score</h5>
+                            <h3 id="avg-score">85%</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quiz Performance Chart -->
+            <div class="card mt-4">
+                <div class="card-body">
+                    <h5 class="card-title">Quiz Performance</h5>
+                    <canvas id="quizChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Sample data for quiz performance chart
+        const ctx = document.getElementById('quizChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Easy', 'Medium', 'Hard'],
+                datasets: [{
+                    label: 'Questions Answered',
+                    data: [50, 45, 25],
+                    backgroundColor: ['#007bff', '#ffc107', '#dc3545']
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: { beginAtZero: true }
+                }
+            }
+        });
+
+
+        document.addEventListener("DOMContentLoaded", function () {
+    const sidebar = document.getElementById('sidebar');
+    const toggleBtn = document.getElementById('toggleBtn');
+    const overlay = document.getElementById('overlay');
+
+    toggleBtn.addEventListener('click', function () {
+        sidebar.classList.toggle('open');
+        overlay.classList.toggle('show');
+        
+        // Hide toggle button when sidebar opens
+        if (sidebar.classList.contains('open')) {
+            toggleBtn.classList.add('hidden');
+        } else {
+            toggleBtn.classList.remove('hidden');
+        }
+    });
+
+    // Close sidebar when clicking on overlay
+    overlay.addEventListener('click', function () {
+        sidebar.classList.remove('open');
+        overlay.classList.remove('show');
+        
+        // Show toggle button again when sidebar closes
+        toggleBtn.classList.remove('hidden');
+    });
+});
+
+    </script>
+
+</body>
+
+</html>

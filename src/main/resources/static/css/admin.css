@@ -1,0 +1,89 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+#wrapper {
+    display: flex;
+    width: 100%;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: -250px; /* Initially hidden */
+    background-color: #343a40;
+    color: white;
+    transition: left 0.3s ease-in-out;
+    padding-top: 20px;
+    z-index: 1000; /* Ensure sidebar is above content */
+    text-align: left;
+}
+
+.sidebar.open {
+    left: 0;
+}
+/* Toggle Button */
+.toggle-btn {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    background-color: #424446;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    z-index: 1100;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.toggle-btn.hidden {
+    opacity: 0;
+    pointer-events: none; /* Prevent interaction when hidden */
+}
+
+/* Overlay Effect */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    z-index: 900;
+}
+
+.overlay.show {
+    display: block;
+    z-index: 999;
+}
+
+.nav-link{
+    color:white;
+}
+
+.nav-link.active{
+    background-color:color-mix(in srgb, blue 25%, red 25%);
+}
+
+/* Ensure page content is not over sidebar */
+#page-content-wrapper {
+    flex-grow: 1;
+    padding-left: 0; /* Prevents unwanted shifts */
+    transition: margin-left 0.3s ease-in-out;
+}
+
+.sidebar.open + #page-content-wrapper {
+    margin-left: 250px;
+}
+
+/* Card Styling */
+.card {
+    text-align: center;
+    padding: 15px;
+}

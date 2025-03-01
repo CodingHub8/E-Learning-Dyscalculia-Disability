@@ -5,3 +5,4 @@ function currentYear() {
 
 // Call the function when the page loads
 currentYear();
+

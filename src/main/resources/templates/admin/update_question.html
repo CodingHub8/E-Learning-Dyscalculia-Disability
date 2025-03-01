@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Question Bank</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/admin.css"> <!-- Custom CSS for Sidebar -->
+</head>
+<body>
+
+    <div class="d-flex" id="wrapper">
+        <!-- Toggle Button -->
+        <button class="toggle-btn" id="toggleBtn">☰</button>
+
+        <!-- Overlay -->
+        <div class="overlay" id="overlay"></div>
+        
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <h3>Admin Panel</h3>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin/dashboard"> Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="/admin/update_question"> Manage Question Bank</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin/manage_user">Manage User</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Logout</a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div id="page-content-wrapper" class="container mt-4">
+            <h2 class="mb-4">Manage Question Bank</h2>
+
+            <!-- Add Question Button -->
+            <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addQuestionModal">
+                + Add Question
+            </button>
+
+            <!-- Question Table -->
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Question</th>
+                        <th>Category</th>
+                        <th>Difficulty</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>What is 5 + 3?</td>
+                        <td>Math</td>
+                        <td>Easy</td>
+                        <td>
+                            <button class="btn btn-warning btn-sm edit-btn" data-id="1" data-question="What is 5 + 3?" data-category="Math" data-difficulty="Easy" data-bs-toggle="modal" data-bs-target="#editQuestionModal">Edit</button>
+                            <button class="btn btn-danger btn-sm delete-btn" data-id="1" data-bs-toggle="modal" data-bs-target="#deleteQuestionModal">Delete</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>What is the square root of 16?</td>
+                        <td>Math</td>
+                        <td>Medium</td>
+                        <td>
+                            <button class="btn btn-warning btn-sm edit-btn" data-id="2" data-question="What is the square root of 16?" data-category="Math" data-difficulty="Medium" data-bs-toggle="modal" data-bs-target="#editQuestionModal">Edit</button>
+                            <button class="btn btn-danger btn-sm delete-btn" data-id="2" data-bs-toggle="modal" data-bs-target="#deleteQuestionModal">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Add Question Modal -->
+    <div class="modal fade" id="addQuestionModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add New Question</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label>Question</label>
+                            <input type="text" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label>Category</label>
+                            <select class="form-control">
+                                <option>Math</option>
+                                <option>Science</option>
+                                <option>English</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label>Difficulty</label>
+                            <select class="form-control">
+                                <option>Easy</option>
+                                <option>Medium</option>
+                                <option>Hard</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-success w-100">Save Question</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Question Modal -->
+    <div class="modal fade" id="editQuestionModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit Question</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <input type="hidden" id="editQuestionId">
+                        <div class="mb-3">
+                            <label>Question</label>
+                            <input type="text" id="editQuestionText" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label>Category</label>
+                            <select id="editCategory" class="form-control">
+                                <option>Math</option>
+                                <option>Science</option>
+                                <option>English</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label>Difficulty</label>
+                            <select id="editDifficulty" class="form-control">
+                                <option>Easy</option>
+                                <option>Medium</option>
+                                <option>Hard</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-success w-100">Update Question</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div class="modal fade" id="deleteQuestionModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Delete Question</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to delete this question?</p>
+                    <button type="button" class="btn btn-danger w-100">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const sidebar = document.getElementById('sidebar');
+            const toggleBtn = document.getElementById('toggleBtn');
+            const overlay = document.getElementById('overlay');
+
+            toggleBtn.addEventListener('click', function () {
+                sidebar.classList.toggle('open');
+                overlay.classList.toggle('show');
+                toggleBtn.classList.toggle('hidden');
+            });
+
+            overlay.addEventListener('click', function () {
+                sidebar.classList.remove('open');
+                overlay.classList.remove('show');
+                toggleBtn.classList.remove('hidden');
+            });
+
+            // Handle edit button click
+            document.querySelectorAll('.edit-btn').forEach(button => {
+                button.addEventListener('click', function () {
+                    document.getElementById('editQuestionId').value = this.dataset.id;
+                    document.getElementById('editQuestionText').value = this.dataset.question;
+                    document.getElementById('editCategory').value = this.dataset.category;
+                    document.getElementById('editDifficulty').value = this.dataset.difficulty;
+                });
+            });
+        });
+    </script>
+</body>
+</html>
