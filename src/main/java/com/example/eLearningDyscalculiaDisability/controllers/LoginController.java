@@ -12,6 +12,8 @@ import java.util.*;
 public class LoginController {
     private StudentRepository studentRepository;
 
+    // TODO: Fix this error "Required request parameter 'username' for method parameter type String is not present"
+
     @GetMapping("/login")
     public Map<String, String> login(@RequestParam(name = "username") String username, @RequestParam(name = "password") String password, HttpSession session) {
         boolean isAuthenticated = authenticate(username, password);
