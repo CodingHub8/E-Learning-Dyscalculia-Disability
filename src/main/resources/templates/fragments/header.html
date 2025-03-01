@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Header Fragment</title>
+</head>
+<body>
+  <!-- Header Fragment -->
+  <header th:fragment="header">
+    <div class="Mheader">
+      <!-- Hamburger Button -->
+      <button id="Mhamburger-toggle" class="Mhamburger-toggle">
+        <i class="material-icons">menu</i>
+      </button>
+      <a class="navbar-brand" href="#top">
+        <i class="bi-back"></i>
+        <span>E-Learning Dyscalculia</span>
+      </a>
+    </div>
+      <!-- Sidebar -->
+    <aside id="Msidenav" class="Msidenav">
+        <!-- Close Button (X) -->
+        <button id="Mclose-btn" class="Mclose-btn">
+        <i class="material-icons">close</i>
+        </button>
+        
+        <h3>Student Dashboard</h3>
+        
+        <!-- Sidebar links -->
+        <div class="navbar-content">
+        <a href="#">Profile</a>
+        <a href="#">Logout</a>
+        </div>
+    </aside>
+  </header>
+</body>
+</html>

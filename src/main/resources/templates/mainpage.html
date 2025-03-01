@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -10,34 +10,8 @@
   <link href="css/style.css" rel="stylesheet">
 </head>
 <body id="Mbody">
-
-  <!-- Header with Hamburger Button -->
-  <div class="Mheader">
-    <!-- Hamburger Button -->
-    <button id="Mhamburger-toggle" class="Mhamburger-toggle">
-      <i class="material-icons">menu</i>
-    </button>
-    <a class="navbar-brand" href="#top">
-      <i class="bi-back"></i>
-      <span>E-Learning Dyscalculia</span>
-    </a>
-  </div>
-
-  <!-- Sidebar -->
-  <aside id="Msidenav" class="Msidenav">
-    <!-- Close Button (X) -->
-    <button id="Mclose-btn" class="Mclose-btn">
-      <i class="material-icons">close</i>
-    </button>
-    
-    <h3>Student Dashboard</h3>
-    
-    <!-- Sidebar links -->
-    <div class="navbar-content">
-      <a href="#">Profile</a>
-      <a href="#">Logout</a>
-    </div>
-  </aside>
+  <!-- Header Fragment -->
+  <header th:replace="~{fragments/header :: header}"></header>
 
   <!-- Main content -->
   <div id="Mcontent" class="Mcontent">
@@ -60,6 +34,7 @@
           <h4>Step-by-step Explanations</h4>
         </div>
       </div>
+
       <!-- Quiz Stats Cards -->
       <div class="quiz-stats-container">
         <div class="quiz-stats-card">
@@ -73,7 +48,8 @@
       </div>
     </div>
   </div>
-
+  <!-- footer Fragment -->
+  <footer th:replace="~{fragments/footer :: footer}"></footer>
   <script>
     // Toggle sidebar visibility
     const sidenav = document.getElementById('Msidenav');
@@ -93,6 +69,5 @@
       content.classList.remove('open'); // Remove class to reset content margin
     });
   </script>
-
 </body>
 </html>
