@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Student Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Icons">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body id="Mbody">
+
+  <!-- Header with Hamburger Button -->
+  <div class="Mheader">
+    <!-- Hamburger Button -->
+    <button id="Mhamburger-toggle" class="Mhamburger-toggle">
+      <i class="material-icons">menu</i>
+    </button>
+    <a class="navbar-brand" href="#top">
+      <i class="bi-back"></i>
+      <span>E-Learning Dyscalculia</span>
+    </a>
+  </div>
+
+  <!-- Sidebar -->
+  <aside id="Msidenav" class="Msidenav">
+    <!-- Close Button (X) -->
+    <button id="Mclose-btn" class="Mclose-btn">
+      <i class="material-icons">close</i>
+    </button>
+    
+    <h3>Student Dashboard</h3>
+    
+    <!-- Sidebar links -->
+    <div class="navbar-content">
+      <a href="#">Profile</a>
+      <a href="#">Logout</a>
+    </div>
+  </aside>
+
+  <!-- Main content -->
+  <div id="Mcontent" class="Mcontent">
+    <h1>Welcome to the Dashboard</h1>
+
+    <!-- Big Rounded Box for all four boxes -->
+    <div id="Mbig-box" class="Mbig-box">
+      <!-- Flex container for four smaller boxes -->
+      <div id="Mcontent-boxes" class="Mcontent-boxes">
+        <div id="Mquiz-box" class="rounded-box">
+          <h4>Gamified Quizzes</h4>
+        </div>
+        <div id="Mmcq-box" class="rounded-box">
+          <h4>MCQ Based Exercise</h4>
+        </div>
+        <div id="Mhistory-box" class="rounded-box">
+          <h4>View Learning History</h4>
+        </div>
+        <div id="Mexplanation-box" class="rounded-box">
+          <h4>Step-by-step Explanations</h4>
+        </div>
+      </div>
+      <!-- Quiz Stats Cards -->
+      <div class="quiz-stats-container">
+        <div class="quiz-stats-card">
+          <h3>12</h3>
+          <p>Total Assigned Quiz</p>
+        </div>
+        <div class="quiz-stats-card">
+          <h3>8</h3>
+          <p>Completed</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Toggle sidebar visibility
+    const sidenav = document.getElementById('Msidenav');
+    const content = document.getElementById('Mcontent');
+    const sidenavToggleButton = document.getElementById('Mhamburger-toggle');
+    const closeBtn = document.getElementById('Mclose-btn');
+
+    // Open sidebar when hamburger button is clicked
+    sidenavToggleButton.addEventListener('click', () => {
+      sidenav.classList.add('open'); // Open sidebar
+      content.classList.add('open'); // Add class to content to adjust margin
+    });
+
+    // Close sidebar when close button is clicked
+    closeBtn.addEventListener('click', () => {
+      sidenav.classList.remove('open'); // Close sidebar
+      content.classList.remove('open'); // Remove class to reset content margin
+    });
+  </script>
+
+</body>
+</html>
