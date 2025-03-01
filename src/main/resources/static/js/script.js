@@ -1,7 +1,3 @@
-function sayHello() {
-    alert("Boat goes binted !!");
-}
-
 // Toggle sidebar visibility
 const sidenav = document.getElementById('Msidenav');
 const content = document.getElementById('Mcontent');
