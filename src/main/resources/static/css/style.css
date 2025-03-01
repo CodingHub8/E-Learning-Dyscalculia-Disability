@@ -302,12 +302,14 @@ background-color: var(--secondary-color);
 
 .navbar-brand,
 .navbar-brand:hover {
+  padding-left: 50px;
   font-size: var(--h3-font-size);
   font-weight: var(--font-weight-bold);
   display: block;
 }
 
-.navbar-brand span {
+.navbar-brand span, i {
+  color: #000;
   font-family: var(--title-font-family);
 }
 
@@ -1180,4 +1182,284 @@ html {
     font-size: 20px;
   }
 }
+
+/*---------------------------------------
+  mainpage.html */
+
+/* Header Styles */
+.Mheader {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  background-color: #80d0c7;
+  position: relative;
+  z-index: 1; /* Ensure header stays behind the sidebar */
+}
+
+.Mheader .navbar-brand {
+  margin-left: 15px;
+  font-size: 1.5rem;
+}
+
+/* Hamburger Button */
+.Mhamburger-toggle {
+  font-size: 30px;
+  background: none; /* No background */
+  border: none; /* No border */
+  color: #000; /* Set the icon color to black or any color you want */
+  cursor: pointer;
+  position: absolute;
+  z-index: 1100; /* Ensure it's on top of other elements */
+  top: 15px;
+  left: 20px;
+  padding: 0; /* No padding */
+  width: auto; /* The width will be based on the icon itself */
+  height: auto; /* Same as width */
+}
+
+.Mhamburger-toggle i {
+  display: inline-block;
+  font-size: 30px; /* Icon size */
+  color: #000; /* Icon color */
+}
+
+/* Sidebar Styles */
+.Msidenav {
+  position: fixed;
+  top: 0;
+  left: -260px; /* Initially hidden offscreen */
+  width: 260px;
+  height: 100%;
+  background-color: #80d0c7;
+  color: white;
+  transition: left 0.3s;
+  padding-top: 60px;
+  box-shadow: 4px 0 10px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  z-index: 1200; /* Sidebar appears above header */
+}
+
+.Msidenav.open {
+  left: 0; /* Sidebar slides in */
+}
+
+.Msidenav h3 {
+  color: white;
+  font-size: 24px;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Close Button in Sidebar */
+.Mclose-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 30px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  z-index: 1300; /* Close button is in front of the sidebar */
+}
+
+/* Sidebar Links */
+.navbar-content {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+/* Sidebar Links */
+.navbar-content a {
+  padding: 15px;
+  text-decoration: none;
+  font-size: 18px;
+  color: white;
+  display: block;
+  transition: background-color 0.3s;
+  border-radius: 10px; /* Rounded corners */
+  margin-bottom: 10px;
+  background-color: rgba(255, 255, 255, 0.1); /* Light background for the box */
+  text-align: center; /* Center text */
+}
+
+.navbar-content a:hover {
+  background-color: #13547a; /* Hover effect */
+}
+
+/* Main Content Styles */
+.Mcontent {
+  flex:1;
+  padding: 20px;
+  margin: 0 auto; /* Center horizontally */
+  transition: margin-left 0.3s;
+  display: flex;
+  justify-content: center; /* Center content horizontally */
+  align-items: flex-start; /* Align to the top */
+  flex-direction: column;
+  width: 100%; /* Ensure it spans the full width */
+  max-width: 1000px; /* Limit the width for better readability */
+  margin-top: 20px; /* Space from the top */
+}
+/* Adjust the content inside the boxes container */
+#Mcontent-boxes {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  width: 100%; /* Ensure it spans the full width */
+  max-width: 1000px; /* Limit the width */
+  justify-items: center; /* Center the boxes inside each column */
+}
+
+.rounded-box {
+  background-color: #f4f4f4;
+  border-radius: 15px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.rounded-box:hover {
+  transform: translateY(-5px);
+}
+
+#Mbig-box {
+  background-color: #80d0c7;
+  padding: 30px;
+  border-radius: 15px;
+  width: 100%;
+  max-width: 1000px;
+  margin-top: 20px;
+}
+
+/* Boxes Styles */
+#Mquiz-box, #Mmcq-box, #Mhistory-box, #Mexplanation-box {
+  background-color: #f4f4f4;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  width: 100%;
+  max-width: 900px;
+}
+
+#Mquiz-box:hover, #Mmcq-box:hover, #Mhistory-box:hover, #Mexplanation-box:hover {
+  transform: translateY(-5px);
+}
+
+#Mquiz-box h4, #Mmcq-box h4, #Mhistory-box h4, #Mexplanation-box h4 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+}
+
+/* Body Background Color */
+#Mbody {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-image: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  height: 100vh; /* Ensure full height of the viewport */
+  width: 100%; /* Ensure full width of the viewport */
+  background-size: cover; /* Prevent background from repeating */
+  background-position: center; /* Center the background image */
+  background-repeat: no-repeat; /* Prevent the background image from repeating */
+}
+
+/* Responsive Styles */
+@media (max-width: 767px) {
+  #Mcontent-boxes {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .rounded-box {
+    width: 90%;
+    margin-bottom: 15px;
+  }
+}
+
+/* Quiz Stats Container */
+.quiz-stats-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Match the 2-column layout */
+  gap: 20px; /* Match the gap between boxes */
+  width: 100%; /* Ensure it spans the full width */
+  max-width: 1000px; /* Match the max-width of Mcontent-boxes */
+  margin: 20px auto; /* Center the container and add spacing */
+}
+
+/* Quiz Stats Card */
+.quiz-stats-card {
+  background-color: #f4f4f4; /* Match the background color of other boxes */
+  border-radius: 10px; /* Match the border radius of other boxes */
+  padding: 20px; /* Match the padding of other boxes */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Match the shadow of other boxes */
+  text-align: center;
+  transition: transform 0.3s ease;
+  width: 100%; /* Ensure it takes up the full width of the grid cell */
+}
+
+.quiz-stats-card:hover {
+  transform: translateY(-5px); /* Match the hover effect of other boxes */
+}
+
+.quiz-stats-card h3 {
+  font-size: 20px; /* Match the font size of other boxes */
+  font-weight: 600; /* Match the font weight of other boxes */
+  color: #333; /* Match the text color of other boxes */
+  margin: 0; /* Remove default margin */
+}
+
+.quiz-stats-card p {
+  font-size: 16px; /* Match the font size of other boxes */
+  color: #666; /* Match the text color of other boxes */
+  margin: 0; /* Remove default margin */
+}
+
+#Mfooter {
+  background-color: #f4f4f4; /* Add a background color */
+  padding: 20px 0; /* Add padding */
+  text-align: center; /* Center the text */
+  margin-top: auto; /* Push the footer to the bottom */
+}
+/*END OF mainpage.html */
+
+
+/* Step-by-step Explanations */
+.explanation-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.explanation-step {
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.explanation-step h3 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.explanation-step p {
+  font-size: 16px;
+  color: #666;
+}
+
+
 
