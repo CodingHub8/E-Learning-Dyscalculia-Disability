@@ -1,0 +1,23 @@
+
+    <footer th:fragment="footer" class="site-footer section-padding" id="section_4">
+        <div class="container">
+            <!-- Brand Header -->
+            <div class="row mb-4">
+                <div class="col-12 text-center">
+                    <a class="navbar-brand" href="/">
+                        <i class="bi-back"></i>
+                        <span>E-Learning Dyscalculia</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Copyright Section -->
+            <div class="row mt-5">
+                <div class="col-12 text-center">
+                    <p class="mb-0">&copy; <span th:text="${#dates.year(#dates.createNow())}"></span> 
+                        E-Learning Dyscalculia. All Rights Reserved.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
