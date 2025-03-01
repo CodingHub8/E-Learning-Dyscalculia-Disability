@@ -9,5 +9,4 @@ public class ELearningDyscalculiaDisabilityApplication {
     public static void main(String[] args) {
         SpringApplication.run(ELearningDyscalculiaDisabilityApplication.class, args);
     }
-
 }
