@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Users</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/admin.css"> <!-- Custom Sidebar Styles -->
+</head>
+<body>
+
+    <div class="d-flex" id="wrapper">
+        <!-- Toggle Button -->
+        <button class="toggle-btn" id="toggleBtn">☰</button>
+
+        <!-- Overlay -->
+        <div class="overlay" id="overlay"></div>
+
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <h3>Admin Panel</h3>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin/dashboard"> Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin/update_question">Manage Question Bank</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="/admin/manage_user"> Manage Users</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Logout</a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div id="page-content-wrapper" class="container mt-4">
+            <h2 class="mb-4">Manage Users</h2>
+
+            <!-- Add User Button -->
+            <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addUserModal">
+                + Add User
+            </button>
+
+            <!-- User Table -->
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>John Doe</td>
+                        <td>john@example.com</td>
+                        <td>Admin</td>
+                        <td>
+                            <button class="btn btn-warning btn-sm edit-btn" data-id="1" data-name="John Doe" data-email="john@example.com" data-role="Admin" data-bs-toggle="modal" data-bs-target="#editUserModal">Edit</button>
+                            <button class="btn btn-danger btn-sm delete-btn" data-id="1" data-bs-toggle="modal" data-bs-target="#deleteUserModal">Delete</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Jane Smith</td>
+                        <td>jane@example.com</td>
+                        <td>User</td>
+                        <td>
+                            <button class="btn btn-warning btn-sm edit-btn" data-id="2" data-name="Jane Smith" data-email="jane@example.com" data-role="User" data-bs-toggle="modal" data-bs-target="#editUserModal">Edit</button>
+                            <button class="btn btn-danger btn-sm delete-btn" data-id="2" data-bs-toggle="modal" data-bs-target="#deleteUserModal">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Add User Modal -->
+    <div class="modal fade" id="addUserModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add New User</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label>Name</label>
+                            <input type="text" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label>Email</label>
+                            <input type="email" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label>Role</label>
+                            <select class="form-control">
+                                <option>Admin</option>
+                                <option>User</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-success w-100">Add User</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit User Modal -->
+    <div class="modal fade" id="editUserModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit User</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <input type="hidden" id="editUserId">
+                        <div class="mb-3">
+                            <label>Name</label>
+                            <input type="text" id="editUserName" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label>Email</label>
+                            <input type="email" id="editUserEmail" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label>Role</label>
+                            <select id="editUserRole" class="form-control">
+                                <option>Admin</option>
+                                <option>User</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-success w-100">Update User</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div class="modal fade" id="deleteUserModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Delete User</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to delete this user?</p>
+                    <button type="button" class="btn btn-danger w-100">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const sidebar = document.getElementById('sidebar');
+            const toggleBtn = document.getElementById('toggleBtn');
+            const overlay = document.getElementById('overlay');
+
+            toggleBtn.addEventListener('click', function () {
+                sidebar.classList.toggle('open');
+                overlay.classList.toggle('show');
+                toggleBtn.classList.toggle('hidden');
+            });
+
+            overlay.addEventListener('click', function () {
+                sidebar.classList.remove('open');
+                overlay.classList.remove('show');
+                toggleBtn.classList.remove('hidden');
+            });
+
+            // Handle edit button click
+            document.querySelectorAll('.edit-btn').forEach(button => {
+                button.addEventListener('click', function () {
+                    document.getElementById('editUserId').value = this.dataset.id;
+                    document.getElementById('editUserName').value = this.dataset.name;
+                    document.getElementById('editUserEmail').value = this.dataset.email;
+                    document.getElementById('editUserRole').value = this.dataset.role;
+                });
+            });
+        });
+    </script>
+</body>
+</html>
