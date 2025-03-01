@@ -13,6 +13,23 @@
   <!-- Header Fragment -->
   <header th:replace="~{fragments/header :: header}"></header>
 
+    <!-- Sidebar -->
+    <aside id="Msidenav" class="Msidenav">
+      <!-- Close Button (X) -->
+      <button id="Mclose-btn" class="Mclose-btn">
+      <i class="material-icons">close</i>
+      </button>
+      
+      <h3>Student Dashboard</h3>
+      
+      <!-- Sidebar links -->
+      <div class="navbar-content">
+      <a href="#">Profile</a>
+      <a href="window.history.back()">Back</a>
+      <a href="#">Logout</a>
+      </div>
+    </aside>
+
   <!-- Main content -->
   <div id="Mcontent" class="Mcontent">
     <h1>Welcome to the Dashboard</h1>
@@ -50,24 +67,6 @@
   </div>
   <!-- footer Fragment -->
   <footer th:replace="~{fragments/footer :: footer}"></footer>
-  <script>
-    // Toggle sidebar visibility
-    const sidenav = document.getElementById('Msidenav');
-    const content = document.getElementById('Mcontent');
-    const sidenavToggleButton = document.getElementById('Mhamburger-toggle');
-    const closeBtn = document.getElementById('Mclose-btn');
-
-    // Open sidebar when hamburger button is clicked
-    sidenavToggleButton.addEventListener('click', () => {
-      sidenav.classList.add('open'); // Open sidebar
-      content.classList.add('open'); // Add class to content to adjust margin
-    });
-
-    // Close sidebar when close button is clicked
-    closeBtn.addEventListener('click', () => {
-      sidenav.classList.remove('open'); // Close sidebar
-      content.classList.remove('open'); // Remove class to reset content margin
-    });
-  </script>
+  <script src="js/script.js"></script>
 </body>
 </html>
