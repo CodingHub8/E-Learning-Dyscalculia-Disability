@@ -3,13 +3,17 @@ package com.example.eLearningDyscalculiaDisability.controllers;
 import com.example.eLearningDyscalculiaDisability.model.Student;
 import com.example.eLearningDyscalculiaDisability.repository.StudentRepository;
 import jakarta.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.*;
 
 @Controller
 public class LoginController {
+    @Autowired
     private StudentRepository studentRepository;
 
     @GetMapping("/login")
@@ -17,23 +21,14 @@ public class LoginController {
         return "login"; // Make sure this matches your login HTML file name
     }
 
-    @PostMapping("/login/auth")
-    @ResponseBody
-    public Map<String, String> login(@RequestBody Map<String, String> credentials, HttpSession session) {
-        String username = credentials.get("username");
-        String password = credentials.get("password");
-
-        boolean isAuthenticated = authenticate(username, password);
-        Map<String, String> response = new HashMap<>();
-
-        if (isAuthenticated) {
+    @PostMapping(value = "/login/auth", consumes = "application/x-www-form-urlencoded")
+    public RedirectView login(@RequestParam("username") String username, @RequestParam("password") String password, HttpSession session) {
+        if (authenticate(username, password)) {
             session.setAttribute("username", username);
-            response.put("message", "Login successful");
-            response.put("token", UUID.randomUUID().toString()); // Simulating a token
+            return new RedirectView("/"); // Redirect to the home page
         } else {
-            response.put("message", "Invalid credentials");
+            return new RedirectView("/login?error=true"); // Redirect back to login with error message
         }
-        return response;
     }
 
     public boolean authenticate(String username, String password) {
