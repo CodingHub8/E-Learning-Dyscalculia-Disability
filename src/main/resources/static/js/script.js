@@ -28,10 +28,10 @@ document.getElementById("loginForm").addEventListener("submit", function(event) 
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
 
-    fetch('http://localhost:8080/api/auth/login', {
+    fetch('http://localhost:8080/login/auth', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams({ username: username, password: password }) // Send user input
+        headers: { 'Content-Type': 'application/json' }, // Send as JSON
+        body: JSON.stringify({ username: username, password: password }) // Convert to JSON
     })
         .then(response => response.json())
         .then(data => {

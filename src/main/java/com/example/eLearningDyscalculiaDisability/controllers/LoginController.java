@@ -12,16 +12,24 @@ import java.util.*;
 public class LoginController {
     private StudentRepository studentRepository;
 
-    // TODO: Fix this error "Required request parameter 'username' for method parameter type String is not present"
-
     @GetMapping("/login")
-    public Map<String, String> login(@RequestParam(name = "username") String username, @RequestParam(name = "password") String password, HttpSession session) {
+    public String showLoginPage() {
+        return "login"; // Make sure this matches your login HTML file name
+    }
+
+    @PostMapping("/login/auth")
+    @ResponseBody
+    public Map<String, String> login(@RequestBody Map<String, String> credentials, HttpSession session) {
+        String username = credentials.get("username");
+        String password = credentials.get("password");
+
         boolean isAuthenticated = authenticate(username, password);
         Map<String, String> response = new HashMap<>();
 
         if (isAuthenticated) {
             session.setAttribute("username", username);
             response.put("message", "Login successful");
+            response.put("token", UUID.randomUUID().toString()); // Simulating a token
         } else {
             response.put("message", "Invalid credentials");
         }
@@ -37,7 +45,7 @@ public class LoginController {
         return false;
     }
 
-    @GetMapping("/me")
+    @PostMapping("/me")
     public Map<String, String> getStudent(HttpSession session) {
         Map<String, String> response = new HashMap<>();
         String username = (String) session.getAttribute("username");
@@ -50,4 +58,3 @@ public class LoginController {
         return response;
     }
 }
-
