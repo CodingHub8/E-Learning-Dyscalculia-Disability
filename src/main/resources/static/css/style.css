@@ -10,44 +10,44 @@ https://templatemo.com/tm-590-topic-listing
   CUSTOM PROPERTIES ( VARIABLES )             
 -----------------------------------------*/
 :root {
-  --white-color:                  #ffffff;
-  --primary-color:                #13547a;
-  --secondary-color:              #80d0c7;
-  --section-bg-color:             #f0f8ff;
-  --custom-btn-bg-color:          #80d0c7;
-  --custom-btn-bg-hover-color:    #13547a;
-  --dark-color:                   #000000;
-  --p-color:                      #717275;
-  --border-color:                 #7fffd4;
-  --link-hover-color:             #13547a;
+  --white-color: #ffffff;
+  --primary-color: #13547a;
+  --secondary-color: #80d0c7;
+  --section-bg-color: #f0f8ff;
+  --custom-btn-bg-color: #80d0c7;
+  --custom-btn-bg-hover-color: #13547a;
+  --dark-color: #000000;
+  --p-color: #717275;
+  --border-color: #7fffd4;
+  --link-hover-color: #13547a;
 
-  --body-font-family:             'Open Sans', sans-serif;
-  --title-font-family:            'Montserrat', sans-serif;
+  --body-font-family: 'Open Sans', sans-serif;
+  --title-font-family: 'Montserrat', sans-serif;
 
-  --h1-font-size:                 58px;
-  --h2-font-size:                 46px;
-  --h3-font-size:                 32px;
-  --h4-font-size:                 28px;
-  --h5-font-size:                 24px;
-  --h6-font-size:                 22px;
-  --p-font-size:                  20px;
-  --menu-font-size:               14px;
-  --btn-font-size:                18px;
-  --copyright-font-size:          16px;
+  --h1-font-size: 58px;
+  --h2-font-size: 46px;
+  --h3-font-size: 32px;
+  --h4-font-size: 28px;
+  --h5-font-size: 24px;
+  --h6-font-size: 22px;
+  --p-font-size: 20px;
+  --menu-font-size: 14px;
+  --btn-font-size: 18px;
+  --copyright-font-size: 16px;
 
-  --border-radius-large:          100px;
-  --border-radius-medium:         20px;
-  --border-radius-small:          10px;
+  --border-radius-large: 100px;
+  --border-radius-medium: 20px;
+  --border-radius-small: 10px;
 
-  --font-weight-normal:           400;
-  --font-weight-medium:           500;
-  --font-weight-semibold:         600;
-  --font-weight-bold:             700;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
 }
 
 body {
   background-color: var(--white-color);
-  font-family: var(--body-font-family); 
+  font-family: var(--body-font-family);
 }
 
 /* Hide scrollbar for Chrome, Safari, and Edge */
@@ -79,7 +79,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--title-font-family); 
+  font-family: var(--title-font-family);
   font-weight: var(--font-weight-semibold);
 }
 
@@ -122,7 +122,7 @@ ul li {
   font-weight: var(--font-weight-normal);
 }
 
-a, 
+a,
 button {
   touch-action: manipulation;
   transition: all 0.3s;
@@ -143,11 +143,11 @@ strong {
   font-weight: var(--font-weight-bold);
 }
 
-.btn-primary{
+.btn-primary {
   background-color: #13547a;
 }
 
-.btn-primary:hover{
+.btn-primary:hover {
   background-color: #80d0c7;
 }
 
@@ -174,7 +174,7 @@ strong {
   opacity: 0.85;
 }
 
-.section-overlay + .container {
+.section-overlay+.container {
   position: relative;
 }
 
@@ -206,9 +206,9 @@ strong {
   margin-right: 20px;
 }
 
-.nav-tabs .nav-item.show .nav-link, 
+.nav-tabs .nav-item.show .nav-link,
 .nav-tabs .nav-link.active,
-.nav-tabs .nav-link:focus, 
+.nav-tabs .nav-link:focus,
 .nav-tabs .nav-link:hover {
   border-bottom-color: var(--primary-color);
   color: var(--primary-color);
@@ -318,7 +318,8 @@ strong {
   display: block;
 }
 
-.navbar-brand span, i {
+.navbar-brand span,
+i {
   color: #000;
   font-family: var(--title-font-family);
 }
@@ -332,7 +333,7 @@ strong {
 .navbar-nav .nav-link {
   display: inline-block;
   color: var(--white-color);
-  font-family: var(--title-font-family); 
+  font-family: var(--title-font-family);
   font-size: var(--menu-font-size);
   font-weight: var(--font-weight-medium);
   text-transform: uppercase;
@@ -342,14 +343,14 @@ strong {
   padding-bottom: 15px;
 }
 
-.navbar-nav .nav-link.active, 
+.navbar-nav .nav-link.active,
 .navbar-nav .nav-link:hover {
   color: var(--primary-color);
 }
 
 .navbar .dropdown-menu {
   background: var(--white-color);
-  box-shadow: 0 1rem 3rem rgba(0,0,0,.175);
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, .175);
   border: 0;
   display: inherit;
   opacity: 0;
@@ -375,7 +376,7 @@ strong {
 .navbar .dropdown-item {
   display: inline-block;
   color: var(--p-bg-color);
-  font-family: var(--title-font-family); 
+  font-family: var(--title-font-family);
   font-size: var(--menu-font-size);
   font-weight: var(--font-weight-medium);
   text-transform: uppercase;
@@ -383,9 +384,9 @@ strong {
   position: relative;
 }
 
-.navbar .dropdown-item.active, 
+.navbar .dropdown-item.active,
 .navbar .dropdown-item:active,
-.navbar .dropdown-item:focus, 
+.navbar .dropdown-item:focus,
 .navbar .dropdown-item:hover {
   background: transparent;
   color: var(--primary-color);
@@ -568,7 +569,7 @@ strong {
   transform: translateY(-3px);
 }
 
-.custom-block > a {
+.custom-block>a {
   width: 100%;
 }
 
@@ -596,7 +597,7 @@ strong {
   padding: 0;
 }
 
-.custom-block-overlay > a {
+.custom-block-overlay>a {
   height: 100%;
 }
 
@@ -735,7 +736,8 @@ blockquote {
   border-radius: var(--border-radius-small);
 }
 
-.active>.page-link, .page-link.active {
+.active>.page-link,
+.page-link.active {
   background-color: var(--secondary-color);
   border-color: var(--secondary-color);
 }
@@ -949,7 +951,7 @@ blockquote {
   border-radius: 8px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
   border: 1px solid #ddd;
-  position:relative;
+  position: relative;
 }
 
 
@@ -1141,12 +1143,12 @@ blockquote {
     padding-top: 50px;
     padding-bottom: 50px;
   }
-  
+
   .navbar {
     background-color: var(--secondary-color);
-      border-bottom: 1px solid rgba(128, 208, 199, 0.35);
-      z-index: 1;
-    }
+    border-bottom: 1px solid rgba(128, 208, 199, 0.35);
+    z-index: 1;
+  }
 
   .navbar-nav .dropdown-menu {
     position: relative;
@@ -1184,7 +1186,7 @@ blockquote {
     width: auto;
   }
 
-  .custom-block-topics-listing > .d-flex,
+  .custom-block-topics-listing>.d-flex,
   .custom-block-topics-listing-info,
   .custom-block-topics-listing a {
     flex-direction: column;
@@ -1236,7 +1238,8 @@ blockquote {
   padding: 20px;
   background-color: #80d0c7;
   position: relative;
-  z-index: 1; /* Ensure header stays behind the sidebar */
+  z-index: 1;
+  /* Ensure header stays behind the sidebar */
 }
 
 .Mheader .navbar-brand {
@@ -1247,30 +1250,40 @@ blockquote {
 /* Hamburger Button */
 .Mhamburger-toggle {
   font-size: 30px;
-  background: none; /* No background */
-  border: none; /* No border */
-  color: #000; /* Set the icon color to black or any color you want */
+  background: none;
+  /* No background */
+  border: none;
+  /* No border */
+  color: #000;
+  /* Set the icon color to black or any color you want */
   cursor: pointer;
   position: absolute;
-  z-index: 1100; /* Ensure it's on top of other elements */
+  z-index: 1100;
+  /* Ensure it's on top of other elements */
   top: 15px;
   left: 20px;
-  padding: 0; /* No padding */
-  width: auto; /* The width will be based on the icon itself */
-  height: auto; /* Same as width */
+  padding: 0;
+  /* No padding */
+  width: auto;
+  /* The width will be based on the icon itself */
+  height: auto;
+  /* Same as width */
 }
 
 .Mhamburger-toggle i {
   display: inline-block;
-  font-size: 30px; /* Icon size */
-  color: #000; /* Icon color */
+  font-size: 30px;
+  /* Icon size */
+  color: #000;
+  /* Icon color */
 }
 
 /* Sidebar Styles */
 .Msidenav {
   position: fixed;
   top: 0;
-  left: -280px; /* Initially hidden */
+  left: -280px;
+  /* Initially hidden */
   width: 280px;
   height: 100%;
   background: linear-gradient(45deg, #13547a, #80d0c7);
@@ -1288,7 +1301,8 @@ blockquote {
 }
 
 .Msidenav.open {
-  left: 0; /* Sidebar slides in */
+  left: 0;
+  /* Sidebar slides in */
 }
 
 .Msidenav h3 {
@@ -1309,7 +1323,8 @@ blockquote {
   border: none;
   color: white;
   cursor: pointer;
-  z-index: 1300; /* Close button is in front of the sidebar */
+  z-index: 1300;
+  /* Close button is in front of the sidebar */
 }
 
 /* Sidebar Links */
@@ -1327,14 +1342,18 @@ blockquote {
   color: white;
   display: block;
   transition: background-color 0.3s;
-  border-radius: 10px; /* Rounded corners */
+  border-radius: 10px;
+  /* Rounded corners */
   margin-bottom: 10px;
-  background-color: rgba(255, 255, 255, 0.1); /* Light background for the box */
-  text-align: center; /* Center text */
+  background-color: rgba(255, 255, 255, 0.1);
+  /* Light background for the box */
+  text-align: center;
+  /* Center text */
 }
 
 .navbar-content a:hover {
-  background-color: #13547a; /* Hover effect */
+  background-color: #13547a;
+  /* Hover effect */
 }
 
 /* Sidebar Toggle Button */
@@ -1347,31 +1366,41 @@ blockquote {
   padding: 12px 16px;
   font-size: 22px;
   cursor: pointer;
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2); 
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
 }
 
 /* Main Content Styles */
 .Mcontent {
-  flex:1;
+  flex: 1;
   padding: 20px;
-  margin: 0 auto; /* Center horizontally */
+  margin: 0 auto;
+  /* Center horizontally */
   transition: margin-left 0.3s;
   display: flex;
-  justify-content: center; /* Center content horizontally */
-  align-items: flex-start; /* Align to the top */
+  justify-content: center;
+  /* Center content horizontally */
+  align-items: flex-start;
+  /* Align to the top */
   flex-direction: column;
-  width: 100%; /* Ensure it spans the full width */
-  max-width: 1000px; /* Limit the width for better readability */
-  margin-top: 20px; /* Space from the top */
+  width: 100%;
+  /* Ensure it spans the full width */
+  max-width: 1000px;
+  /* Limit the width for better readability */
+  margin-top: 20px;
+  /* Space from the top */
 }
+
 /* Adjust the content inside the boxes container */
 #Mcontent-boxes {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
-  width: 100%; /* Ensure it spans the full width */
-  max-width: 1000px; /* Limit the width */
-  justify-items: center; /* Center the boxes inside each column */
+  width: 100%;
+  /* Ensure it spans the full width */
+  max-width: 1000px;
+  /* Limit the width */
+  justify-items: center;
+  /* Center the boxes inside each column */
 }
 
 .rounded-box {
@@ -1397,7 +1426,10 @@ blockquote {
 }
 
 /* Boxes Styles */
-#Mquiz-box, #Mmcq-box, #Mhistory-box, #Mexplanation-box {
+#Mquiz-box,
+#Mmcq-box,
+#Mhistory-box,
+#Mexplanation-box {
   background-color: #f4f4f4;
   padding: 20px;
   border-radius: 10px;
@@ -1409,11 +1441,17 @@ blockquote {
   max-width: 900px;
 }
 
-#Mquiz-box:hover, #Mmcq-box:hover, #Mhistory-box:hover, #Mexplanation-box:hover {
+#Mquiz-box:hover,
+#Mmcq-box:hover,
+#Mhistory-box:hover,
+#Mexplanation-box:hover {
   transform: translateY(-5px);
 }
 
-#Mquiz-box h4, #Mmcq-box h4, #Mhistory-box h4, #Mexplanation-box h4 {
+#Mquiz-box h4,
+#Mmcq-box h4,
+#Mhistory-box h4,
+#Mexplanation-box h4 {
   margin: 0;
   font-size: 20px;
   font-weight: 600;
@@ -1429,11 +1467,16 @@ blockquote {
   font-family: 'Arial', sans-serif;
   margin: 0;
   padding: 0;
-  height: 100vh; /* Ensure full height of the viewport */
-  width: 100%; /* Ensure full width of the viewport */
-  background-size: cover; /* Prevent background from repeating */
-  background-position: center; /* Center the background image */
-  background-repeat: no-repeat; /* Prevent the background image from repeating */
+  height: 100vh;
+  /* Ensure full height of the viewport */
+  width: 100%;
+  /* Ensure full width of the viewport */
+  background-size: cover;
+  /* Prevent background from repeating */
+  background-position: center;
+  /* Center the background image */
+  background-repeat: no-repeat;
+  /* Prevent the background image from repeating */
 }
 
 /* Responsive Styles */
@@ -1452,46 +1495,66 @@ blockquote {
 /* Quiz Stats Container */
 .quiz-stats-container {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* Match the 2-column layout */
-  gap: 20px; /* Match the gap between boxes */
-  width: 100%; /* Ensure it spans the full width */
-  max-width: 1000px; /* Match the max-width of Mcontent-boxes */
-  margin: 20px auto; /* Center the container and add spacing */
+  grid-template-columns: repeat(2, 1fr);
+  /* Match the 2-column layout */
+  gap: 20px;
+  /* Match the gap between boxes */
+  width: 100%;
+  /* Ensure it spans the full width */
+  max-width: 1000px;
+  /* Match the max-width of Mcontent-boxes */
+  margin: 20px auto;
+  /* Center the container and add spacing */
 }
 
 /* Quiz Stats Card */
 .quiz-stats-card {
-  background-color: #f4f4f4; /* Match the background color of other boxes */
-  border-radius: 10px; /* Match the border radius of other boxes */
-  padding: 20px; /* Match the padding of other boxes */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Match the shadow of other boxes */
+  background-color: #f4f4f4;
+  /* Match the background color of other boxes */
+  border-radius: 10px;
+  /* Match the border radius of other boxes */
+  padding: 20px;
+  /* Match the padding of other boxes */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* Match the shadow of other boxes */
   text-align: center;
   transition: transform 0.3s ease;
-  width: 100%; /* Ensure it takes up the full width of the grid cell */
+  width: 100%;
+  /* Ensure it takes up the full width of the grid cell */
 }
 
 .quiz-stats-card:hover {
-  transform: translateY(-5px); /* Match the hover effect of other boxes */
+  transform: translateY(-5px);
+  /* Match the hover effect of other boxes */
 }
 
 .quiz-stats-card h3 {
-  font-size: 20px; /* Match the font size of other boxes */
-  font-weight: 600; /* Match the font weight of other boxes */
-  color: #333; /* Match the text color of other boxes */
-  margin: 0; /* Remove default margin */
+  font-size: 20px;
+  /* Match the font size of other boxes */
+  font-weight: 600;
+  /* Match the font weight of other boxes */
+  color: #333;
+  /* Match the text color of other boxes */
+  margin: 0;
+  /* Remove default margin */
 }
 
 .quiz-stats-card p {
-  font-size: 16px; /* Match the font size of other boxes */
-  color: #666; /* Match the text color of other boxes */
-  margin: 0; /* Remove default margin */
+  font-size: 16px;
+  /* Match the font size of other boxes */
+  color: #666;
+  /* Match the text color of other boxes */
+  margin: 0;
+  /* Remove default margin */
 }
 
 
 /* Center Profile Management Form */
 .profile-container {
-  max-width: 500px; /* Limit form width */
-  margin: auto; /* Center align */
+  max-width: 500px;
+  /* Limit form width */
+  margin: auto;
+  /* Center align */
   background: white;
   padding-top: 10px;
   padding: 10px;
@@ -1502,111 +1565,125 @@ blockquote {
 /* Ensure sidebar toggle button doesn't overlap */
 @media (max-width: 768px) {
   .profile-container {
-      margin-top: 60px; /* Push form below the toggle button */
+    margin-top: 60px;
+    /* Push form below the toggle button */
   }
 
-/* Step-by-step Explanations */
+  /* Step-by-step Explanations */
 
 
-#Mfooter {
-  background-color: #f4f4f4; /* Add a background color */
-  padding: 20px 0; /* Add padding */
-  text-align: center; /* Center the text */
-  margin-top: auto; /* Push the footer to the bottom */
+  #Mfooter {
+    background-color: #f4f4f4;
+    /* Add a background color */
+    padding: 20px 0;
+    /* Add padding */
+    text-align: center;
+    /* Center the text */
+    margin-top: auto;
+    /* Push the footer to the bottom */
+  }
+
+  /*END OF mainpage.html */
+
+
+  /* Step-by-step Explanations */
+  .explanation-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  .explanation-step {
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .explanation-step h3 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 10px;
+  }
+
+  .explanation-step p {
+    font-size: 16px;
+    color: #666;
+  }
+
+  /* Quizzes */
+  .quiz-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  .quiz-question {
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .quiz-question h3 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+
+  .quiz-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .quiz-options label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
+    color: #333;
+  }
+
+  .quiz-navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+
+  .quiz-navigation button {
+    background-color: #80d0c7;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .quiz-navigation button:hover {
+    background-color: #13547a;
+  }
+
+  .quiz-navigation button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+
+  /* Timer Styles */
+  #quiz-timer {
+    font-size: 18px;
+    font-weight: bold;
+    color: #13547a;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
 }
-/*END OF mainpage.html */
 
+.errorMessage p{
+  color: red !important;
 
-/* Step-by-step Explanations */
-.explanation-container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-.explanation-step {
-  background-color: #f9f9f9;
-  border-radius: 10px;
-  padding: 20px;
-  margin-bottom: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.explanation-step h3 {
-  font-size: 24px;
-  color: #333;
-  margin-bottom: 10px;
-}
-
-.explanation-step p {
-  font-size: 16px;
-  color: #666;
-}
-/* Quizzes */
-.quiz-container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-.quiz-question {
-  background-color: #f9f9f9;
-  border-radius: 10px;
-  padding: 20px;
-  margin-bottom: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.quiz-question h3 {
-  font-size: 24px;
-  color: #333;
-  margin-bottom: 20px;
-}
-
-.quiz-options {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.quiz-options label {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 16px;
-  color: #333;
-}
-
-.quiz-navigation {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
-}
-
-.quiz-navigation button {
-  background-color: #80d0c7;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  color: white;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.quiz-navigation button:hover {
-  background-color: #13547a;
-}
-
-.quiz-navigation button:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
-}
-
-/* Timer Styles */
-#quiz-timer {
-  font-size: 18px;
-  font-weight: bold;
-  color: #13547a;
-  margin-bottom: 20px;
-  text-align: center;
 }

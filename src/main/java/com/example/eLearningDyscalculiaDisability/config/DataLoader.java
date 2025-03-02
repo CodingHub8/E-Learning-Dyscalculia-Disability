@@ -16,15 +16,21 @@ public class DataLoader implements CommandLineRunner {
     }
 
     @Override
-    public void run(String... args) throws Exception {// Load initial data into the database
-        // Admin Data
-        if (adminRepository.count() == 0) {
-            adminRepository.save(new Admin("admin", "123", "admin@email.com", "rw"));
-        }
-
-        // Student Data
-        if (studentRepository.count() == 0) {
-            studentRepository.save(new Student("student", "123", "student@email.com", "A"));
-        }
+    public void run(String... args) throws Exception {
+        // TODO Auto-generated method stub
+        // throw new UnsupportedOperationException("Unimplemented method 'run'");
     }
-}
+
+    // @Override
+    // public void run(String... args) throws Exception {// Load initial data into the database
+    //     // // Admin Data
+    //     // if (adminRepository.count() == 0) {
+    //     //     adminRepository.save(new Admin("admin", "123", "admin@email.com", "rw"));
+    //     // }
+
+    //     // // Student Data
+    //     // if (studentRepository.count() == 0) {
+    //     //     studentRepository.save(new Student("student", "123", "student@email.com", "A"));
+    //     }
+    }
+

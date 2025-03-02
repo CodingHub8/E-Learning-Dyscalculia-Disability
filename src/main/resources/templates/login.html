@@ -65,6 +65,7 @@
 
         <!DOCTYPE html>
         <html lang="en">
+
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -72,14 +73,20 @@
             <link href="css/bootstrap.min.css" rel="stylesheet">
             <link href="css/style.css" rel="stylesheet">
         </head>
+
         <body>
             <main>
                 <div class="form-container">
                     <h2 class="text-center">Login</h2>
+
+                    <!-- Display error message if authentication fails -->
+                    <div th:if="${errorMessage}" class="errorMessage">
+                        <p th:text="${errorMessage}"></p>
+                    </div>
                     <form id="loginForm" method="post" action="login/auth">
                         <div class="mb-3">
-                            <label class="form-label">Username</label>
-                            <input id="username" type="text" class="form-control" name="username" required>
+                            <label class="form-label">Full Name</label>
+                            <input id="fullName" type="text" class="form-control" name="fullName" required>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Password</label>
@@ -93,8 +100,9 @@
                 </div>
             </main>
         </body>
+
         </html>
-    
+
     </main>
 
     <footer class="site-footer section-padding" id="section_4">

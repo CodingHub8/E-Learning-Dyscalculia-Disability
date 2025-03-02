@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 </head>
+
 <body>
     <main>
         <nav class="navbar navbar-expand-lg">
@@ -47,28 +49,31 @@
                 </div>
             </div>
         </nav>
+        <form action="/signup" method="POST">
 
-        <div class="form-container">
-            <h2 class="text-center">Sign Up</h2>
-            <form>
-                <div class="mb-3">
-                    <label class="form-label">Full Name</label>
-                    <input type="text" class="form-control" required>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Email</label>
-                    <input type="email" class="form-control" required>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Password</label>
-                    <input type="password" class="form-control" required>
-                </div>
-                <button type="submit" class="btn btn-success w-100">Sign Up</button>
-            </form>
-            <p class="text-center mt-3">
-                Already have an account? <a href="/login">Login here</a>.
-            </p>
-        </div>
+            <div class="form-container">
+                <h2 class="text-center">Sign Up</h2>
+                <form>
+                    <div class="mb-3">
+                        <label class="form-label">Full Name</label>
+                        <input type="text" class="form-control" name="fullName" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-control" name="email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Password</label>
+                        <input type="password" class="form-control" name="password" required>
+                    </div>
+                    <button type="submit" class="btn btn-success w-100">Sign Up</button>
+                </form>
+                <p class="text-center mt-3">
+                    Already have an account? <a href="/login">Login here</a>.
+                </p>
+            </div>
+        </form>
+
     </main>
 
     <footer class="site-footer section-padding" id="section_4">
