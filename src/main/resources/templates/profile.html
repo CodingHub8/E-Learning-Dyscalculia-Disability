@@ -23,49 +23,13 @@
 <body id="top">
 
     <main>
-        <nav class="navbar navbar-expand-lg">
-            <div class="container">
-                <a class="navbar-brand" href="/">
-                    <i class="bi-back"></i>
-                    <span>E-Learning Dyscalculia</span>
-                </a>
-
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-lg-5 me-lg-auto">
-                        <li class="nav-item ">
-                            <a class="nav-link click-scroll" href="../#section_1">Home</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link click-scroll" href="../#section_2">Browse Topic</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link click-scroll" href="../#section_2">How does it work?</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link click-scroll" href="../#section_4">Contact</a>
-                        </li>
-                    </ul>
-
-                    <div class="ms-auto me-4">
-                        <a href="/login" class="btn btn-primary rounded">Sign Up</a>
-                    </div>
-                </div>
-            </div>
-        </nav>
+        <header th:replace="~{fragments/header :: header}"></header>
 
 
-        <main class="container mt-5">
+        <main class="container mt-5 ">
 
 
-            <div class="col-md-8">
+            <div class="col-md-8 align-items-center">
                 <!-- Profile Details -->
                 <h3>Profile Management</h3>
                 <form>
@@ -101,29 +65,7 @@
             </div>
         </main>
 
-        <footer class="site-footer section-padding" id="section_4">
-            <div class="container">
-                <!-- Brand Header -->
-                <div class="row mb-4">
-                    <div class="col-12 text-center">
-                        <a class="navbar-brand" href="/">
-                            <i class="bi-back"></i>
-                            <span>E-Learning Dyscalculia</span>
-                        </a>
-                    </div>
-                </div>
-    
-    
-                <!-- Copyright Section -->
-                <div class="row mt-5">
-                    <div class="col-12 text-center">
-                        <p class="mb-0">&copy; <span id="currentYear"></span> E-Learning Dyscalculia. All Rights Reserved.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </footer>
-
+        <footer th:replace="~{fragments/footer :: footer}"></footer>
         <!-- Bootstrap JS -->
         <script src="js/bootstrap.bundle.min.js"></script>
 

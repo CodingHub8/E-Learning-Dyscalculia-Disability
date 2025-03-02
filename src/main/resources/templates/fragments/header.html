@@ -1,22 +1,30 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-  <meta charset="UTF-8">
-  <title>Header Fragment</title>
-</head>
-<body>
-  <!-- Header Fragment -->
-  <header th:fragment="header">
-    <div class="Mheader">
-      <!-- Hamburger Button -->
-      <button id="Mhamburger-toggle" class="Mhamburger-toggle">
-        <i class="material-icons">menu</i>
-      </button>
-      <a class="navbar-brand" href="#top">
-        <i class="bi-back"></i>
-        <span>E-Learning Dyscalculia</span>
-      </a>
+<header th:fragment="header" class="sidebar">
+    <!-- Sidebar -->
+    <div class="Msidenav" id="sidebar">
+        <button class="Mclose-btn" onclick="toggleSidebar()">×</button>
+        <h3>E-Learning Dyscalculia</h3>
+        <div class="navbar-content">
+            <a href="/"><i class="bi bi-house-door"></i> Home</a>
+            <a href="/performance"><i class="bi bi-bar-chart-line"></i> Progress Tracking</a>
+            <a href="/profile"><i class="bi bi-person-circle"></i> Profile</a>
+            <a href="#" onclick="logout()"><i class="bi bi-box-arrow-right"></i> Logout</a>
+        </div>
     </div>
-  </header>
-</body>
-</html>
+
+    <!-- Sidebar Toggle Button -->
+    <button class="Mtoggle-btn" onclick="toggleSidebar()">
+        <i class="bi bi-list"></i>
+    </button>
+
+    <!-- JavaScript -->
+    <script>
+        function toggleSidebar() {
+            var sidebar = document.getElementById("sidebar");
+            sidebar.classList.toggle("open");
+        }
+
+        function logout() {
+            window.location.href = "/logout";
+        }
+    </script>
+</header>
