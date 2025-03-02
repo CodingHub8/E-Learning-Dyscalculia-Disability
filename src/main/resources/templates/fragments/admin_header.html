@@ -1,0 +1,28 @@
+<div th:fragment="admin_header">
+
+    <!-- Toggle Button -->
+    <button class="toggle-btn" id="toggleBtn">☰</button>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay"></div>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <h3>Admin Panel</h3>
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/dashboard"> Dashboard</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/update_question"> Manage Question Bank</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/manage_user">Manage User</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Logout</a>
+            </li>
+        </ul>
+    </div>
+
+
+</div>

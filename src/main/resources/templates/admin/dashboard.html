@@ -15,33 +15,7 @@
     <div class="d-flex" id="wrapper">
 
 
-
-        <!-- Toggle Button -->
-        <button class="toggle-btn" id="toggleBtn">☰</button>
-
-        <!-- Overlay -->
-        <div class="overlay" id="overlay"></div>
-        <!-- Sidebar -->
-        <div class="sidebar" id="sidebar">
-            <h3>Admin Panel</h3>
-            <ul class="nav flex-column">
-                <li class="nav-item">
-                    <a class="nav-link active" href="/admin/dashboard"> Dashboard</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/admin/update_question"> Manage Question Bank</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/admin/manage_user">Manage User</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Logout</a>
-                </li>
-            </ul>
-        </div>
-
-
-
+        <div th:include="fragments/admin_header :: admin_header"></div>
         <!-- Main Content -->
         <div id="page-content-wrapper" class="container mt-4">
             <h2 class="mb-4">Admin Dashboard</h2>
@@ -97,6 +71,8 @@
             </div>
         </div>
     </div>
+
+    <footer th:replace="~{fragments/admin_footer :: admin_footer}"></footer>
 
     <script src="/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

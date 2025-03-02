@@ -25,31 +25,27 @@
     <main>
         <header th:replace="~{fragments/header :: header}"></header>
 
-
-        <main class="container mt-5 ">
-
-
-            <div class="col-md-8 align-items-center">
-                <!-- Profile Details -->
-                <h3>Profile Management</h3>
+        <main class="container mt-5 d-flex justify-content-center">
+            <div class="col-md-8 profile-container">
+                <h3 class="text-center">Profile Management</h3>
                 <form>
                     <div class="mb-3">
                         <label class="form-label">Full Name</label>
                         <input type="text" class="form-control" value="John Doe" required>
                     </div>
-
+        
                     <div class="mb-3">
                         <label class="form-label">Email</label>
                         <input type="email" class="form-control" value="john@example.com" required>
                     </div>
-
+        
                     <div class="mb-3">
                         <label class="form-label">Phone</label>
                         <input type="tel" class="form-control" value="+60 34567890">
                     </div>
-
+        
                     <!-- Change Password -->
-                    <h5 class="mt-4">Change Password</h5>
+                    <h5 class="mt-4 text-center">Change Password</h5>
                     <div class="mb-3">
                         <label class="form-label">New Password</label>
                         <input type="password" class="form-control">
@@ -58,12 +54,12 @@
                         <label class="form-label">Confirm New Password</label>
                         <input type="password" class="form-control">
                     </div>
-
+        
                     <button type="submit" class="btn btn-success w-100">Save Changes</button>
                 </form>
             </div>
-            </div>
         </main>
+        
 
         <footer th:replace="~{fragments/footer :: footer}"></footer>
         <!-- Bootstrap JS -->
