@@ -50,7 +50,7 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
             localStorage.setItem('token', data.token);
             window.location.href = response.url; // Redirect to home page
         } else {
-            console.error(data.message);
+            alert(data.message);
         }
     } catch (error) {
         console.error('Login failed:', error);

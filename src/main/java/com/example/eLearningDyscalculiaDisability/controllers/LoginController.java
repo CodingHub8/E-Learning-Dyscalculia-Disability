@@ -27,7 +27,7 @@ public class LoginController {
             session.setAttribute("username", username);
             return new RedirectView("/"); // Redirect to the home page
         } else {
-            return new RedirectView("/login?error=true"); // Redirect back to login with error message
+            return new RedirectView("/login"); // Redirect back to log in
         }
     }
 
