@@ -6,6 +6,7 @@ import lombok.*;
 @Setter
 @Getter
 @Entity
+@Table(name = "admin")
 public class Admin {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

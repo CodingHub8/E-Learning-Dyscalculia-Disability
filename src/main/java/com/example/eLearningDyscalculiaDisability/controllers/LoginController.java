@@ -26,12 +26,12 @@ public class LoginController {
     }
 
     @PostMapping(value = "/login/auth", consumes = "application/x-www-form-urlencoded")
-    public RedirectView login(@RequestParam("fullName") String fullName,
+    public RedirectView login(@RequestParam("username") String username,
                               @RequestParam("password") String password,
                               HttpSession session,
                               RedirectAttributes redirectAttributes) {
-        if (authenticate(fullName, password)) {
-            session.setAttribute("fullName", fullName);
+        if (authenticate(username, password)) {
+            session.setAttribute("username", username);
             return new RedirectView("/"); // Redirect to home page
         } else {
             redirectAttributes.addAttribute("error", "true");
@@ -39,8 +39,8 @@ public class LoginController {
         }
     }
 
-    public boolean authenticate(String fullName, String password) {
-        Optional<Student> studentOpt = studentRepository.findByFullName(fullName);
+    public boolean authenticate(String username, String password) {
+        Optional<Student> studentOpt = studentRepository.findByUsername(username);
         if (studentOpt.isPresent()) {
             Student student = studentOpt.get();
             return password.equals(student.getPassword());
@@ -51,10 +51,10 @@ public class LoginController {
     @PostMapping("/me")
     public Map<String, String> getStudent(HttpSession session) {
         Map<String, String> response = new HashMap<>();
-        String fullName = (String) session.getAttribute("fullName");
+        String username = (String) session.getAttribute("username");
 
-        if (fullName != null) {
-            response.put("fullName", fullName);
+        if (username != null) {
+            response.put("username", username);
         } else {
             response.put("message", "Not authenticated");
         }

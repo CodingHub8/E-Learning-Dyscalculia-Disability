@@ -2,9 +2,12 @@ package com.example.eLearningDyscalculiaDisability.controllers;
 
 import com.example.eLearningDyscalculiaDisability.model.Student;
 import com.example.eLearningDyscalculiaDisability.repository.StudentRepository;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 @Controller
 @RequestMapping("/signup")
@@ -19,18 +22,18 @@ public class SignupController {
 
     @GetMapping
     public String showSignupPage() {
-        return "signup";  
+        return "signup";
     }
 
     @PostMapping
     @ResponseBody
-    public ResponseEntity<String> signupStudent(@RequestParam String fullName,
+    public RedirectView signupStudent(@RequestParam String username,
                                              @RequestParam String email,
-                                             @RequestParam String password) {
+                                             @RequestParam String password,
+                                             HttpSession session) {
         // Save Student data to the database
-        Student Student = new Student(fullName, email, password);
-        StudentRepository.save(Student);
-
-        return ResponseEntity.ok("Signup successful! Student saved to DB.");
+        StudentRepository.save(new Student(username, email, password));
+        session.setAttribute("username", username);
+        return new RedirectView("/"); // Redirect to home page
     }
 }
