@@ -1551,3 +1551,95 @@ blockquote {
   margin-bottom: 20px;
   text-align: center;
 }
+/*END OF quiz.html */
+
+/*MCQ excercise*/
+/* Custom styles for MCQ exercise */
+.mcq-container {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+.mcq-question {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+.mcq-options {
+  margin-bottom: 20px;
+}
+.mcq-option {
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+  cursor: pointer;
+}
+.mcq-option:hover {
+  background-color: #f1f1f1;
+}
+.mcq-option.selected {
+  background-color: #d1ecf1;
+  border-color: #bee5eb;
+}
+.mcq-submit {
+  text-align: center;
+}
+.mcq-submit button {
+  padding: 10px 20px;
+  font-size: 1em;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+}
+.mcq-submit button:hover {
+  background-color: #0056b3;
+}
+/* END of MCQ excercise */
+
+/* History */
+/* Custom styles for Learning History */
+.history-container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+.history-header {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.history-item {
+  margin: 10px 0;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+}
+.history-item:hover {
+  background-color: #f1f1f1;
+}
+.history-item-title {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+.history-item-date {
+  font-size: 0.9em;
+  color: #666;
+}
+.history-item-score {
+  font-size: 1em;
+  color: #007bff;
+  margin-top: 5px;
+}
+/* END of History */

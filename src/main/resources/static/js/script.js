@@ -44,3 +44,32 @@ document.getElementById("loginForm").addEventListener("submit", function(event) 
         })
         .catch(error => console.error('Error:', error));
 });
+
+// JavaScript for MCQ functionality
+document.addEventListener('DOMContentLoaded', function () {
+    const options = document.querySelectorAll('.mcq-option');
+    const submitBtn = document.getElementById('submit-btn');
+
+    let selectedOption = null;
+
+    // Add click event listeners to options
+    options.forEach(option => {
+        option.addEventListener('click', function () {
+        // Remove selected class from all options
+        options.forEach(opt => opt.classList.remove('selected'));
+
+        // Add selected class to the clicked option
+        this.classList.add('selected');
+        selectedOption = this.getAttribute('data-option');
+        });
+    });
+
+    // Add click event listener to submit button
+    submitBtn.addEventListener('click', function () {
+        if (selectedOption) {
+        alert(`You selected option ${selectedOption}`);
+        } else {
+        alert('Please select an option before submitting.');
+        }
+    });
+    });
