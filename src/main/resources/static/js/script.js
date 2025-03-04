@@ -48,7 +48,7 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
 
         if (data.token) {
             localStorage.setItem('token', data.token);
-            window.location.href = response.url; // Redirect to home page
+            window.location.href = `${API_BASE_URL}/`; // Redirect to home page
         } else {
             alert(data.message);
         }
@@ -79,9 +79,36 @@ document.addEventListener('DOMContentLoaded', function () {
     // Add click event listener to submit button
     submitBtn.addEventListener('click', function () {
         if (selectedOption) {
-        alert(`You selected option ${selectedOption}`);
+            alert(`You selected option ${selectedOption}`);
         } else {
-        alert('Please select an option before submitting.');
+            alert('Please select an option before submitting.');
         }
     });
-    });
+});
+
+document.addEventListener("DOMContentLoaded", async () => {
+    const authButtons = document.getElementById("auth-buttons");
+    const userButtons = document.getElementById("user-buttons");
+    const usernameText = document.getElementById("username-text");
+
+    try {
+        const response = await fetch("/session", {
+            headers: { "X-Requested-With": "XMLHttpRequest" } // Tell server this is an AJAX request
+        });
+
+        const data = await response.json();
+
+        if (data.username) {
+            // Show username and logout button
+            authButtons.classList.add("d-none");
+            userButtons.classList.remove("d-none");
+            usernameText.textContent = data.username; // Update username text
+        } else {
+            // Show login and signup button
+            authButtons.classList.remove("d-none");
+            userButtons.classList.add("d-none");
+        }
+    } catch (error) {
+        console.error("Error fetching session:", error);
+    }
+});
