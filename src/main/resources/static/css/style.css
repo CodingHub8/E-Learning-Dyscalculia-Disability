@@ -966,6 +966,7 @@ blockquote {
   font-size: 16px;
   padding: 20px 0;
   background: white;
+  margin-top: auto;
   margin-bottom: 0 !important;
 }
 
@@ -1250,40 +1251,30 @@ blockquote {
 /* Hamburger Button */
 .Mhamburger-toggle {
   font-size: 30px;
-  background: none;
-  /* No background */
-  border: none;
-  /* No border */
-  color: #000;
-  /* Set the icon color to black or any color you want */
+  background: none; /* No background */
+  border: none; /* No border */
+  color: #000; /* Set the icon color to black or any color you want */
   cursor: pointer;
-  position: absolute;
-  z-index: 1100;
-  /* Ensure it's on top of other elements */
+  position: fixed; /* Use fixed positioning */
+  z-index: 1000; /* Lower z-index than the sidebar when open */
   top: 15px;
   left: 20px;
-  padding: 0;
-  /* No padding */
-  width: auto;
-  /* The width will be based on the icon itself */
-  height: auto;
-  /* Same as width */
+  padding: 0; /* No padding */
+  width: auto; /* The width will be based on the icon itself */
+  height: auto; /* Same as width */
 }
 
 .Mhamburger-toggle i {
   display: inline-block;
-  font-size: 30px;
-  /* Icon size */
-  color: #000;
-  /* Icon color */
+  font-size: 30px; /* Icon size */
+  color: #000; /* Icon color */
 }
 
 /* Sidebar Styles */
 .Msidenav {
   position: fixed;
   top: 0;
-  left: -280px;
-  /* Initially hidden */
+  left: -280px; /* Initially hidden */
   width: 280px;
   height: 100%;
   background: linear-gradient(45deg, #13547a, #80d0c7);
@@ -1292,17 +1283,13 @@ blockquote {
   padding-top: 60px;
   box-shadow: 4px 0 10px rgba(0, 0, 0, 0.3);
   border-radius: 0 15px 15px 0;
-  z-index: 1200;
+  z-index: 1100; /* Higher z-index than the hamburger button when open */
 }
 
 /* Sidebar Open State */
 .Msidenav.open {
-  left: 0;
-}
-
-.Msidenav.open {
-  left: 0;
-  /* Sidebar slides in */
+  left: 0; /* Sidebar slides in */
+  z-index: 1200; /* Ensure sidebar is above the hamburger button */
 }
 
 .Msidenav h3 {
@@ -1321,10 +1308,9 @@ blockquote {
   font-size: 30px;
   background: none;
   border: none;
-  color: white;
+  color: rgb(0, 0, 0);
   cursor: pointer;
-  z-index: 1300;
-  /* Close button is in front of the sidebar */
+  z-index: 1300; /* Close button is in front of the sidebar */
 }
 
 /* Sidebar Links */
@@ -1343,17 +1329,13 @@ blockquote {
   display: block;
   transition: background-color 0.3s;
   border-radius: 10px;
-  /* Rounded corners */
   margin-bottom: 10px;
   background-color: rgba(255, 255, 255, 0.1);
-  /* Light background for the box */
   text-align: center;
-  /* Center text */
 }
 
 .navbar-content a:hover {
   background-color: #13547a;
-  /* Hover effect */
 }
 
 /* Sidebar Toggle Button */
@@ -1568,6 +1550,7 @@ blockquote {
     margin-top: 60px;
     /* Push form below the toggle button */
   }
+}
 
   /* Step-by-step Explanations */
 
@@ -1681,7 +1664,7 @@ blockquote {
     text-align: center;
   }
 
-}
+
 /* Timer Styles */
 #quiz-timer {
   font-size: 18px;

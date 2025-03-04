@@ -1,27 +1,44 @@
 <header th:fragment="header" class="sidebar">
-    <!-- Sidebar -->
-    <div class="Msidenav" id="sidebar">
-        <button class="Mclose-btn" onclick="toggleSidebar()">×</button>
-        <h3>E-Learning Dyscalculia</h3>
-        <div class="navbar-content">
-            <a href="/"><i class="bi bi-house-door"></i> Home</a>
-            <a href="/performance"><i class="bi bi-bar-chart-line"></i> Progress Tracking</a>
-            <a href="/profile"><i class="bi bi-person-circle"></i> Profile</a>
-            <a href="/logout" onclick="logout()"><i class="bi bi-box-arrow-right"></i> Logout</a>
-        </div>
-    </div>
-
     <!-- Sidebar Toggle Button -->
-    <button class="Mtoggle-btn" onclick="toggleSidebar()">
+    <button class="Mhamburger-toggle" onclick="toggleSidebar()">
         <i class="bi bi-list"></i>
     </button>
+
+    <!-- Sidebar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="#top">
+                <i class="bi-back"></i>
+                <span>E-Learning Dyscalculia</span>
+            </a>
+        </div>
+        <div class="Msidenav" id="sidebar">
+            <button class="Mclose-btn" onclick="toggleSidebar()">×</button>
+            <h3>E-Learning Dyscalculia</h3>
+            <div class="navbar-content">
+                <a href="/"><i class="bi bi-house-door"></i> Home</a>
+                <a href="/performance"><i class="bi bi-bar-chart-line"></i> Progress Tracking</a>
+                <a href="/profile"><i class="bi bi-person-circle"></i> Profile</a>
+                <a href="/logout" onclick="logout()"><i class="bi bi-box-arrow-right"></i> Logout</a>
+            </div>
+        </div>
+    </nav>
 
     <!-- JavaScript -->
     <script>
         function toggleSidebar() {
             var sidebar = document.getElementById("sidebar");
+            var hamburgerButton = document.querySelector(".Mhamburger-toggle");
+
+            // Toggle the sidebar open/close state
             sidebar.classList.toggle("open");
+
+            // Hide the hamburger button when the sidebar is open
+            if (sidebar.classList.contains("open")) {
+                hamburgerButton.style.display = "none";
+            } else {
+                hamburgerButton.style.display = "block";
+            }
         }
-        //no need goofy ah js logout, using controller
     </script>
 </header>
