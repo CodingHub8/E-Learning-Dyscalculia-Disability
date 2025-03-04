@@ -86,6 +86,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+// passing user data to homepage by session
 document.addEventListener("DOMContentLoaded", async () => {
     const authButtons = document.getElementById("auth-buttons");
     const userButtons = document.getElementById("user-buttons");

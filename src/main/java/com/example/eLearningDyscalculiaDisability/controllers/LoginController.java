@@ -39,17 +39,9 @@ public class LoginController {
         }
     }
 
-    public boolean authenticate(String username, String password) {
-        Optional<Student> studentOpt = studentRepository.findByUsername(username);
-        if (studentOpt.isPresent()) {
-            Student student = studentOpt.get();
-            return password.equals(student.getPassword());
-        }
-        return false;
-    }
-
-    @PostMapping("/me")
-    public Map<String, String> getStudent(HttpSession session) {
+    @GetMapping("/session")
+    @ResponseBody
+    public Map<String, String> getSession(HttpSession session) {
         Map<String, String> response = new HashMap<>();
         String username = (String) session.getAttribute("username");
 
@@ -59,5 +51,14 @@ public class LoginController {
             response.put("message", "Not authenticated");
         }
         return response;
+    }
+
+    public boolean authenticate(String username, String password) {
+        Optional<Student> studentOpt = studentRepository.findByUsername(username);
+        if (studentOpt.isPresent()) {
+            Student student = studentOpt.get();
+            return password.equals(student.getPassword());
+        }
+        return false;
     }
 }
