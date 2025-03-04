@@ -10,6 +10,20 @@
   <link href="css/style.css" rel="stylesheet">
 </head>
 <body id="Mbody">
+
+  <!--Please dont touch !!!-->
+  <!--BE PLEASE ADD THIS SCRIPT CODE TO ALL PAGES INORDER TO CHECK IF SESSION AVAILABLE TQ-->
+  <!-- JavaScript to check session and redirect -->
+  <script th:inline="javascript">
+    /*<![CDATA[*/
+    // Check if the session username is null (user is not logged in)
+    if (/*[[${session.username == null}]]*/ false) {
+        alert("You are not logged in. Redirecting to the login page..."); // Show alert
+        window.location.href = /*[[@{/login}]]*/ "/login"; // Redirect to login page
+    }
+    /*]]>*/
+  </script>
+
   <!-- Header Fragment -->
   <header th:replace="~{fragments/header :: header}"></header>
 
@@ -22,17 +36,22 @@
       
       <h3>Student Dashboard</h3>
       
-      <!-- Sidebar links -->
+      <!-- Sidebar links get overwritten by the header fragment
       <div class="navbar-content">
       <a href="#">Profile</a>
       <a href="window.history.back()">Back</a>
-      <a href="#">Logout</a>
-      </div>
+      <a href="/logout">Logout</a> 
+      -->
+
+    </div>
     </aside>
 
   <!-- Main content -->
   <div id="Mcontent" class="Mcontent">
-    <h1>Welcome to the Dashboard</h1>
+
+    <div th:if="${session.username != null}">
+      <h1>Welcome, <span th:text="${session.username}"></span>!</h1>
+    </div>
 
     <!-- Big Rounded Box for all four boxes -->
     <div id="Mbig-box" class="Mbig-box">
