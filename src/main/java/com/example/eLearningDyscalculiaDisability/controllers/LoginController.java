@@ -10,10 +10,13 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
 
 @Controller
 public class LoginController {
+
     @Autowired
     private StudentRepository studentRepository;
 
@@ -27,16 +30,33 @@ public class LoginController {
 
     @PostMapping(value = "/login/auth", consumes = "application/x-www-form-urlencoded")
     public RedirectView login(@RequestParam("username") String username,
-                              @RequestParam("password") String password,
-                              HttpSession session,
-                              RedirectAttributes redirectAttributes) {
-        if (authenticate(username, password)) {
-            session.setAttribute("username", username);
-            return new RedirectView("/"); // Redirect to home page
+                             @RequestParam("password") String password,
+                             HttpSession session,
+                             RedirectAttributes redirectAttributes) {
+        Optional<Student> studentOpt = studentRepository.findByUsername(username);
+
+        if (studentOpt.isPresent()) {
+            Student student = studentOpt.get();
+            // Compare plain text passwords (for simplicity, not recommended for production)
+            if (password.equals(student.getPassword())) {
+                session.setAttribute("username", username); // Store username in session
+                return new RedirectView("/mainpage"); // Redirect to dashboard after successful login
+            } else {
+                redirectAttributes.addAttribute("error", "true");
+                return new RedirectView("/login"); // Redirect back to login with error
+            }
         } else {
             redirectAttributes.addAttribute("error", "true");
             return new RedirectView("/login"); // Redirect back to login with error
         }
+    }
+
+    //This method to handle logout and clear session
+    @GetMapping("/logout")
+    public RedirectView logout(HttpSession session, RedirectAttributes redirectAttributes) {
+        session.invalidate(); // Invalidate the session (clear all session data)
+        redirectAttributes.addFlashAttribute("logoutMessage", "You have been logged out successfully.");
+        return new RedirectView("/login"); // Redirect to login page after logout
     }
 
     @GetMapping("/session")
@@ -51,14 +71,5 @@ public class LoginController {
             response.put("message", "Not authenticated");
         }
         return response;
-    }
-
-    public boolean authenticate(String username, String password) {
-        Optional<Student> studentOpt = studentRepository.findByUsername(username);
-        if (studentOpt.isPresent()) {
-            Student student = studentOpt.get();
-            return password.equals(student.getPassword());
-        }
-        return false;
     }
 }
