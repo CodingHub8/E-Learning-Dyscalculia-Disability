@@ -1,10 +1,7 @@
 package com.example.eLearningDyscalculiaDisability.controllers;
 
-import com.example.eLearningDyscalculiaDisability.model.Admin;
 import com.example.eLearningDyscalculiaDisability.repository.AdminRepository;
 import org.springframework.web.bind.annotation.GetMapping;
-
-import java.util.List;
 
 public class AdminController {
     private final AdminRepository adminRepository;
@@ -14,7 +11,7 @@ public class AdminController {
     }
 
     @GetMapping("/admin")
-    public List<Admin> getAdmins() {
-        return adminRepository.findAll();
+    public String admin(String username, String password) {
+        return "login"; // This maps to templates/index.html
     }
 }

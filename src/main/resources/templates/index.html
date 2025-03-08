@@ -24,7 +24,7 @@
         <main>
             <nav class="navbar navbar-expand-lg">
                 <div class="container">
-                    <a class="navbar-brand" href="#top">
+                    <a class="navbar-brand" href="/">
                         <i class="bi-back"></i>
                         <span>E-Learning Dyscalculia</span>
                     </a>
@@ -44,12 +44,12 @@
                             </li>
     
                             <li class="nav-item">
-                                <a class="nav-link click-scroll" href="#section_2">How does it work?</a>
+                                <a class="nav-link click-scroll" href="#section_3">How does it work?</a>
                             </li>
     
-                            <li class="nav-item">
-                                <a class="nav-link click-scroll" href="#section_4">Contact</a>
-                            </li>
+<!--                            <li class="nav-item">-->
+<!--                                <a class="nav-link click-scroll" href="#section_4">Contact</a>-->
+<!--                            </li>-->
                         </ul>
 
                         <div id="auth-buttons" class="ms-auto me-4">
@@ -58,7 +58,7 @@
                         </div>
 
                         <div id="user-buttons" class="ms-auto me-4 d-none">
-                            <a href="/profile" class="btn btn-primary rounded" id="username-text">Username</a>
+                            <a href="/profile" class="btn btn-primary rounded"><span id="username-text" th:text="${session.username ?: 'Username'}"></span></a>
                             <a href="/logout" class="btn btn-danger rounded">Logout</a>
                         </div>
                     </div>
@@ -113,7 +113,7 @@
                                             <p class="text-white">Provide quizzes and assessments to reinforce learning and track student progress. These can be designed to be engaging and rewarding.</p>
                                             <p class="text-white">Quizzes and assessments are a great way to test students' understanding of math concepts and identify areas where they need additional support.</p>
 
-                                            <a href="#" class="btn custom-btn mt-2 mt-lg-3">Learn More</a>
+                                            <a href="/mainpage" class="btn custom-btn mt-2 mt-lg-3">Learn More</a>
                                         </div>
                                     </div>
 
@@ -272,12 +272,12 @@
             </section>
         </main>
 
-        <footer class="site-footer section-padding" id="section_4">
+        <footer class="site-footer section-padding" id="footer">
             <div class="container">
                 <!-- Brand Header -->
                 <div class="row mb-4">
                     <div class="col-12 text-center">
-                        <a class="navbar-brand" href="#top">
+                        <a class="navbar-brand" href="/">
                             <i class="bi-back"></i>
                             <span>E-Learning Dyscalculia</span>
                         </a>
@@ -287,38 +287,38 @@
                 <!-- Footer Content (Quick Links, Follow Us, Subscribe) -->
                 <div class="row">
                     <!-- Quick Links -->
-                    <div class="col-lg-4 col-md-4 col-6 mb-4 mb-lg-0">
+                    <div class="justify-content-center">
                         <h6 class="site-footer-title mb-3">Quick Links</h6>
 
                         <ul class="list-unstyled">
                             <li class="mb-2"><a href="#section_1" class="site-footer-link">Home</a></li>
+                            <li class="mb-2"><a href="/mainpage" class="site-footer-link">Quizzes and Assessments</a></li>
                             <li class="mb-2"><a href="#section_2" class="site-footer-link">Browse Topic</a></li>
-                            <li class="mb-2"><a href="#section_3" class="site-footer-link">How It Works</a></li>
-                            <li class="mb-2"><a href="#section_4" class="site-footer-link">Contact</a></li>
+                            <li class="mb-2"><a href="#section_3" class="site-footer-link">How It Works?</a></li>
                         </ul>
                     </div>
 
                     <!-- Follow Us -->
-                    <div class="col-lg-4 col-md-4 col-6 mb-4 mb-lg-0">
-                        <h6 class="site-footer-title mb-3">Follow Us</h6>
+<!--                    <div class="col-lg-4 col-md-4 col-6 mb-4 mb-lg-0">-->
+<!--                        <h6 class="site-footer-title mb-3">Follow Us</h6>-->
 
-                        <ul class="list-unstyled">
-                            <li class="mb-2"><a href="#" class="site-footer-link">Facebook</a></li>
-                            <li class="mb-2"><a href="#" class="site-footer-link">Twitter</a></li>
-                            <li class="mb-2"><a href="#" class="site-footer-link">Instagram</a></li>
-                            <li class="mb-2"><a href="#" class="site-footer-link">LinkedIn</a></li>
-                        </ul>
-                    </div>
+<!--                        <ul class="list-unstyled">-->
+<!--                            <li class="mb-2"><a href="#" class="site-footer-link">Facebook</a></li>-->
+<!--                            <li class="mb-2"><a href="#" class="site-footer-link">Twitter</a></li>-->
+<!--                            <li class="mb-2"><a href="#" class="site-footer-link">Instagram</a></li>-->
+<!--                            <li class="mb-2"><a href="#" class="site-footer-link">LinkedIn</a></li>-->
+<!--                        </ul>-->
+<!--                    </div>-->
 
                     <!-- Subscribe -->
-                    <div class="col-lg-4 col-md-4 col-12">
-                        <h6 class="site-footer-title mb-3">Subscribe</h6>
+<!--                    <div class="col-lg-4 col-md-4 col-12">-->
+<!--                        <h6 class="site-footer-title mb-3">Subscribe</h6>-->
 
-                        <form class="newsletter-form">
-                            <input type="email" class="form-control" placeholder="Your Email" required>
-                            <button type="submit" class="btn btn-primary mt-2">Subscribe</button>
-                        </form>
-                    </div>
+<!--                        <form class="newsletter-form">-->
+<!--                            <input type="email" class="form-control" placeholder="Your Email" required>-->
+<!--                            <button type="submit" class="btn btn-primary mt-2">Subscribe</button>-->
+<!--                        </form>-->
+<!--                    </div>-->
                 </div>
 
                 <!-- Copyright Section -->
@@ -337,6 +337,20 @@
         <script src="js/click-scroll.js"></script>
         <script src="js/custom.js"></script>
         <script src="js/script.js"></script>
+        <script>
+            const authButtons = document.getElementById("auth-buttons");
+            const userButtons = document.getElementById("user-buttons");
+            const usernameText = document.getElementById("username-text").textContent;
 
+            if (usernameText !== 'Username') {
+                // Show username and logout button
+                authButtons.classList.add("d-none");
+                userButtons.classList.remove("d-none");
+            } else {
+                // Show login and signup button
+                authButtons.classList.remove("d-none");
+                userButtons.classList.add("d-none");
+            }
+        </script>
     </body>
 </html>
