@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 @Controller
@@ -55,5 +57,19 @@ public class LoginController {
         session.invalidate(); // Invalidate the session (clear all session data)
         redirectAttributes.addFlashAttribute("logoutMessage", "You have been logged out successfully.");
         return new RedirectView("/login"); // Redirect to login page after logout
+    }
+  
+    @GetMapping("/session")
+    @ResponseBody
+    public Map<String, String> getSession(HttpSession session) {
+        Map<String, String> response = new HashMap<>();
+        String username = (String) session.getAttribute("username");
+
+        if (username != null) {
+            response.put("username", username);
+        } else {
+            response.put("message", "Not authenticated");
+        }
+        return response;
     }
 }

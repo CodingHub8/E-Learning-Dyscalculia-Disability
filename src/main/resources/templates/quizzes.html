@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -8,74 +9,151 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Icons">
   <link href="css/style.css" rel="stylesheet">
+  <!-- Header Fragment -->
+  <header th:replace="~{fragments/header :: header}"></header>
   <style>
   </style>
 </head>
+
 <body id="Mbody">
-  <!-- Header Fragment -->
-  <header th:replace="~{fragments/header :: header}"></header>
+  <h1 style="text-align: center; color: #000000; font-size: 3rem; margin-top: 30px;">Math Quiz!</h1>
 
-  <!-- Sidebar -->
-  <aside id="Msidenav" class="Msidenav">
-    <!-- Close Button (X) -->
-    <button id="Mclose-btn" class="Mclose-btn">
-      <i class="material-icons">close</i>
-    </button>
-    
-    <h3>Student Dashboard</h3>
-    
-    <!-- Sidebar links -->
-    <div class="navbar-content">
-      <a href="#">Profile</a>
-      <a href="javascript:window.history.back()">Back</a>
-      <a href="#">Logout</a>
+  <!-- Timer -->
+  <div id="quiz-timer">⏰ Time Remaining: 30:00</div>
+
+  <!-- Quiz Container -->
+  <div class="quiz-container">
+    <!-- Quiz Question -->
+    <div class="quiz-question">
+      <h3 id="question">Question 1: What is 2 + 2?</h3>
+      <div class="quiz-options" id="answer-options">
+        <!-- Answer options will be dynamically populated here -->
+      </div>
     </div>
-  </aside>
 
-  <!-- Main content -->
-  <div id="Mcontent" class="Mcontent">
-    <h1>Quiz</h1>
-
-    <!-- Timer -->
-    <div id="quiz-timer">Time Remaining: 30:00</div>
-
-    <!-- Quiz Container -->
-    <div class="quiz-container">
-      <!-- Quiz Question (Placeholder) -->
-      <div class="quiz-question">
-        <h3>Question 1: What is 2 + 2?</h3>
-        <div class="quiz-options">
-          <label>
-            <input type="radio" name="question1" value="1">
-            3
-          </label>
-          <label>
-            <input type="radio" name="question1" value="2">
-            4
-          </label>
-          <label>
-            <input type="radio" name="question1" value="3">
-            5
-          </label>
-          <label>
-            <input type="radio" name="question1" value="4">
-            6
-          </label>
-        </div>
-      </div>
-
-      <!-- Quiz Navigation -->
-      <div class="quiz-navigation">
-        <button disabled>Previous</button>
-        <button>Next</button>
-      </div>
+    <!-- Quiz Navigation -->
+    <div class="quiz-navigation">
+      <button id="prev-btn" disabled>⬅️ Previous</button>
+      <button id="next-btn">Next ➡️</button>
     </div>
   </div>
 
-  <!-- Footer Fragment -->
-  <footer th:replace="~{fragments/footer :: footer}"></footer>
+  <script>
+    // Sample data for each topic
+    const quizData = {
+      addition: [
+        {
+          question: "What is 2 + 2?",
+          answers: "3,4,5,6",
+          correctAnswer: "4"
+        },
+        {
+          question: "What is 5 + 3?",
+          answers: "7,8,9,10",
+          correctAnswer: "8"
+        }
+      ],
+      subtraction: [
+        {
+          question: "What is 5 - 2?",
+          answers: "1,2,3,4",
+          correctAnswer: "3"
+        },
+        {
+          question: "What is 10 - 4?",
+          answers: "5,6,7,8",
+          correctAnswer: "6"
+        }
+      ],
+      multiplication: [
+        {
+          question: "What is 2 × 3?",
+          answers: "4,5,6,7",
+          correctAnswer: "6"
+        },
+        {
+          question: "What is 4 × 5?",
+          answers: "15,20,25,30",
+          correctAnswer: "20"
+        }
+      ],
+      division: [
+        {
+          question: "What is 10 ÷ 2?",
+          answers: "2,3,4,5",
+          correctAnswer: "5"
+        },
+        {
+          question: "What is 12 ÷ 3?",
+          answers: "3,4,5,6",
+          correctAnswer: "4"
+        }
+      ]
+    };
 
-  <script src="js/script.js"></script>
+    // Get the selected topic from the URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const currentTopic = urlParams.get("topic") || "addition"; // Default to addition if no topic is provided
+    let currentQuestionIndex = 0; // Track current question
+
+    // Function to load quiz question and answers
+    function loadQuiz() {
+      const questionElement = document.getElementById("question");
+      const answerOptionsElement = document.getElementById("answer-options");
+
+      // Get current question data
+      const currentQuestion = quizData[currentTopic][currentQuestionIndex];
+
+      // Set question
+      questionElement.textContent = currentQuestion.question;
+
+      // Clear previous options
+      answerOptionsElement.innerHTML = "";
+
+      // Split answers by comma and create options
+      const answers = currentQuestion.answers.split(",");
+      answers.forEach((answer, index) => {
+        const optionId = `q${currentQuestionIndex + 1}-option${index + 1}`;
+        const optionHTML = `
+          <input type="radio" id="${optionId}" name="question${currentQuestionIndex + 1}" value="${answer}">
+          <label for="${optionId}">${answer}</label>
+        `;
+        answerOptionsElement.insertAdjacentHTML("beforeend", optionHTML);
+      });
+
+      // Highlight correct answer (for demonstration)
+      setTimeout(() => {
+        const correctLabel = document.querySelector(`label[for="q${currentQuestionIndex + 1}-option${answers.indexOf(currentQuestion.correctAnswer) + 1}"]`);
+        correctLabel.classList.add("correct-answer");
+      }, 2000); // Simulate backend response delay
+    }
+
+    // Load quiz on page load
+    window.onload = () => {
+      loadQuiz();
+
+      // Add event listener for next button
+      const nextButton = document.getElementById("next-btn");
+      nextButton.addEventListener("click", () => {
+        if (currentQuestionIndex < quizData[currentTopic].length - 1) {
+          currentQuestionIndex++;
+          loadQuiz();
+        }
+      });
+
+      // Add event listener for previous button
+      const prevButton = document.getElementById("prev-btn");
+      prevButton.addEventListener("click", () => {
+        if (currentQuestionIndex > 0) {
+          currentQuestionIndex--;
+          loadQuiz();
+        }
+      });
+    };
+  </script>
   <script src="js/timer.js"></script>
 </body>
+<!-- footer Fragment -->
+<footer th:replace="~{fragments/footer :: footer}"></footer>
+
 </html>
