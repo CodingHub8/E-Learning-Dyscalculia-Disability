@@ -36,7 +36,7 @@ public class AdminLoginController {
             Admin admin = adminOpt.get();
             // Compare plain text passwords (for simplicity, not recommended for production)
             if (password.equals(admin.getPassword())) {
-                session.setAttribute("username", username); // Store username in session
+                session.setAttribute("adminUsername", username); // Store username in session
                 return new RedirectView("/admin/dashboard"); // Redirect to dashboard after successful login
             } else {
                 redirectAttributes.addAttribute("error", "true");
