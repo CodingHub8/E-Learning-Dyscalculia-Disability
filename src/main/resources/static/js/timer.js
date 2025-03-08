@@ -5,7 +5,7 @@
     function updateTimer() {
     const minutes = Math.floor(timeRemaining / 60);
     const seconds = timeRemaining % 60;
-    timerElement.textContent = `Time Remaining: ${minutes}:${seconds.toString().padStart(2, '0')}`;
+    timerElement.textContent = `⏰  Time Remaining: ${minutes}:${seconds.toString().padStart(2, '0')}`;
 
     if (timeRemaining <= 0) {
         clearInterval(timerInterval);
@@ -33,7 +33,7 @@
         .then(response => response.json())
         .then(data => {
           alert('Quiz submitted successfully!');
-          window.location.href = '/results'; // Redirect to results page
+          window.location.href = '/result'; // Redirect to results page
         })
         .catch(error => {
           console.error('Error submitting quiz:', error);
