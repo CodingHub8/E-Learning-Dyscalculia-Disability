@@ -58,7 +58,7 @@ public class LoginController {
         redirectAttributes.addFlashAttribute("logoutMessage", "You have been logged out successfully.");
         return new RedirectView("/login"); // Redirect to login page after logout
     }
-
+  
     @GetMapping("/session")
     @ResponseBody
     public Map<String, String> getSession(HttpSession session) {

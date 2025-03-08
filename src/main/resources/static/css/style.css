@@ -1712,6 +1712,15 @@ blockquote {
     background-color: #06d6a0 !important;
     border: 3px solid #333 !important;
   }
+
+/* Timer Styles */
+#quiz-timer {
+  font-size: 18px;
+  font-weight: bold;
+  color: #13547a;
+  margin-bottom: 20px;
+  text-align: center;
+}
 /*END OF quiz.html */
 
 /*MCQ excercise*/

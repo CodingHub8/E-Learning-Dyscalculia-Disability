@@ -1,11 +1,12 @@
 package com.example.eLearningDyscalculiaDisability.controllers;
 
-import com.example.eLearningDyscalculiaDisability.model.Admin;
 import com.example.eLearningDyscalculiaDisability.repository.AdminRepository;
+import jakarta.servlet.http.HttpSession;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.servlet.view.RedirectView;
 
-import java.util.List;
-
+@Controller
 public class AdminController {
     private final AdminRepository adminRepository;
 
@@ -14,7 +15,7 @@ public class AdminController {
     }
 
     @GetMapping("/admin")
-    public List<Admin> getAdmins() {
-        return adminRepository.findAll();
+    public RedirectView admin(HttpSession session) {
+        return session.getAttribute("adminUsername") == null ? new RedirectView("admin/login") : new RedirectView("admin/dashboard");
     }
 }

@@ -86,33 +86,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-// passing user data to homepage by session
-document.addEventListener("DOMContentLoaded", async () => {
-    const authButtons = document.getElementById("auth-buttons");
-    const userButtons = document.getElementById("user-buttons");
-    const usernameText = document.getElementById("username-text");
-
-    try {
-        const response = await fetch("/session", {
-            headers: { "X-Requested-With": "XMLHttpRequest" } // Tell server this is an AJAX request
-        });
-
-        const data = await response.json();
-
-        if (data.username) {
-            // Show username and logout button
-            authButtons.classList.add("d-none");
-            userButtons.classList.remove("d-none");
-            usernameText.textContent = data.username; // Update username text
-        } else {
-            // Show login and signup button
-            authButtons.classList.remove("d-none");
-            userButtons.classList.add("d-none");
-        }
-    } catch (error) {
-        console.error("Error fetching session:", error);
-    }
-});
 
 //result page function
 // Sample data for demonstration
@@ -142,3 +115,4 @@ if (correctAnswers === totalQuestions) {
     resultMessage.textContent = "Oops! Better luck next time!";
     emoji.textContent = "😅";
 }
+});
