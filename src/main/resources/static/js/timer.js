@@ -9,7 +9,6 @@ function updateTimer() {
 
     if (timeRemaining <= 0) {
         clearInterval(timerInterval);
-        submitQuiz();
     } else {
         timeRemaining--;
     }
@@ -31,7 +30,6 @@ function submitQuiz() {
     })
         .then(response => response.json())
         .then(data => {
-            alert('Quiz submitted successfully!');
             window.location.href = '/result'; // Redirect to results page
         })
         .catch(error => {
