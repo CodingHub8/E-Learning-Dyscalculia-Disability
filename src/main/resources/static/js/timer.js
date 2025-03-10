@@ -16,23 +16,3 @@ function updateTimer() {
 
 // Start the timer
 const timerInterval = setInterval(updateTimer, 1000);
-
-// Function to submit the quiz
-function submitQuiz() {
-    fetch('/submit-quiz', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            timeRemaining: timeRemaining,
-        }),
-    })
-        .then(response => response.json())
-        .then(data => {
-            window.location.href = '/result'; // Redirect to results page
-        })
-        .catch(error => {
-            console.error('Error submitting quiz:', error);
-        });
-}
