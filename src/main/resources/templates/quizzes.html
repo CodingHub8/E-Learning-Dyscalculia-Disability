@@ -19,17 +19,17 @@
   <h1 style="text-align: center; color: #000000; font-size: 3rem; margin-top: 30px;">Math Quiz!</h1>
 
   <!-- Timer -->
-  <div id="quiz-timer">⏰ Time Remaining: 10:00</div>
+  <div id="quiz-timer">⏰ Time Remaining: 5:00</div>
 
   <!-- Quiz Container -->
   <div class="quiz-container">
     <!-- Quiz Question -->
     <div class="quiz-question">
-      <h3 id="question" th:text="${quizzes[0].question}"></h3>
-      <div class="quiz-options col-2 row-cols-2">
+      <h3 id="question" th:text="${quizzes[0].getQuestion()}"></h3>
+      <div class="quiz-options">
         <ul>
-          <li th:each="answer : ${#strings.arraySplit(quizzes[0].answers, ',')}" >
-            <input type="radio" name="question1" th:value="${answer}" th:id="${answer}">
+          <li th:each="answer : ${#strings.arraySplit(quizzes[0].getAnswers(), ',')}" >
+            <input type="radio" name="answer" th:value="${answer}" th:id="${answer}">
             <label th:for="${answer}" th:text="${answer}"></label>
           </li>
         </ul>
@@ -43,55 +43,30 @@
     </div>
   </div>
 
-  <script>
-    // Get quiz data from Thymeleaf
-    const quizzes = /*[[${quizzes}]]*/ [];
+  <script th:inline="javascript">
+    const quizzes = [[${quizzes}]];//correct syntax for Thymeleaf. DO NOT CHANGE!
     let currentQuestionIndex = 0;
 
-    function loadQuiz() {
-      const questionElement = document.getElementById("question");
-      const answerOptionsElement = document.querySelector(".quiz-options ul");
-
-      // Get current question
-      const currentQuiz = quizzes[currentQuestionIndex];
-
-      // Set question
-      questionElement.textContent = currentQuiz.question;
-
-      // Clear previous answers
-      answerOptionsElement.innerHTML = "";
-
-      // Split answers and create answer choices
-      const answers = currentQuiz.answers.split(",");
-      answers.forEach(answer => {
-        const optionHTML = `
-                <li>
-                    <input type="radio" name="quiz" value="${answer}" id="${answer}">
-                    <label for="${answer}">${answer}</label>
-                </li>
-            `;
-        answerOptionsElement.insertAdjacentHTML("beforeend", optionHTML);
-      });
-
-      // Enable or disable buttons
-      document.getElementById("prev-btn").disabled = (currentQuestionIndex === 0);
-      document.getElementById("next-btn").disabled = (currentQuestionIndex === quizzes.length - 1);
-    }
-
     document.addEventListener("DOMContentLoaded", () => {
-      loadQuiz();
 
       document.getElementById("next-btn").addEventListener("click", () => {
         if (currentQuestionIndex < quizzes.length - 1) {
           currentQuestionIndex++;
-          loadQuiz();
         }
       });
 
       document.getElementById("prev-btn").addEventListener("click", () => {
         if (currentQuestionIndex > 0) {
           currentQuestionIndex--;
-          loadQuiz();
+        }
+      });
+
+      // Next button should navigate instead of submitting immediately
+      document.getElementById('next-btn').addEventListener('click', () => {
+        if (currentQuestionIndex < quizzes.length - 1) {
+          currentQuestionIndex++;
+        } else {
+          submitQuiz(); // Only submit if it's the last question
         }
       });
     });
