@@ -73,60 +73,11 @@
     </div>
 
     <footer th:replace="~{fragments/admin_footer :: admin_footer}"></footer>
+    <script src="/js/admin/dashboard.js"></script>
 
     <script src="/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
-        // Sample data for quiz performance chart
-        const ctx = document.getElementById('quizChart').getContext('2d');
-        new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['Easy', 'Medium', 'Hard'],
-                datasets: [{
-                    label: 'Questions Answered',
-                    data: [50, 45, 25],
-                    backgroundColor: ['#007bff', '#ffc107', '#dc3545']
-                }]
-            },
-            options: {
-                responsive: true,
-                scales: {
-                    y: { beginAtZero: true }
-                }
-            }
-        });
-
-
-        document.addEventListener("DOMContentLoaded", function () {
-    const sidebar = document.getElementById('sidebar');
-    const toggleBtn = document.getElementById('toggleBtn');
-    const overlay = document.getElementById('overlay');
-
-    toggleBtn.addEventListener('click', function () {
-        sidebar.classList.toggle('open');
-        overlay.classList.toggle('show');
-        
-        // Hide toggle button when sidebar opens
-        if (sidebar.classList.contains('open')) {
-            toggleBtn.classList.add('hidden');
-        } else {
-            toggleBtn.classList.remove('hidden');
-        }
-    });
-
-    // Close sidebar when clicking on overlay
-    overlay.addEventListener('click', function () {
-        sidebar.classList.remove('open');
-        overlay.classList.remove('show');
-        
-        // Show toggle button again when sidebar closes
-        toggleBtn.classList.remove('hidden');
-    });
-});
-
-    </script>
-
+ 
 </body>
 
 </html>
