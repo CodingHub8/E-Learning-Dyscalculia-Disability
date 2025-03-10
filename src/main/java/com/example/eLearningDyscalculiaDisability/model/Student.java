@@ -16,6 +16,7 @@ public class Student {
     private String username;
     private String email;
     private String password;
+    private String grade_level;
 
     // Constructors
     public Student() {}
@@ -24,5 +25,6 @@ public class Student {
         this.username = username;
         this.email = email;
         this.password = password;
+        
     }
 }
