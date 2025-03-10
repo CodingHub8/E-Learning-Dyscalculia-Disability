@@ -5,17 +5,20 @@ import lombok.*;
 
 @Setter
 @Getter
-@Entity
-@Table(name = "student") // Ensure this matches your database table
+@Entity @Table(name = "student")
 public class Student {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(unique = true, nullable = false)
     private String username;
-    private String email;
+    @Column
     private String password;
+
+    @Column
+    private String email;
+
+    @Column
     private String grade_level;
 
     // Constructors
@@ -25,6 +28,6 @@ public class Student {
         this.username = username;
         this.email = email;
         this.password = password;
-        
+        this.grade_level = null;
     }
 }
