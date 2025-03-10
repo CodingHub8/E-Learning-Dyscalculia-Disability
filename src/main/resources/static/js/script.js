@@ -115,5 +115,4 @@ if (correctAnswers === totalQuestions) {
     resultMessage.textContent = "Oops! Better luck next time!";
     emoji.textContent = "😅";
 }
-});
 
