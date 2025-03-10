@@ -13,6 +13,7 @@ import java.util.Map;
 public class AdminDashboardService {
 
     @Autowired
+
     private StudentRepository studentRepository;
 
     @Autowired
