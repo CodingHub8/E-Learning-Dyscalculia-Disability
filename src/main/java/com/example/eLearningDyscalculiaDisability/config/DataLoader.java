@@ -45,10 +45,10 @@ public class DataLoader implements CommandLineRunner {
         }
 
         if(quizRepository.count() == 0) {
-            quizRepository.save(new Quiz("Addition", "What is 2 + 2?", "3, 4, 5, 6", "4"));
-            quizRepository.save(new Quiz("Subtraction", "What is 5 - 3?", "2, 4, 6, 8", "2"));
-            quizRepository.save(new Quiz("Multiplication", "What is 5 × 5?", "25, 10, 55, 15", "25"));
-            quizRepository.save(new Quiz("Division", "What is 20 ÷ 4?", "24, 4, 5, 2", "5"));
+            quizRepository.save(new Quiz("addition", "What is 2 + 2?", "3, 4, 5, 6", "4"));
+            quizRepository.save(new Quiz("subtraction", "What is 5 - 3?", "2, 4, 6, 8", "2"));
+            quizRepository.save(new Quiz("multiplication", "What is 5 × 5?", "25, 10, 55, 15", "25"));
+            quizRepository.save(new Quiz("division", "What is 20 ÷ 4?", "24, 4, 5, 2", "5"));
         }
     }
 }

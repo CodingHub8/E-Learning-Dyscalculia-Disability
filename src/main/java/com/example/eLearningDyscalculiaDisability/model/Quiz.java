@@ -10,16 +10,16 @@ public class Quiz {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name = "topic")
     private String topic;//addition, subtraction, multiplication, division
 
-    @Column
+    @Column(name = "question")
     private String question;
 
-    @Column
+    @Column(name = "answers")
     private String answers;// use comma (,) delimiter
 
-    @Column
+    @Column(name = "correct_answer")
     private String correct_answer;
 
     public Quiz() {}
