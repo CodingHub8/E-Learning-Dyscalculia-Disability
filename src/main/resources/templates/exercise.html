@@ -32,7 +32,7 @@
 
   <!-- Main content -->
   <main>
-    <div class="mcq-container">
+    <!-- <div class="mcq-container">
       <div class="mcq-question">
         1. What is 1 + 1?
       </div>
@@ -45,12 +45,69 @@
       <div class="mcq-submit">
         <button id="submit-btn">Submit</button>
       </div>
+    </div> -->
+
+    <div class="container mt-5">
+      <h3>Exercise</h3>
+    
+      <!-- Category Selection -->
+      <label for="category">Select Category:</label>
+      <select id="category" class="form-control">
+        <option value="math">Math</option>
+        <option value="science">Science</option>
+        <option value="english">English</option>
+      </select>
+    
+      <!-- Difficulty Selection -->
+      <label for="difficulty" class="mt-2">Select Difficulty:</label>
+      <select id="difficulty" class="form-control">
+        <option value="easy">Easy</option>
+        <option value="medium">Medium</option>
+        <option value="hard">Hard</option>
+      </select>
+    
+      <button id="fetch-questions" class="btn btn-primary mt-3">Start Exercise</button>
+    
+      <div id="question-container" class="mt-4"></div>
+    
     </div>
   </main>
 
   <!-- Footer Fragment -->
   <footer th:replace="~{fragments/footer :: footer}"></footer>
 
-  <script src="js/script.js"></script>
+  <script src="/js/exercise.js"></script>
+
+  <!-- <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        document.querySelectorAll(".mcq-option").forEach(button => {
+            button.addEventListener("click", function () {
+                document.querySelectorAll(".mcq-option").forEach(btn => btn.classList.remove("active"));
+                this.classList.add("active");
+            });
+        });
+
+        document.getElementById("submit-btn").addEventListener("click", () => {
+            let selectedOption = document.querySelector(".mcq-option.active")?.getAttribute("data-option");
+            let exerciseId = document.getElementById("exerciseId").value;
+
+            if (!selectedOption) {
+                alert("Please select an answer!");
+                return;
+            }
+
+            fetch("/exercise/submit", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: `exerciseId=${exerciseId}&selectedOption=${selectedOption}`
+            })
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("result").textContent = data;
+            });
+        });
+    });
+</script> -->
+
 </body>
 </html>
