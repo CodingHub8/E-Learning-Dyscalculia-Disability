@@ -25,13 +25,10 @@
   <div class="quiz-container">
     <!-- Quiz Question -->
     <div class="quiz-question">
-      <h3 id="question" th:text="${quizzes[0].getQuestion()}"></h3>
+      <h3 id="question"></h3>
       <div class="quiz-options">
-        <ul>
-          <li th:each="answer : ${#strings.arraySplit(quizzes[0].getAnswers(), ',')}" >
-            <input type="radio" name="answer" th:value="${answer}" th:id="${answer}">
-            <label th:for="${answer}" th:text="${answer}"></label>
-          </li>
+        <ul id="options-list">
+          <!-- Answers will be dynamically inserted here -->
         </ul>
       </div>
     </div>
@@ -44,32 +41,90 @@
   </div>
 
   <script th:inline="javascript">
-    const quizzes = [[${quizzes}]];//correct syntax for Thymeleaf. DO NOT CHANGE!
+    const quizzes = [[${quizzes}]]; // Correct syntax for Thymeleaf. DO NOT CHANGE!
     let currentQuestionIndex = 0;
 
+    // Function to update the quiz question and options
+    function updateQuiz() {
+      const quiz = quizzes[currentQuestionIndex];
+      document.getElementById('question').textContent = quiz.question;
+
+      const optionsList = document.getElementById('options-list');
+      optionsList.innerHTML = ''; // Clear previous options
+
+      // Split answers by comma and create radio buttons for each
+      quiz.answers.split(',').forEach((answer, index) => {
+        const li = document.createElement('li');
+        const input = document.createElement('input');
+        input.type = 'radio';
+        input.name = 'answer';
+        input.value = answer;
+        input.id = `answer${index}`;
+
+        const label = document.createElement('label');
+        label.htmlFor = `answer${index}`;
+        label.textContent = answer;
+
+        li.appendChild(input);
+        li.appendChild(label);
+        optionsList.appendChild(li);
+      });
+
+      // Enable/disable Previous button
+      document.getElementById('prev-btn').disabled = currentQuestionIndex === 0;
+    }
+
+    // Event listeners for navigation
     document.addEventListener("DOMContentLoaded", () => {
+      updateQuiz(); // Load the first question
 
       document.getElementById("next-btn").addEventListener("click", () => {
         if (currentQuestionIndex < quizzes.length - 1) {
           currentQuestionIndex++;
+          updateQuiz();
+        } else {
+          submitQuiz(); // Only submit if it's the last question
         }
       });
 
       document.getElementById("prev-btn").addEventListener("click", () => {
         if (currentQuestionIndex > 0) {
           currentQuestionIndex--;
-        }
-      });
-
-      // Next button should navigate instead of submitting immediately
-      document.getElementById('next-btn').addEventListener('click', () => {
-        if (currentQuestionIndex < quizzes.length - 1) {
-          currentQuestionIndex++;
-        } else {
-          submitQuiz(); // Only submit if it's the last question
+          updateQuiz();
         }
       });
     });
+
+    // Function to submit the quiz
+    function submitQuiz() {
+      const selectedAnswers = [];
+      quizzes.forEach((quiz, index) => {
+        const selectedAnswer = document.querySelector(`input[name="answer"]:checked`);
+        if (selectedAnswer) {
+          selectedAnswers.push(selectedAnswer.value);
+        } else {
+          selectedAnswers.push(null); // Push null if no answer is selected
+        }
+      });
+
+      fetch('/submit-quiz', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          timeRemaining: timeRemaining,
+          answers: selectedAnswers, // Send selected answers to the server
+        }),
+      })
+        .then(response => response.json())
+        .then(data => {
+          window.location.href = '/result'; // Redirect to results page
+        })
+        .catch(error => {
+          console.error('Error submitting quiz:', error);
+        });
+    }
   </script>
 
   <script src="js/timer.js"></script>
