@@ -2,7 +2,7 @@ package com.example.eLearningDyscalculiaDisability.service;
 
 import com.example.eLearningDyscalculiaDisability.repository.AdminQuestionRepository;
 // import com.example.eLearningDyscalculiaDisability.repository.QuizAttemptRepository;
-import com.example.eLearningDyscalculiaDisability.repository.UserRepository;
+import com.example.eLearningDyscalculiaDisability.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +13,8 @@ import java.util.Map;
 public class AdminDashboardService {
 
     @Autowired
-    private UserRepository userRepository;
+
+    private StudentRepository studentRepository;
 
     @Autowired
     private AdminQuestionRepository questionRepository;
@@ -24,7 +25,7 @@ public class AdminDashboardService {
     public Map<String, Object> getDashboardData() {
         Map<String, Object> dashboardData = new HashMap<>();
 
-        long totalUsers = userRepository.count();
+        long totalUsers = studentRepository.count();
         long totalQuestions = questionRepository.count();
         // long quizzesAttempted = quizAttemptRepository.count();
         // double avgScore = quizAttemptRepository.getAverageScore();
