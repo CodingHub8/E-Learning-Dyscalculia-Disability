@@ -5,7 +5,13 @@ import lombok.*;
 
 @Setter
 @Getter
+<<<<<<< HEAD
 @Entity @Table(name = "admin")
+=======
+
+@Entity @Table(name = "admin")
+
+>>>>>>> 57133f82322e04600a9af32f366f5bc5e4e15efd
 public class Admin {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

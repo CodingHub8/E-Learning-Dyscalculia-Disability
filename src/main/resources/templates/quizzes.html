@@ -20,6 +20,10 @@
 
   <!-- Timer -->
   <div id="quiz-timer">⏰ Time Remaining: 5:00</div>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 57133f82322e04600a9af32f366f5bc5e4e15efd
 
   <!-- Quiz Container -->
   <div class="quiz-container">
@@ -30,6 +34,10 @@
         <ul id="options-list">
           <!-- Answers will be dynamically inserted here -->
         </ul>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 57133f82322e04600a9af32f366f5bc5e4e15efd
       </div>
     </div>
 
@@ -41,6 +49,7 @@
   </div>
 
   <script th:inline="javascript">
+<<<<<<< HEAD
     const quizzes = [[${quizzes}]]; // Correct syntax for Thymeleaf. DO NOT CHANGE!
     let currentQuestionIndex = 0;
 
@@ -65,6 +74,41 @@
         label.htmlFor = `answer${index}`;
         label.textContent = answer;
 
+=======
+    /*<![CDATA[*/
+    const quizzes = /*[[${quizzes}]]*/[];
+    /*]]>*/ // Correct syntax for Thymeleaf. DO NOT CHANGE!
+    let currentQuestionIndex = 0;
+    let selectedAnswers = new Array(quizzes.length).fill(null); // Stores selected answers
+    let timeRemaining = 300; // Default time in seconds (5 minutes)
+
+    // Function to update the quiz question and options
+    function updateQuiz() {
+      const quiz = quizzes[currentQuestionIndex];
+      document.getElementById('question').textContent = quiz.question;
+
+      const optionsList = document.getElementById('options-list');
+      optionsList.innerHTML = ''; // Clear previous options
+
+      // Split answers and create radio buttons for each
+      quiz.answers.split(',').forEach((answer, index) => {
+        const li = document.createElement('li');
+        const input = document.createElement('input');
+        input.type = 'radio';
+        input.name = `question_${currentQuestionIndex}`;
+        input.value = answer;
+        input.id = `answer${index}`;
+
+        // Restore selected answer if previously chosen
+        if (selectedAnswers[currentQuestionIndex] === answer) {
+          input.checked = true;
+        }
+
+        const label = document.createElement('label');
+        label.htmlFor = `answer${index}`;
+        label.textContent = answer;
+
+>>>>>>> 57133f82322e04600a9af32f366f5bc5e4e15efd
         li.appendChild(input);
         li.appendChild(label);
         optionsList.appendChild(li);
@@ -79,11 +123,27 @@
       updateQuiz(); // Load the first question
 
       document.getElementById("next-btn").addEventListener("click", () => {
+<<<<<<< HEAD
+=======
+        // Store selected answer before moving to the next question
+        const selectedOption = document.querySelector(`input[name="question_${currentQuestionIndex}"]:checked`);
+        if (selectedOption) {
+          selectedAnswers[currentQuestionIndex] = selectedOption.value;
+        } else {
+          alert("Please select an answer before proceeding!");
+          return; // Prevent moving forward without an answer
+        }
+
+>>>>>>> 57133f82322e04600a9af32f366f5bc5e4e15efd
         if (currentQuestionIndex < quizzes.length - 1) {
           currentQuestionIndex++;
           updateQuiz();
         } else {
+<<<<<<< HEAD
           submitQuiz(); // Only submit if it's the last question
+=======
+          submitQuiz(); // Submit when on the last question
+>>>>>>> 57133f82322e04600a9af32f366f5bc5e4e15efd
         }
       });
 
@@ -93,6 +153,7 @@
           updateQuiz();
         }
       });
+<<<<<<< HEAD
     });
 
     // Function to submit the quiz
@@ -106,12 +167,84 @@
           selectedAnswers.push(null); // Push null if no answer is selected
         }
       });
+=======
+
+      startTimer();
+    });
+
+    // Function to start the quiz timer
+    function startTimer() {
+      const timerElement = document.getElementById("quiz-timer");
+      const countdown = setInterval(() => {
+        const minutes = Math.floor(timeRemaining / 60);
+        const seconds = timeRemaining % 60;
+        timerElement.textContent = `⏰ Time Remaining: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+
+        if (timeRemaining <= 0) {
+          clearInterval(countdown);
+          submitQuiz(); // Auto-submit when time is up
+        }
+
+        timeRemaining--;
+      }, 1000);
+    }
+
+    let studentId = null;
+
+    // Fetch session data on page load
+    fetch('/session')
+      .then(response => response.json())
+      .then(data => {
+        if (data.studentId) {
+          studentId = data.studentId; // Store the student ID
+        } else {
+          alert("Not authenticated. Please log in.");
+          window.location.href = "/login"; // Redirect if not authenticated
+        }
+      })
+      .catch(error => console.error('Error fetching session data:', error));
+
+    function submitQuiz() {
+      if (!studentId) {
+        alert("Session expired. Please log in again.");
+        return;
+      }
+
+      const urlParams = new URLSearchParams(window.location.search);
+      const selectedTopic = urlParams.get("topic") || "default_topic";
+
+      if (!quizzes || quizzes.length === 0) {
+        alert("No quizzes found.");
+        return;
+      }
+
+      if (!selectedAnswers || selectedAnswers.length === 0) {
+        alert("Please answer all questions before submitting.");
+        return;
+      }
+
+      const quizIds = quizzes.map(q => q.id);
+      const answers = selectedAnswers;
+
+      if (quizIds.length !== answers.length) {
+        alert("Mismatch between questions and answers. Please complete all answers.");
+        return;
+      }
+
+      const requestData = {
+        studentId: studentId,
+        topic: selectedTopic,
+        quizIds: quizIds,
+        answers: answers
+      };
+>>>>>>> 57133f82322e04600a9af32f366f5bc5e4e15efd
 
       fetch('/submit-quiz', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
+<<<<<<< HEAD
         body: JSON.stringify({
           timeRemaining: timeRemaining,
           answers: selectedAnswers, // Send selected answers to the server
@@ -125,6 +258,33 @@
           console.error('Error submitting quiz:', error);
         });
     }
+=======
+        body: JSON.stringify(requestData),
+      })
+        .then(response => response.json())
+        .then(data => {
+          if (data.error) {
+            alert(data.error); // Show error if quiz was already attempted
+            return;
+          }
+
+          if (data.score !== undefined && data.totalQuestions !== undefined) {
+            // alert("Quiz submitted successfully! Redirecting to results..."); // ✅ Success message
+            setTimeout(() => {
+              window.location.href = `/result?score=${data.score}&totalQuestions=${data.totalQuestions}`;
+            }, 1000); // Delay redirect for better UX
+          } else {
+            alert("Quiz submission successful, but an error occurred retrieving results.");
+          }
+        })
+        .catch(error => {
+          console.error('Error submitting quiz:', error);
+          alert("Failed to submit quiz. Please try again.");
+        });
+    }
+
+
+>>>>>>> 57133f82322e04600a9af32f366f5bc5e4e15efd
   </script>
 
   <script src="js/timer.js"></script>

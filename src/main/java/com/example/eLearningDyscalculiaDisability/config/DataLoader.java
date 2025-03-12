@@ -1,9 +1,15 @@
 package com.example.eLearningDyscalculiaDisability.config;
 
-import com.example.eLearningDyscalculiaDisability.model.*;
-import com.example.eLearningDyscalculiaDisability.repository.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+
+import com.example.eLearningDyscalculiaDisability.model.Admin;
+import com.example.eLearningDyscalculiaDisability.model.Student;
+import com.example.eLearningDyscalculiaDisability.repository.AdminQuestionRepository;
+import com.example.eLearningDyscalculiaDisability.repository.AdminRepository;
+import com.example.eLearningDyscalculiaDisability.repository.ExerciseAttemptRepository;
+import com.example.eLearningDyscalculiaDisability.repository.QuizRepository;
+import com.example.eLearningDyscalculiaDisability.repository.StudentRepository;
 
 @Component
 public class DataLoader implements CommandLineRunner {
@@ -70,4 +76,18 @@ public class DataLoader implements CommandLineRunner {
             quizRepository.save(new Quiz("division", "What is 49 ÷ 7?", "5,6,7,8", "7"));
         }
     }
-}
+
+    // @Override
+    // public void run(String... args) throws Exception {// Load initial data into the database
+    //     // // Admin Data
+    //     // if (adminRepository.count() == 0) {
+    //     //     adminRepository.save(new Admin("admin", "123", "admin@email.com", "rw"));
+    //     // }
+
+        // // Student Data
+        // if (studentRepository.count() == 0) {
+        //     studentRepository.save(new Student("student", "123", "student@email.com", "A"));
+        // }
+
+    }
+

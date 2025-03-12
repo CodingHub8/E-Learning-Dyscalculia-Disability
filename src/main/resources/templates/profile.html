@@ -5,9 +5,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <meta name="description" content="">
-    <meta name="author" content="">
-
     <title>Profile</title>
 
     <!-- CSS FILES -->
@@ -15,9 +12,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans&display=swap"
         rel="stylesheet">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/bootstrap-icons.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap-icons.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
 </head>
 
 <body id="top">
@@ -25,45 +22,68 @@
     <main>
         <header th:replace="~{fragments/header :: header}"></header>
 
-        <main class="container mt-5 d-flex justify-content-center">
+        <div class="container mt-5 d-flex justify-content-center">
             <div class="col-md-8 profile-container">
                 <h3 class="text-center">Profile Management</h3>
-                <form>
+
+                <!-- Success/Error Messages -->
+                <div th:if="${successMessage}" class="alert alert-success text-center">
+                    <span th:text="${successMessage}"></span>
+                </div>
+                <div th:if="${errorMessage}" class="alert alert-danger text-center">
+                    <span th:text="${errorMessage}"></span>
+                </div>
+
+                <!-- Profile Update Form -->
+                <form action="/profile/update" method="POST">
                     <div class="mb-3">
                         <label class="form-label">Full Name</label>
-                        <input type="text" class="form-control" value="John Doe" required>
+                        <input type="text" class="form-control" name="username" th:value="${student.username}" required>
                     </div>
-        
+
                     <div class="mb-3">
                         <label class="form-label">Email</label>
-                        <input type="email" class="form-control" value="john@example.com" required>
+                        <input type="email" class="form-control" name="email" th:value="${student.email}" required>
                     </div>
-        
-                    <div class="mb-3">
-                        <label class="form-label">Phone</label>
-                        <input type="tel" class="form-control" value="+60 34567890">
-                    </div>
-        
+
                     <!-- Change Password -->
                     <h5 class="mt-4 text-center">Change Password</h5>
                     <div class="mb-3">
                         <label class="form-label">New Password</label>
-                        <input type="password" class="form-control">
+                        <input type="password" class="form-control" id="password" name="password">
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Confirm New Password</label>
-                        <input type="password" class="form-control">
+                        <input type="password" class="form-control" id="confirmPassword" name="confirmPassword">
+                        <small id="passwordError" class="text-danger" style="display: none;">Passwords do not
+                            match!</small>
                     </div>
-        
+
                     <button type="submit" class="btn btn-success w-100">Save Changes</button>
+
+                    <script>
+                        document.querySelector("form").addEventListener("submit", function (e) {
+                            let password = document.getElementById("password").value;
+                            let confirmPassword = document.getElementById("confirmPassword").value;
+                            let passwordError = document.getElementById("passwordError");
+
+                            if (password !== confirmPassword) {
+                                passwordError.style.display = "block";
+                                e.preventDefault(); // Prevent form submission
+                            } else {
+                                passwordError.style.display = "none";
+                            }
+                        });
+                    </script>
                 </form>
             </div>
-        </main>
-        
+        </div>
 
         <footer th:replace="~{fragments/footer :: footer}"></footer>
+
         <!-- Bootstrap JS -->
-        <script src="js/bootstrap.bundle.min.js"></script>
+        <script src="/js/bootstrap.bundle.min.js"></script>
+    </main>
 
 </body>
 

@@ -87,32 +87,3 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-//result page function
-// Sample data for demonstration
-const totalQuestions = 10;
-const correctAnswers = 8;
-
-// Calculate the score
-const score = `${correctAnswers}/${totalQuestions}`;
-
-// Display the score
-document.getElementById("score").textContent = score;
-
-// Display a fun message and emoji based on the score
-const resultMessage = document.getElementById("result-message");
-const emoji = document.getElementById("emoji");
-
-if (correctAnswers === totalQuestions) {
-    resultMessage.textContent = "Perfect score! You're a math wizard! 🧙‍♂️";
-    emoji.textContent = "🏆";
-} else if (correctAnswers >= totalQuestions * 0.8) {
-    resultMessage.textContent = "Great job! You did amazing!";
-    emoji.textContent = "🎉";
-} else if (correctAnswers >= totalQuestions * 0.5) {
-    resultMessage.textContent = "Not bad! Keep practicing!";
-    emoji.textContent = "👍";
-} else {
-    resultMessage.textContent = "Oops! Better luck next time!";
-    emoji.textContent = "😅";
-}
-

@@ -1,24 +1,36 @@
 package com.example.eLearningDyscalculiaDisability.controllers;
 
-import com.example.eLearningDyscalculiaDisability.model.Student;
-import com.example.eLearningDyscalculiaDisability.repository.StudentRepository;
-import jakarta.servlet.http.HttpSession;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.servlet.view.RedirectView;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
+import java.util.logging.Logger;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
+
+import com.example.eLearningDyscalculiaDisability.model.Student;
+import com.example.eLearningDyscalculiaDisability.repository.StudentRepository;
+
+import jakarta.servlet.http.HttpSession;
+
 
 @Controller
 public class LoginController {
 
     @Autowired
     private StudentRepository studentRepository;
+
+
+    private static final Logger LOGGER = Logger.getLogger(LoginController.class.getName());
+
 
     @GetMapping("/login")
     public String showLoginPage(@RequestParam(value = "error", required = false) String error, Model model) {
@@ -29,46 +41,60 @@ public class LoginController {
     }
 
     @PostMapping(value = "/login/auth", consumes = "application/x-www-form-urlencoded")
-    public RedirectView login(@RequestParam("username") String username,
-                             @RequestParam("password") String password,
-                             HttpSession session,
-                             RedirectAttributes redirectAttributes) {
+
+    public RedirectView login(@RequestParam("username") String username, 
+                              @RequestParam("password") String password, 
+                              HttpSession session, 
+                              RedirectAttributes redirectAttributes) {
+
         Optional<Student> studentOpt = studentRepository.findByUsername(username);
 
         if (studentOpt.isPresent()) {
             Student student = studentOpt.get();
-            // Compare plain text passwords (for simplicity, not recommended for production)
-            if (password.equals(student.getPassword())) {
-                session.setAttribute("username", username); // Store username in session
-                return new RedirectView("/mainpage"); // Redirect to dashboard after successful login
+            if (student.getPassword().equals(password)) {
+                session.setAttribute("studentId", student.getId());
+                session.setAttribute("username", student.getUsername());
+
+                // Debugging Log
+                LOGGER.info("User logged in: " + student.getUsername() + " (ID: " + student.getId() + ")");
+                
+                return new RedirectView("/mainpage");
             } else {
-                redirectAttributes.addAttribute("error", "true");
-                return new RedirectView("/login"); // Redirect back to login with error
+                LOGGER.warning("Login failed: Incorrect password for user " + username);
             }
         } else {
-            redirectAttributes.addAttribute("error", "true");
-            return new RedirectView("/login"); // Redirect back to login with error
+            LOGGER.warning("Login failed: User " + username + " not found");
         }
+
+        redirectAttributes.addAttribute("error", "true");
+        return new RedirectView("/login");
     }
 
-    //This method to handle logout and clear session
+    // Logout and clear session
     @GetMapping("/logout")
     public RedirectView logout(HttpSession session, RedirectAttributes redirectAttributes) {
-        session.invalidate(); // Invalidate the session (clear all session data)
+        LOGGER.info("User logged out: " + session.getAttribute("username"));
+        session.invalidate();
         redirectAttributes.addFlashAttribute("logoutMessage", "You have been logged out successfully.");
-        return new RedirectView("/login"); // Redirect to login page after logout
+        return new RedirectView("/login");
     }
-  
+
+    // Check session data
+
     @GetMapping("/session")
     @ResponseBody
     public Map<String, String> getSession(HttpSession session) {
         Map<String, String> response = new HashMap<>();
         String username = (String) session.getAttribute("username");
+        String studentId = (session.getAttribute("studentId") != null) ? session.getAttribute("studentId").toString() : null;
 
-        if (username != null) {
+        if (username != null && studentId != null) {
             response.put("username", username);
+            response.put("studentId", studentId);
+          //  LOGGER.info("Session data retrieved: username=" + username + ", studentId=" + studentId);
         } else {
             response.put("message", "Not authenticated");
+          //  LOGGER.warning("Session data not found");
         }
         return response;
     }

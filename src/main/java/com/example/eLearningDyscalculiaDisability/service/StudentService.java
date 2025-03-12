@@ -31,7 +31,8 @@ public class StudentService {
             user.setUsername(userDetails.getUsername());
             user.setEmail(userDetails.getEmail());
             user.setPassword(userDetails.getPassword());
-            user.setGrade_level(userDetails.getGrade_level());
+            user.setGradeLevel(userDetails.getGradeLevel());
+
             return studentRepository.save(user);
         }).orElse(null);
     }
