@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Exercise</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Icons">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body id="Mbody">
+  <!-- Header Fragment -->
+  <header th:replace="~{fragments/header :: header}"></header>
+
+  <!-- Sidebar -->
+  <aside id="Msidenav" class="Msidenav">
+    <!-- Close Button (X) -->
+    <button id="Mclose-btn" class="Mclose-btn">
+      <i class="material-icons">close</i>
+    </button>
+    
+    <h3>Student Dashboard</h3>
+    
+    <!-- Sidebar links -->
+    <div class="navbar-content">
+      <a href="#">Profile</a>
+      <a href="javascript:window.history.back()">Back</a>
+      <a href="#">Logout</a>
+    </div>
+  </aside>
+
+  <!-- Main content -->
+  <main>
+    <!-- <div class="mcq-container">
+      <div class="mcq-question">
+        1. What is 1 + 1?
+      </div>
+      <div class="mcq-options">
+        <div class="mcq-option" data-option="A">A. Num1</div>
+        <div class="mcq-option" data-option="B">B. Num1</div>
+        <div class="mcq-option" data-option="C">C. Num1</div>
+        <div class="mcq-option" data-option="D">D. Num1</div>
+      </div>
+      <div class="mcq-submit">
+        <button id="submit-btn">Submit</button>
+      </div>
+    </div> -->
+
+    <div class="container mt-5">
+      <h3>Exercise</h3>
+    
+      <!-- Category Selection -->
+      <label for="category">Select Category:</label>
+      <select id="category" class="form-control">
+        <option value="math">Math</option>
+        <option value="science">Science</option>
+        <option value="english">English</option>
+      </select>
+    
+      <!-- Difficulty Selection -->
+      <label for="difficulty" class="mt-2">Select Difficulty:</label>
+      <select id="difficulty" class="form-control">
+        <option value="easy">Easy</option>
+        <option value="medium">Medium</option>
+        <option value="hard">Hard</option>
+      </select>
+    
+      <button id="fetch-questions" class="btn btn-primary mt-3">Start Exercise</button>
+    
+      <div id="question-container" class="mt-4"></div>
+    
+    </div>
+  </main>
+
+  <!-- Footer Fragment -->
+  <footer th:replace="~{fragments/footer :: footer}"></footer>
+
+  <script src="/js/exercise.js"></script>
+
+  <!-- <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        document.querySelectorAll(".mcq-option").forEach(button => {
+            button.addEventListener("click", function () {
+                document.querySelectorAll(".mcq-option").forEach(btn => btn.classList.remove("active"));
+                this.classList.add("active");
+            });
+        });
+
+        document.getElementById("submit-btn").addEventListener("click", () => {
+            let selectedOption = document.querySelector(".mcq-option.active")?.getAttribute("data-option");
+            let exerciseId = document.getElementById("exerciseId").value;
+
+            if (!selectedOption) {
+                alert("Please select an answer!");
+                return;
+            }
+
+            fetch("/exercise/submit", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: `exerciseId=${exerciseId}&selectedOption=${selectedOption}`
+            })
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("result").textContent = data;
+            });
+        });
+    });
+</script> -->
+
+</body>
+</html>

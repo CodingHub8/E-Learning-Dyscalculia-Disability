@@ -10,9 +10,23 @@
   <link href="css/style.css" rel="stylesheet">
 </head>
 <body id="Mbody">
+
+  <!--Please dont touch !!!-->
+  <!--BE PLEASE ADD THIS SCRIPT CODE TO ALL PAGES INORDER TO CHECK IF SESSION AVAILABLE TQ-->
+  <!-- JavaScript to check session and redirect -->
+  <script th:inline="javascript">
+    /*<![CDATA[*/
+    // Check if the session username is null (user is not logged in)
+    if (/*[[${session.username == null}]]*/ false) {
+        alert("You are not logged in. Redirecting to the login page..."); // Show alert
+        window.location.href = /*[[@{/login}]]*/ "/login"; // Redirect to login page
+    }
+    /*]]>*/
+  </script>
+
   <!-- Header Fragment -->
   <header th:replace="~{fragments/header :: header}"></header>
-
+    
     <!-- Sidebar -->
     <aside id="Msidenav" class="Msidenav">
       <!-- Close Button (X) -->
@@ -22,35 +36,41 @@
       
       <h3>Student Dashboard</h3>
       
-      <!-- Sidebar links -->
+      <!-- Sidebar links get overwritten by the header fragment
       <div class="navbar-content">
       <a href="#">Profile</a>
       <a href="window.history.back()">Back</a>
-      <a href="#">Logout</a>
-      </div>
+      <a href="/logout">Logout</a> 
+      -->
+
+    </div>
     </aside>
 
   <!-- Main content -->
   <div id="Mcontent" class="Mcontent">
-    <h1>Welcome to the Dashboard</h1>
+
+    <div th:if="${session.username != null}">
+      <h1>Welcome, <span th:text="${session.username}"></span>!</h1>
+    </div>
 
     <!-- Big Rounded Box for all four boxes -->
     <div id="Mbig-box" class="Mbig-box">
       <!-- Flex container for four smaller boxes -->
       <div id="Mcontent-boxes" class="Mcontent-boxes">
         <div id="Mquiz-box" class="rounded-box">
-          <h4>Gamified Quizzes</h4>
+            <h4>Quizzes</h4>
         </div>
         <div id="Mmcq-box" class="rounded-box">
-          <h4>MCQ Based Exercise</h4>
+            <h4>MCQ Based Exercise</h4>
         </div>
         <div id="Mhistory-box" class="rounded-box">
-          <h4>View Learning History</h4>
+            <h4>View Learning History</h4>
         </div>
         <div id="Mexplanation-box" class="rounded-box">
-          <h4>Step-by-step Explanations</h4>
+            <h4>Step-by-step Explanations</h4>
         </div>
       </div>
+    </div>
 
       <!-- Quiz Stats Cards -->
       <div class="quiz-stats-container">
@@ -68,5 +88,23 @@
   <!-- footer Fragment -->
   <footer th:replace="~{fragments/footer :: footer}"></footer>
   <script src="js/script.js"></script>
+  <script>
+    // Add event listeners to each button <DONT TOUCH!>
+    document.getElementById("Mquiz-box").addEventListener("click", function () {
+      window.location.href = "/topic"; // Redirect to topic page
+    });
+
+    document.getElementById("Mmcq-box").addEventListener("click", function () {
+      window.location.href = "/exercise"; // Redirect to exercise page
+    });
+
+    document.getElementById("Mhistory-box").addEventListener("click", function () {
+      window.location.href = "/history"; // Redirect to history page
+    });
+
+    document.getElementById("Mexplanation-box").addEventListener("click", function () {
+      window.location.href = "/explaination"; // Redirect to explanation page
+    });
+  </script>
 </body>
 </html>

@@ -1,5 +1,4 @@
 //jquery-click-scroll
-//by syamsul 'Isul' Arifin
 
 var sectionArray = [1, 2, 3, 4];
 

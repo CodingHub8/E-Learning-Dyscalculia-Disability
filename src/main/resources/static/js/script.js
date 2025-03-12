@@ -48,7 +48,7 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
 
         if (data.token) {
             localStorage.setItem('token', data.token);
-            window.location.href = response.url; // Redirect to home page
+            window.location.href = `${API_BASE_URL}/`; // Redirect to home page
         } else {
             alert(data.message);
         }
@@ -56,3 +56,33 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
         console.error('Login failed:', error);
     }
 });
+
+// JavaScript for MCQ functionality
+document.addEventListener('DOMContentLoaded', function () {
+    const options = document.querySelectorAll('.mcq-option');
+    const submitBtn = document.getElementById('submit-btn');
+
+    let selectedOption = null;
+
+    // Add click event listeners to options
+    options.forEach(option => {
+        option.addEventListener('click', function () {
+        // Remove selected class from all options
+        options.forEach(opt => opt.classList.remove('selected'));
+
+        // Add selected class to the clicked option
+        this.classList.add('selected');
+        selectedOption = this.getAttribute('data-option');
+        });
+    });
+
+    // Add click event listener to submit button
+    submitBtn.addEventListener('click', function () {
+        if (selectedOption) {
+            alert(`You selected option ${selectedOption}`);
+        } else {
+            alert('Please select an option before submitting.');
+        }
+    });
+});
+

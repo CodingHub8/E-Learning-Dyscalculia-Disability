@@ -16,20 +16,22 @@
         <div id="page-content-wrapper" class="container mt-4">
             <h2 class="mb-4">Manage Users</h2>
 
-            <!-- Add User Button -->
+            <!-- Add User Button
             <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addUserModal">
                 + Add User
-            </button>
+            </button> -->
 
             <!-- User Table -->
             <table class="table table-bordered">
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Name</th>
+                        <th>Username</th>
                         <th>Email</th>
-                        <th>Role</th>
+                        <th>Grade Level</th>
+                        <th>Password</th>
                         <th>Actions</th>
+
                     </tr>
                 </thead>
                 <tbody>
@@ -58,7 +60,7 @@
         </div>
     </div>
 
-    <!-- Add User Modal -->
+    <!-- Add User Modal
     <div class="modal fade" id="addUserModal" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -69,16 +71,17 @@
                 <div class="modal-body">
                     <form>
                         <div class="mb-3">
-                            <label>Name</label>
-                            <input type="text" class="form-control" required>
+                            <label>Username</label>
+                            <input type="text" class="form-control" name="username" required>
                         </div>
                         <div class="mb-3">
                             <label>Email</label>
-                            <input type="email" class="form-control" required>
+                            <input type="email" class="form-control" name="email"required>
                         </div>
                         <div class="mb-3">
                             <label>Role</label>
-                            <select class="form-control">
+                            <select class="form-control" name="role" required>
+                                <option disabled selected>Select Role</option>
                                 <option>Admin</option>
                                 <option>User</option>
                             </select>
@@ -88,7 +91,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <!-- Edit User Modal -->
     <div class="modal fade" id="editUserModal" tabindex="-1">
@@ -102,19 +105,20 @@
                     <form>
                         <input type="hidden" id="editUserId">
                         <div class="mb-3">
-                            <label>Name</label>
-                            <input type="text" id="editUserName" class="form-control" required>
+                            <label>Username</label>
+                            <input type="text" id="editUsername" class="form-control" required>
                         </div>
                         <div class="mb-3">
                             <label>Email</label>
                             <input type="email" id="editUserEmail" class="form-control" required>
                         </div>
                         <div class="mb-3">
-                            <label>Role</label>
-                            <select id="editUserRole" class="form-control">
-                                <option>Admin</option>
-                                <option>User</option>
-                            </select>
+                            <label>Grade Level</label>
+                            <input type="text" id="editUserGrade" class="form-control" >
+                        </div>
+                        <div class="mb-3">
+                            <label>Password</label>
+                            <input type="password" id="editUserPassword" class="form-control" required>
                         </div>
                         <button type="submit" class="btn btn-success w-100">Update User</button>
                     </form>
@@ -141,36 +145,9 @@
 
     
     <footer th:replace="~{fragments/admin_footer :: admin_footer}"></footer>
+    <script src="/js/admin/users.js"></script>
 
     <script src="/js/bootstrap.bundle.min.js"></script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const sidebar = document.getElementById('sidebar');
-            const toggleBtn = document.getElementById('toggleBtn');
-            const overlay = document.getElementById('overlay');
-
-            toggleBtn.addEventListener('click', function () {
-                sidebar.classList.toggle('open');
-                overlay.classList.toggle('show');
-                toggleBtn.classList.toggle('hidden');
-            });
-
-            overlay.addEventListener('click', function () {
-                sidebar.classList.remove('open');
-                overlay.classList.remove('show');
-                toggleBtn.classList.remove('hidden');
-            });
-
-            // Handle edit button click
-            document.querySelectorAll('.edit-btn').forEach(button => {
-                button.addEventListener('click', function () {
-                    document.getElementById('editUserId').value = this.dataset.id;
-                    document.getElementById('editUserName').value = this.dataset.name;
-                    document.getElementById('editUserEmail').value = this.dataset.email;
-                    document.getElementById('editUserRole').value = this.dataset.role;
-                });
-            });
-        });
-    </script>
+  
 </body>
 </html>

@@ -25,14 +25,16 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Question</th>
+                        <th>Questions</th>
                         <th>Category</th>
                         <th>Difficulty</th>
+                        <th>Options</th>
+                        <th>Answer</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    <!-- <tr>
                         <td>1</td>
                         <td>What is 5 + 3?</td>
                         <td>Math</td>
@@ -51,7 +53,7 @@
                             <button class="btn btn-warning btn-sm edit-btn" data-id="2" data-question="What is the square root of 16?" data-category="Math" data-difficulty="Medium" data-bs-toggle="modal" data-bs-target="#editQuestionModal">Edit</button>
                             <button class="btn btn-danger btn-sm delete-btn" data-id="2" data-bs-toggle="modal" data-bs-target="#deleteQuestionModal">Delete</button>
                         </td>
-                    </tr>
+                    </tr> -->
                 </tbody>
             </table>
         </div>
@@ -66,29 +68,46 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    <form>
-                        <div class="mb-3">
-                            <label>Question</label>
-                            <input type="text" class="form-control" required>
-                        </div>
-                        <div class="mb-3">
-                            <label>Category</label>
-                            <select class="form-control">
-                                <option>Math</option>
-                                <option>Science</option>
-                                <option>English</option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label>Difficulty</label>
-                            <select class="form-control">
-                                <option>Easy</option>
-                                <option>Medium</option>
-                                <option>Hard</option>
-                            </select>
-                        </div>
-                        <button type="submit" class="btn btn-success w-100">Save Question</button>
-                    </form>
+                    <form id="addQuestionForm">
+                    <div class="mb-3">
+                        <label>Question</label>
+                        <input type="text" name="question" class="form-control" placeholder="Write a question..." required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label>Category</label>
+                        <select class="form-control" name="category" required>
+                            <option disabled selected>Select Category</option>
+                            <option>Math</option>
+                            <option>Science</option>
+                            <option>English</option>
+                        </select>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label>Difficulty</label>
+                        <select class="form-control" name="difficulty" required>
+                            <option disabled selected>Select Difficulty</option>
+                            <option>Easy</option>
+                            <option>Medium</option>
+                            <option>Hard</option>
+                        </select>
+                    </div>
+                    
+                    <label>Options:</label>
+                    <input type="text" class="option-input form-control" placeholder="Option 1" required />
+                    <input type="text" class="option-input form-control" placeholder="Option 2" required />
+                    <input type="text" class="option-input form-control" placeholder="Option 3" required/>
+                    <input type="text" class="option-input form-control" placeholder="Option 4" required />
+
+                    <label>Correct Answer:</label>
+                    <select name="correctAnswer" id="correctAnswer" class="form-control" required>
+                        <option value="">Select Correct Answer</option>
+                    </select>
+
+                    <button type="submit" class="btn btn-success w-100">Save Question</button>
+                </form>
+
                 </div>
             </div>
         </div>
@@ -107,11 +126,12 @@
                         <input type="hidden" id="editQuestionId">
                         <div class="mb-3">
                             <label>Question</label>
-                            <input type="text" id="editQuestionText" class="form-control" required>
+                            <input type="text" name="question"id="editQuestionText" class="form-control" placeholder="Write a question..." required>
+
                         </div>
                         <div class="mb-3">
                             <label>Category</label>
-                            <select id="editCategory" class="form-control">
+                            <select id="editCategory" class="form-control" required>
                                 <option>Math</option>
                                 <option>Science</option>
                                 <option>English</option>
@@ -119,10 +139,23 @@
                         </div>
                         <div class="mb-3">
                             <label>Difficulty</label>
-                            <select id="editDifficulty" class="form-control">
+                            <select id="editDifficulty" class="form-control" required>
                                 <option>Easy</option>
                                 <option>Medium</option>
                                 <option>Hard</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label>Options:</label>
+                            <input type="text" class="editOption-input form-control" placeholder="Option 1" required />
+                            <input type="text" class="editOption-input form-control" placeholder="Option 2" required />
+                            <input type="text" class="editOption-input form-control" placeholder="Option 3" required />
+                            <input type="text" class="editOption-input form-control" placeholder="Option 4" required />
+                        
+                        </div>
+                        <div class="mb-3">
+                            <select  id="editCorrectAnswer" class="form-control" required>
+                                <option value="">Select Correct Answer</option>
                             </select>
                         </div>
                         <button type="submit" class="btn btn-success w-100">Update Question</button>
@@ -150,36 +183,9 @@
 
     
     <footer th:replace="~{fragments/admin_footer :: admin_footer}"></footer>
+    <script src="/js/admin/question.js"></script>
 
     <script src="/js/bootstrap.bundle.min.js"></script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const sidebar = document.getElementById('sidebar');
-            const toggleBtn = document.getElementById('toggleBtn');
-            const overlay = document.getElementById('overlay');
 
-            toggleBtn.addEventListener('click', function () {
-                sidebar.classList.toggle('open');
-                overlay.classList.toggle('show');
-                toggleBtn.classList.toggle('hidden');
-            });
-
-            overlay.addEventListener('click', function () {
-                sidebar.classList.remove('open');
-                overlay.classList.remove('show');
-                toggleBtn.classList.remove('hidden');
-            });
-
-            // Handle edit button click
-            document.querySelectorAll('.edit-btn').forEach(button => {
-                button.addEventListener('click', function () {
-                    document.getElementById('editQuestionId').value = this.dataset.id;
-                    document.getElementById('editQuestionText').value = this.dataset.question;
-                    document.getElementById('editCategory').value = this.dataset.category;
-                    document.getElementById('editDifficulty').value = this.dataset.difficulty;
-                });
-            });
-        });
-    </script>
 </body>
 </html>
