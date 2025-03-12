@@ -18,12 +18,18 @@ public class ExerciseAttempt {
     private Long id;
 
     private Long studentId;
-    private Long questionId;
-    private String questionCategory;
-    private String questionDifficulty;
+
+
+    @ManyToOne
+    @JoinColumn(name = "question_id", nullable = false) // Establishes FK relationship
+    private Question question;
+
     private String selectedAnswer;
     private boolean isCorrect;
+    private int attemptCount;
+    private int score;
 
     @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    private LocalDateTime timestamp = LocalDateTime.now();
+    private LocalDateTime dateAttempted = LocalDateTime.now();
+
 }

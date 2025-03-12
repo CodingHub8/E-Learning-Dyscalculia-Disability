@@ -5,17 +5,23 @@ import lombok.*;
 
 @Setter
 @Getter
-@Entity
-@Table(name = "admin")
+
+@Entity @Table(name = "admin")
+
 public class Admin {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true, nullable = false)
+    @Column(unique = true, nullable = false, name = "username")
     private String username;
+
+    @Column(name = "password")
     private String password;
+
+    @Column(name = "email")
     private String email;
+
+    @Column(name = "permission")
     private String permission;
 
     public Admin() {}
