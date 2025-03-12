@@ -28,6 +28,7 @@ public class ExerciseService {
     // Save student attempt
     public ExerciseAttempt submitAttempt(Long studentId, Long questionId, String selectedAnswer) {
         Optional<Question> questionOpt = questionRepository.findById(questionId);
+
         if (questionOpt.isEmpty()) {
             throw new RuntimeException("Question not found");
         }
@@ -50,6 +51,7 @@ public class ExerciseService {
         attempt.setCorrect(isCorrect);
         attempt.setAttemptCount(newAttemptCount);
         attempt.setScore(score);
+
 
         return exerciseAttemptRepository.save(attempt);
     }

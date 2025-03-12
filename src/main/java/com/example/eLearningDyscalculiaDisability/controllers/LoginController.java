@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,13 +21,16 @@ import com.example.eLearningDyscalculiaDisability.repository.StudentRepository;
 
 import jakarta.servlet.http.HttpSession;
 
+
 @Controller
 public class LoginController {
 
     @Autowired
     private StudentRepository studentRepository;
 
+
     private static final Logger LOGGER = Logger.getLogger(LoginController.class.getName());
+
 
     @GetMapping("/login")
     public String showLoginPage(@RequestParam(value = "error", required = false) String error, Model model) {
@@ -37,10 +41,12 @@ public class LoginController {
     }
 
     @PostMapping(value = "/login/auth", consumes = "application/x-www-form-urlencoded")
+
     public RedirectView login(@RequestParam("username") String username, 
                               @RequestParam("password") String password, 
                               HttpSession session, 
                               RedirectAttributes redirectAttributes) {
+
         Optional<Student> studentOpt = studentRepository.findByUsername(username);
 
         if (studentOpt.isPresent()) {
@@ -74,6 +80,7 @@ public class LoginController {
     }
 
     // Check session data
+
     @GetMapping("/session")
     @ResponseBody
     public Map<String, String> getSession(HttpSession session) {

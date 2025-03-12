@@ -6,5 +6,6 @@ import java.util.List;
 
 public interface AdminQuestionRepository extends JpaRepository<Question, Long> {
         List<Question> findByCategoryAndDifficulty(String category, String difficulty);
+
 }
 

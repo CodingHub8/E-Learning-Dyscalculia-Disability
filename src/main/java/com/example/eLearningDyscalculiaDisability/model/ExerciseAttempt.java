@@ -19,6 +19,7 @@ public class ExerciseAttempt {
 
     private Long studentId;
 
+
     @ManyToOne
     @JoinColumn(name = "question_id", nullable = false) // Establishes FK relationship
     private Question question;
@@ -30,4 +31,5 @@ public class ExerciseAttempt {
 
     @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private LocalDateTime dateAttempted = LocalDateTime.now();
+
 }

@@ -51,5 +51,6 @@ public class SignupController {
         // ✅ Add success message & redirect
         redirectAttributes.addFlashAttribute("successMessage", "Account created successfully!");
         return "redirect:/signup";
+
     }
 }

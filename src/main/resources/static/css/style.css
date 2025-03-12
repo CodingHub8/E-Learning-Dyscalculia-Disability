@@ -1275,6 +1275,7 @@ blockquote {
   position: absolute;
   z-index: 1100;
   /* Ensure it's on top of other elements */
+
   top: 15px;
   left: 20px;
   padding: 0;
@@ -1309,12 +1310,14 @@ blockquote {
   border-radius: 0 15px 15px 0;
   z-index: 1100;
   /* Higher z-index than the hamburger button when open */
+
 }
 
 /* Sidebar Open State */
 .Msidenav.open {
   left: 0;
   /* Sidebar slides in */
+
 }
 
 .Msidenav h3 {
@@ -1355,17 +1358,20 @@ blockquote {
   display: block;
   transition: background-color 0.3s;
   border-radius: 10px;
+
   /* Rounded corners */
   margin-bottom: 10px;
   background-color: rgba(255, 255, 255, 0.1);
   /* Light background for the box */
   text-align: center;
   /* Center text */
+
 }
 
 .navbar-content a:hover {
   background-color: #13547a;
   /* Hover effect */
+
 }
 
 /* Sidebar Toggle Button */
@@ -1588,51 +1594,148 @@ blockquote {
   margin: 0 auto;
   padding: 20px;
 
-}
 
-.explanation-step {
-  background-color: #f9f9f9;
-  border-radius: 10px;
+}
+/*END OF quiz.html */
+
+/*MCQ excercise*/
+/* Custom styles for MCQ exercise */
+.mcq-container {
+  max-width: 600px;
+  margin: 20px auto;
   padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+.mcq-question {
+  font-size: 1.2em;
+  font-weight: bold;
   margin-bottom: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-
-.explanation-step h3 {
-  font-size: 24px;
-  color: #333;
-  margin-bottom: 10px;
+.mcq-options {
+  margin-bottom: 20px;
 }
+.mcq-option {
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+  cursor: pointer;
+}
+.mcq-option:hover {
+  background-color: #f1f1f1;
+}
+.mcq-option.selected {
+  background-color: #d1ecf1;
+  border-color: #bee5eb;
+}
+.mcq-submit {
+  text-align: center;
+}
+.mcq-submit button {
+  padding: 10px 20px;
+  font-size: 1em;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+}
+.mcq-submit button:hover {
+  background-color: #0056b3;
+}
+/* END of MCQ excercise */
 
-.explanation-step p {
-  font-size: 16px;
+/* History */
+/* Custom styles for Learning History */
+.history-container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+.history-header {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.history-item {
+  margin: 10px 0;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+}
+.history-item:hover {
+  background-color: #f1f1f1;
+}
+.history-item-title {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+.history-item-date {
+  font-size: 0.9em;
   color: #666;
+}
+.history-item-score {
+  font-size: 1em;
+  color: #007bff;
+  margin-top: 5px;
+}
+/* END of History */
+.errorMessage p{
+  color: red !important;
+
+}
+
+/* Custom styles for the topic page */
+#cont {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 15px;
+  margin: 20px auto; /* Center the container */
+  max-width: 1000px; /* Adjust width as needed */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow for depth */
 }
 
 .quiz-container {
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
+
 }
 
-.quiz-question {
-  background-color: #f9f9f9;
-  border-radius: 10px;
+.topic-button {
+  background-color: #80d0c7;
+  color: white;
+  border: none;
   padding: 20px;
-  margin-bottom: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.quiz-question h3 {
-  font-size: 24px;
-  color: #333;
-  margin-bottom: 20px;
+.topic-button:hover {
+  background-color: #13547a;
+  transform: translateY(-5px);
 }
+/*END OF topic.html */
 
-.quiz-options {
+/* Custom styles for the result page */
+/* Flexbox layout to push the footer to the bottom */
+#Rbody {
+  background-image: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  text-align: center;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  min-height: 100vh; /* Ensure the body takes at least the full viewport height */
 }
 
 .quiz-options ul {
@@ -1658,7 +1761,9 @@ blockquote {
   align-items: center;
   gap: 10px;
   font-size: 16px;
+
   color: #333;
+  margin-bottom: 20px;
 }
 
 /* Quiz Navigation */
@@ -1666,25 +1771,35 @@ blockquote {
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
+
 }
 
-.quiz-navigation button {
+.btn-restart {
+  margin-top: 100px;
   background-color: #80d0c7;
+  color: white;
   border: none;
   padding: 10px 20px;
-  border-radius: 5px;
-  color: white;
+  border-radius: 10px;
+  font-size: 1.2rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
-.quiz-navigation button:hover {
+.btn-restart:hover {
   background-color: #13547a;
 }
 
-.quiz-navigation button:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
+.btn-home {
+  margin-top: 100px;
+  background-color: #80d0c7;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 /* Timer Styles */
@@ -2094,3 +2209,4 @@ blockquote {
 }
 
 /*END OF result.html */
+

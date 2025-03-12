@@ -42,5 +42,4 @@ public class ExerciseController {
         return ResponseEntity.ok(attempt);
     }
 
-    
 }

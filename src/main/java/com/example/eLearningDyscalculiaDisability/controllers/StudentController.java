@@ -4,7 +4,9 @@ import com.example.eLearningDyscalculiaDisability.model.Student;
 import com.example.eLearningDyscalculiaDisability.service.StudentService;
 import com.example.eLearningDyscalculiaDisability.repository.StudentRepository;
 
+
 import jakarta.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -26,13 +28,16 @@ public class StudentController {
     }
 
     // ✅ Get all students
+
     @GetMapping("/student")
     @ResponseBody
     public List<Student> getStudents() {
         return studentRepository.findAll();
     }
 
+
     // ✅ API endpoints for users
+
     @GetMapping("/api/users")
     @ResponseBody
     public List<Student> getAllUsers() {
@@ -51,7 +56,7 @@ public class StudentController {
     public Student createUser(@RequestBody Student user) {
         return studentService.createUser(user);
     }
-    
+
 
     @PutMapping("/api/users/{id}")
     @ResponseBody
@@ -87,4 +92,5 @@ public class StudentController {
                 ? ResponseEntity.ok("Session active for Student ID: " + studentId)
                 : ResponseEntity.status(401).body("No active session");
     }
+
 }

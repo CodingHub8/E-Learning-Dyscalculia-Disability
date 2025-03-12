@@ -16,3 +16,4 @@ public interface ExerciseAttemptRepository extends JpaRepository<ExerciseAttempt
     // Count the number of attempts a student has made for a specific question
     int countByStudentIdAndQuestion(Long studentId, Question question);
 }
+

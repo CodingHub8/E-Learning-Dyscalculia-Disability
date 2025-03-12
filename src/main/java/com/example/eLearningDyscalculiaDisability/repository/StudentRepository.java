@@ -9,7 +9,8 @@ import java.util.List;
 
 
 
+
 @Repository
 public interface StudentRepository extends JpaRepository<Student, Long> {
-    Optional<Student> findByUsername(String username);
+    Optional<Student> findByUsername(String fullName);
 }
