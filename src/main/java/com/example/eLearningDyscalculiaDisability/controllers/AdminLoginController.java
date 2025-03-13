@@ -49,10 +49,10 @@ public class AdminLoginController {
     }
 
     //This method to handle logout and clear session
-    @GetMapping("/admin/logout")
-    public RedirectView logout(HttpSession session, RedirectAttributes redirectAttributes) {
-        session.invalidate(); // Invalidate the session (clear all session data)
-        redirectAttributes.addFlashAttribute("logoutMessage", "You have been logged out successfully.");
-        return new RedirectView("/admin/login"); // Redirect to login page after logout
-    }
+    // @GetMapping("/admin/logout")
+    // public RedirectView logout(HttpSession session, RedirectAttributes redirectAttributes) {
+    //     session.invalidate(); // Invalidate the session (clear all session data)
+    //     redirectAttributes.addFlashAttribute("logoutMessage", "You have been logged out successfully.");
+    //     return new RedirectView("/admin/login"); // Redirect to login page after logout
+    // }
 }

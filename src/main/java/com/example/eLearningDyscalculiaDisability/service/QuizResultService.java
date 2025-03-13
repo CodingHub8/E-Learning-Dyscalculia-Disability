@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 // Import repository and model
 import com.example.eLearningDyscalculiaDisability.repository.QuizResultRepository;
+import com.example.eLearningDyscalculiaDisability.repository.QuizRepository;
 import com.example.eLearningDyscalculiaDisability.model.QuizResult;
 import com.example.eLearningDyscalculiaDisability.dto.QuizSummary; // Ensure this DTO exists
 
@@ -15,13 +16,18 @@ import com.example.eLearningDyscalculiaDisability.dto.QuizSummary; // Ensure thi
 public class QuizResultService {
 
     private final QuizResultRepository quizResultRepository;
+    private final QuizRepository quizRepository;
 
-    public QuizResultService(QuizResultRepository quizResultRepository) {
+    public QuizResultService(QuizResultRepository quizResultRepository, QuizRepository quizRepository) {
         this.quizResultRepository = quizResultRepository;
+        this.quizRepository = quizRepository;
     }
 
-    public Map<LocalDate, QuizSummary> getQuizResultsGroupedByDate() {
-        List<QuizResult> results = quizResultRepository.findAll();
+    // Get total quizzes and completed quizzes for a student
+    public Map<LocalDate, QuizSummary> getQuizResultsGroupedByDate(Long studentId) {
+        int totalQuizzes = (int) quizRepository.count(); // Total quizzes available
+
+        List<QuizResult> results = quizResultRepository.findByStudentId(studentId);
 
         return results.stream()
             .collect(Collectors.groupingBy(
@@ -29,15 +35,31 @@ public class QuizResultService {
                 Collectors.collectingAndThen(
                     Collectors.toList(),
                     list -> {
-                        int correctCount = (int) list.stream().filter(q -> q.getIsCorrect() == 1).count();
-                        int total = list.size();
-                        return new QuizSummary(total, correctCount);
+                        int completedQuizzes = (int) list.stream()
+                            .map(QuizResult::getQuizId)
+                            .distinct()
+                            .count(); // Count distinct completed quizzes
+
+                        return new QuizSummary(totalQuizzes, completedQuizzes);
                     }
                 )
             ));
     }
 
+    // Get total assigned quizzes for a student
+    public long countTotalAssignedQuizzes(Long studentId) {
+        return quizRepository.count(); // Total quizzes assigned
+    }
+
+    // Get total completed quizzes for a student
+    public long countCompletedQuizzes(Long studentId) {
+        return quizResultRepository.findByStudentId(studentId).stream()
+            .map(QuizResult::getQuizId)
+            .distinct()
+            .count();
+    }
+
     public List<QuizResult> getAllResults() {
         return quizResultRepository.findAll();
     }
-}    
+}

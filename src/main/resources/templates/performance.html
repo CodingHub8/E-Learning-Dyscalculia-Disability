@@ -19,19 +19,14 @@
         <main class="main-content container mt-5 d-flex flex-column align-items-center">
             <!-- <h3 class="text-center">📊 Progress Tracking</h3> -->
 
+        
             <div class="row g-4 w-100 d-flex justify-content-center">
                 <!-- Performance Summary -->
-                <div class="col-lg-6 col-md-8">
+                <div class="col-lg-6 col-md-8" th:if="${quizResults != null and !#lists.isEmpty(quizResults)}">
                     <div class="card shadow-sm">
                         <div class="card-body text-center">
                             <h5 class="card-title">📈 Performance Summary</h5>
-
-                            <p th:if="${quizResults == null or #lists.isEmpty(quizResults)}" class="text-muted">
-                                No quiz results available.
-                            </p>
-
-                            <table class="table table-striped"
-                                th:if="${quizResults != null and !#lists.isEmpty(quizResults)}">
+                            <table class="table table-striped">
                                 <thead>
                                     <tr>
                                         <th>Date Taken</th>
@@ -39,34 +34,37 @@
                                         <th>Correct Answers</th>
                                         <th>Incorrect Answers</th>
                                         <th>Score (%)</th>
-                                        <th>Status</th> <!-- New Column -->
+                                        <th>Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr th:each="entry : ${quizResults}">
                                         <td th:text="${entry.key.toString()}"></td>
-
-                                        <!-- Date Taken -->
-                                        <td th:text="${entry.value.totalQuestions}"></td> <!-- Total Questions -->
-                                        <td th:text="${entry.value.correctAnswers}"></td> <!-- Correct Answers -->
-                                        <td th:text="${entry.value.incorrectAnswers}"></td> <!-- Incorrect Answers -->
-                                        <td
-                                            th:text="${#numbers.formatDecimal(entry.value.scorePercentage, 1, 2)} + '%'">
-                                        </td> <!-- Score % -->
+                                        <td th:text="${entry.value.totalQuestions}"></td>
+                                        <td th:text="${entry.value.correctAnswers}"></td>
+                                        <td th:text="${entry.value.incorrectAnswers}"></td>
+                                        <td th:text="${#numbers.formatDecimal(entry.value.scorePercentage, 1, 2)} + '%'"></td>
                                         <td>
-                                            <span th:if="${entry.value.scorePercentage >= 50}"
-                                                class="text-success fw-bold">Passed</span>
-                                            <span th:unless="${entry.value.scorePercentage >= 50}"
-                                                class="text-danger fw-bold">Failed</span>
+                                            <span th:if="${entry.value.scorePercentage >= 50}" class="text-success fw-bold">Passed</span>
+                                            <span th:unless="${entry.value.scorePercentage >= 50}" class="text-danger fw-bold">Failed</span>
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
-
-
                         </div>
                     </div>
                 </div>
+                
+                <!-- Show a message when there are no quiz results -->
+                <div class="col-lg-6 col-md-8" th:if="${quizResults == null or #lists.isEmpty(quizResults)}">
+                    <div class="card shadow-sm">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">📈 Performance Summary</h5>
+                            <p class="text-muted">No quiz results available.</p>
+                        </div>
+                    </div>
+                </div>
+                
             </div>
 
             <!-- MCQ Attempts Table -->
@@ -104,11 +102,12 @@
             </div>
 
             <!-- Encouragement Message -->
-            <div class="card mt-4 bg-transparent text-center">
+            <div class="card mt-4 border-0 bg-transparent text-center">
                 <div class="card-body">
                     <p class="text-muted">Keep up the great work! 💪</p>
                 </div>
             </div>
+            
 
         </main>
     </div>

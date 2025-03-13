@@ -34,7 +34,7 @@ public class DataLoader implements CommandLineRunner {
     public void run(String... args) throws Exception {// Load initial data into the database
         // Admin Data
         if (adminRepository.count() == 0) {
-            adminRepository.save(new Admin("admin", "123", "admin@email.com", "rw"));
+            adminRepository.save(new Admin("admin", "admin_123", "admin@email.com", "rw"));
         }
 
         // // Student Data

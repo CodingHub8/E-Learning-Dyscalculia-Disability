@@ -22,6 +22,7 @@ public class ExerciseAttemptController {
     public ResponseEntity<List<ExerciseAttemptDTO>> getStudentAttempts(@PathVariable Long studentId) {
         List<ExerciseAttemptDTO> attempts = attemptService.getAttemptsByStudent(studentId);
         
+        
         // Debugging: Log the fetched data
         System.out.println("Fetched attempts for student " + studentId + ": " + attempts);
         

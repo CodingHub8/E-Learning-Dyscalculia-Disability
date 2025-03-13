@@ -15,15 +15,15 @@ public class ExerciseAttemptService {
     @Autowired
     private ExerciseAttemptRepository attemptRepository;
 
-    // Fetch all attempts and convert to DTO
-    public List<ExerciseAttemptDTO> getAllAttempts() {
-        List<ExerciseAttempt> attempts = attemptRepository.findAll();
-        return attempts.stream().map(ExerciseAttemptDTO::new).collect(Collectors.toList());
-    }
-
-    // Fetch attempts by student ID
     public List<ExerciseAttemptDTO> getAttemptsByStudent(Long studentId) {
         List<ExerciseAttempt> attempts = attemptRepository.findByStudentId(studentId);
         return attempts.stream().map(ExerciseAttemptDTO::new).collect(Collectors.toList());
     }
+    
+    public List<ExerciseAttemptDTO> getAllAttempts() {
+        List<ExerciseAttempt> attempts = attemptRepository.findAll();
+        return attempts.stream().map(ExerciseAttemptDTO::new).collect(Collectors.toList());
+    }
+    
 }
+

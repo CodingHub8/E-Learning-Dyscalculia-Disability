@@ -16,7 +16,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.example.eLearningDyscalculiaDisability.model.Student;
+import com.example.eLearningDyscalculiaDisability.model.Admin;
 import com.example.eLearningDyscalculiaDisability.repository.StudentRepository;
+import com.example.eLearningDyscalculiaDisability.repository.AdminRepository;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -25,6 +27,9 @@ public class LoginController {
 
     @Autowired
     private StudentRepository studentRepository;
+
+    @Autowired
+    private AdminRepository adminRepository; // Add Admin repository
 
     private static final Logger LOGGER = Logger.getLogger(LoginController.class.getName());
 
@@ -41,28 +46,50 @@ public class LoginController {
                               @RequestParam("password") String password, 
                               HttpSession session, 
                               RedirectAttributes redirectAttributes) {
+        // 🔹 Check if the user is a student
         Optional<Student> studentOpt = studentRepository.findByUsername(username);
-
         if (studentOpt.isPresent()) {
             Student student = studentOpt.get();
             if (student.getPassword().equals(password)) {
-                session.setAttribute("studentId", student.getId());
+                session.setAttribute("userId", student.getId());
                 session.setAttribute("username", student.getUsername());
+                session.setAttribute("role", "student"); // Mark role as student
 
-                // Debugging Log
-                LOGGER.info("User logged in: " + student.getUsername() + " (ID: " + student.getId() + ")");
-                
-                return new RedirectView("/mainpage");
-            } else {
-                LOGGER.warning("Login failed: Incorrect password for user " + username);
+                LOGGER.info("Student logged in: " + student.getUsername() + " (ID: " + student.getId() + ")");
+                return new RedirectView("/mainpage"); // Redirect students
             }
-        } else {
-            LOGGER.warning("Login failed: User " + username + " not found");
         }
 
+        // 🔹 If not a student, check if the user is an admin
+        Optional<Admin> adminOpt = adminRepository.findByUsername(username);
+        if (adminOpt.isPresent()) {
+            Admin admin = adminOpt.get();
+            if (admin.getPassword().equals(password)) {
+                session.setAttribute("userId", admin.getId());
+                session.setAttribute("username", admin.getUsername());
+                session.setAttribute("role", "admin"); // Mark role as admin
+
+                LOGGER.info("Admin logged in: " + admin.getUsername() + " (ID: " + admin.getId() + ")");
+                return new RedirectView("/admin/dashboard"); // Redirect admins
+            }
+        }
+
+        // 🔹 If neither student nor admin found, return to login with error
+        LOGGER.warning("Login failed: User " + username + " not found or incorrect password");
         redirectAttributes.addAttribute("error", "true");
         return new RedirectView("/login");
     }
+
+    // Admin Logout
+@GetMapping("/admin/logout")
+public RedirectView adminLogout(HttpSession session, RedirectAttributes redirectAttributes) {
+    LOGGER.info("Admin logged out: " + session.getAttribute("username"));
+    session.invalidate(); // Clear session
+
+    redirectAttributes.addFlashAttribute("logoutMessage", "You have been logged out successfully.");
+    return new RedirectView("/login"); // Redirect to login page
+}
+
 
     // Logout and clear session
     @GetMapping("/logout")
@@ -79,15 +106,15 @@ public class LoginController {
     public Map<String, String> getSession(HttpSession session) {
         Map<String, String> response = new HashMap<>();
         String username = (String) session.getAttribute("username");
-        String studentId = (session.getAttribute("studentId") != null) ? session.getAttribute("studentId").toString() : null;
+        String userId = (session.getAttribute("userId") != null) ? session.getAttribute("userId").toString() : null;
+        String role = (String) session.getAttribute("role");
 
-        if (username != null && studentId != null) {
+        if (username != null && userId != null) {
             response.put("username", username);
-            response.put("studentId", studentId);
-          //  LOGGER.info("Session data retrieved: username=" + username + ", studentId=" + studentId);
+            response.put("userId", userId);
+            response.put("role", role);
         } else {
             response.put("message", "Not authenticated");
-          //  LOGGER.warning("Session data not found");
         }
         return response;
     }
