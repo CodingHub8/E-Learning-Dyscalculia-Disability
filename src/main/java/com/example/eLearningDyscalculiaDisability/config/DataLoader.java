@@ -4,7 +4,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import com.example.eLearningDyscalculiaDisability.model.Admin;
-import com.example.eLearningDyscalculiaDisability.model.Student;
 import com.example.eLearningDyscalculiaDisability.repository.AdminQuestionRepository;
 import com.example.eLearningDyscalculiaDisability.repository.AdminRepository;
 import com.example.eLearningDyscalculiaDisability.repository.ExerciseAttemptRepository;

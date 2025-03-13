@@ -1,16 +1,17 @@
 package com.example.eLearningDyscalculiaDisability.service;
 
-import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import org.springframework.stereotype.Service;
+
+import com.example.eLearningDyscalculiaDisability.dto.QuizSummary; // Ensure this DTO exists
+import com.example.eLearningDyscalculiaDisability.model.QuizResult;
+import com.example.eLearningDyscalculiaDisability.repository.QuizRepository;
 // Import repository and model
 import com.example.eLearningDyscalculiaDisability.repository.QuizResultRepository;
-import com.example.eLearningDyscalculiaDisability.repository.QuizRepository;
-import com.example.eLearningDyscalculiaDisability.model.QuizResult;
-import com.example.eLearningDyscalculiaDisability.dto.QuizSummary; // Ensure this DTO exists
 
 @Service
 public class QuizResultService {

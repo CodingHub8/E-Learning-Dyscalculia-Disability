@@ -1,10 +1,11 @@
 package com.example.eLearningDyscalculiaDisability.repository;
 
-import com.example.eLearningDyscalculiaDisability.model.Quiz;
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
+import com.example.eLearningDyscalculiaDisability.model.Quiz;
 
 @Repository
 public interface QuizRepository extends JpaRepository<Quiz, Long> {
