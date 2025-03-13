@@ -22,15 +22,18 @@
                     <i class="bi-back"></i>
                     <span>E-Learning Dyscalculia</span>
                 </a>
-                
-                </div>
             </div>
         </nav>
-        <form action="/signup" method="POST">
+
+        <div class="container mt-2">
+            <!-- ✅ Display success message if available -->
+            <div th:if="${successMessage}" class="alert alert-success text-center">
+                <span th:text="${successMessage}"></span>
+            </div>
 
             <div class="form-container">
                 <h2 class="text-center">Sign Up</h2>
-                <form>
+                <form action="/signup" method="POST">
                     <div class="mb-3">
                         <label class="form-label">Username</label>
                         <input type="text" class="form-control" name="username" required>
@@ -49,11 +52,10 @@
                     Already have an account? <a href="/login">Login here</a>.
                 </p>
             </div>
-        </form>
-
+        </div>
     </main>
 
-    <footer class="site-footer section-padding" id="section_4">
+    <footer class="site-footer section-padding">
         <div class="container">
             <!-- Brand Header -->
             <div class="row mb-4">
@@ -104,9 +106,6 @@
     <!-- JAVASCRIPT FILES -->
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/jquery.sticky.js"></script>
-    <script src="js/click-scroll.js"></script>
-    <script src="js/custom.js"></script>
     <script src="js/script.js"></script>
 
 </body>

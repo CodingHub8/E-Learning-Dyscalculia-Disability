@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -9,6 +10,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Icons">
   <link href="css/style.css" rel="stylesheet">
 </head>
+
 <body id="Mbody">
 
   <!--Please dont touch !!!-->
@@ -26,7 +28,6 @@
 
   <!-- Header Fragment -->
   <header th:replace="~{fragments/header :: header}"></header>
-    
     <!-- Sidebar -->
     <aside id="Msidenav" class="Msidenav">
       <!-- Close Button (X) -->
@@ -84,6 +85,21 @@
         </div>
       </div>
     </div>
+
+  <!-- Quiz Stats Cards -->
+<div class="quiz-stats-container">
+  <div class="quiz-stats-card">
+    <h3 th:text="${totalQuizzes != null ? totalQuizzes : 0}">0</h3>
+    <p>Total Assigned Quizzes</p>
+  </div>
+  <div class="quiz-stats-card">
+    <h3 th:text="${completedQuizzes != null ? completedQuizzes : 0}">0</h3>
+    <p>Completed</p>
+  </div>
+</div>
+
+
+  </div>
   </div>
   <!-- footer Fragment -->
   <footer th:replace="~{fragments/footer :: footer}"></footer>
@@ -107,4 +123,5 @@
     });
   </script>
 </body>
+
 </html>

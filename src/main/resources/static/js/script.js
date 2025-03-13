@@ -86,7 +86,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-
 //result page function
 // Sample data for demonstration
 const totalQuestions = 10;
@@ -115,4 +114,3 @@ if (correctAnswers === totalQuestions) {
     resultMessage.textContent = "Oops! Better luck next time!";
     emoji.textContent = "😅";
 }
-

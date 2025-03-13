@@ -28,7 +28,6 @@ public class ExerciseService {
     // Save student attempt
     public ExerciseAttempt submitAttempt(Long studentId, Long questionId, String selectedAnswer) {
         Optional<Question> questionOpt = questionRepository.findById(questionId);
-
         if (questionOpt.isEmpty()) {
             throw new RuntimeException("Question not found");
         }
@@ -36,14 +35,21 @@ public class ExerciseService {
         Question question = questionOpt.get();
         boolean isCorrect = selectedAnswer.equalsIgnoreCase(question.getCorrectAnswer());
 
+        // Get previous attempts count
+        int previousAttempts = exerciseAttemptRepository.countByStudentIdAndQuestion(studentId, question);
+        int newAttemptCount = previousAttempts + 1;
+        
+        // Calculate score (e.g., 1 point for correct answer)
+        int score = isCorrect ? 1 : 0;
+
         // Save attempt
         ExerciseAttempt attempt = new ExerciseAttempt();
         attempt.setStudentId(studentId);
-        attempt.setQuestionId(questionId);
-        attempt.setQuestionCategory(question.getCategory());
-        attempt.setQuestionDifficulty(question.getDifficulty());
+        attempt.setQuestion(question);
         attempt.setSelectedAnswer(selectedAnswer);
         attempt.setCorrect(isCorrect);
+        attempt.setAttemptCount(newAttemptCount);
+        attempt.setScore(score);
 
         return exerciseAttemptRepository.save(attempt);
     }

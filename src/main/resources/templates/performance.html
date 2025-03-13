@@ -14,81 +14,152 @@
 
 <body id="top">
 
-    <main>
-  
-           
-    <header th:replace="~{fragments/header :: header}"></header>
+    <div class="wrapper">
+        <header th:replace="~{fragments/header :: header}"></header>
+        <main class="main-content container mt-5 d-flex flex-column align-items-center">
+            <!-- <h3 class="text-center">📊 Progress Tracking</h3> -->
 
-        <div class="container mt-5">
-            <h3 class="text-center ms-3">Progress Tracking</h3>
+        
+            <div class="row g-4 w-100 d-flex justify-content-center">
+                <!-- Performance Summary -->
+                <div class="col-lg-6 col-md-8" th:if="${quizResults != null and !#lists.isEmpty(quizResults)}">
+                    <div class="card shadow-sm">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">📈 Performance Summary</h5>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Date Taken</th>
+                                        <th>Total Questions</th>
+                                        <th>Correct Answers</th>
+                                        <th>Incorrect Answers</th>
+                                        <th>Score (%)</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="entry : ${quizResults}">
+                                        <td th:text="${entry.key.toString()}"></td>
+                                        <td th:text="${entry.value.totalQuestions}"></td>
+                                        <td th:text="${entry.value.correctAnswers}"></td>
+                                        <td th:text="${entry.value.incorrectAnswers}"></td>
+                                        <td th:text="${#numbers.formatDecimal(entry.value.scorePercentage, 1, 2)} + '%'"></td>
+                                        <td>
+                                            <span th:if="${entry.value.scorePercentage >= 50}" class="text-success fw-bold">Passed</span>
+                                            <span th:unless="${entry.value.scorePercentage >= 50}" class="text-danger fw-bold">Failed</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Show a message when there are no quiz results -->
+                <div class="col-lg-6 col-md-8" th:if="${quizResults == null or #lists.isEmpty(quizResults)}">
+                    <div class="card shadow-sm">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">📈 Performance Summary</h5>
+                            <p class="text-muted">No quiz results available.</p>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
 
-            <!-- Course Progress -->
-            <div class="card mt-4">
+            <!-- MCQ Attempts Table -->
+            <div class="col-lg-6 col-md-8 mt-4">
+                <div class="card shadow-sm">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">MCQ Attempts</h5>
+
+                        <p id="no-attempts-message" class="text-muted"
+                            th:if="${exerciseAttempts == null or #lists.isEmpty(exerciseAttempts)}">
+                            No exercise attempts available.
+                        </p>
+
+                        <table class="table table-striped" th:if="${exerciseAttempts != null and !#lists.isEmpty(exerciseAttempts)}">
+                            <thead>
+                                <tr>
+                                    <th>Question Category</th>
+                                    <th>Score</th>
+                                    <th>Attempts</th>
+                                    <th>Date Attempted</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="attempt : ${exerciseAttempts}">
+                                    <td th:text="${attempt.questionCategory}"></td>
+                                    <td th:text="${attempt.score}"></td>
+                                    <td th:text="${attempt.attemptCount}"></td>
+                                    <td th:text="${#temporals.format(attempt.dateAttempted, 'yyyy-MM-dd')}"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                    </div>
+                </div>
+            </div>
+
+            <!-- Encouragement Message -->
+            <div class="card mt-4 border-0 bg-transparent text-center">
                 <div class="card-body">
-                    <h5 class="card-title">Overall Course Progress</h5>
-
-                    <div class="mb-3">
-                        <label>Mathematics Basics</label>
-                        <div class="progress">
-                            <div class="progress-bar bg-success" role="progressbar" style="width: 75%;"
-                                aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">75%</div>
-                        </div>
-                    </div>
-
-                    <div class="mb-3">
-                        <label>Number Recognition</label>
-                        <div class="progress">
-                            <div class="progress-bar bg-info" role="progressbar" style="width: 40%;" aria-valuenow="40"
-                                aria-valuemin="0" aria-valuemax="100">40%</div>
-                        </div>
-                    </div>
-
-                    <div class="mb-3">
-                        <label>Problem Solving</label>
-                        <div class="progress">
-                            <div class="progress-bar bg-warning" role="progressbar" style="width: 60%;"
-                                aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">60%</div>
-                        </div>
-                    </div>
+                    <p class="text-muted">Keep up the great work! 💪</p>
                 </div>
             </div>
+            
 
-            <!-- Assignment Completion -->
-            <div class="card mt-4">
-                <div class="card-body">
-                    <h5 class="card-title">Assignment Completion</h5>
+        </main>
+    </div>
 
-                    <ul class="list-group">
-                        <li class="list-group-item">
-                            <input class="form-check-input me-2" type="checkbox" checked> Complete Lesson 1 Quiz
-                        </li>
-                        <li class="list-group-item">
-                            <input class="form-check-input me-2" type="checkbox"> Submit Homework on Addition
-                        </li>
-                        <li class="list-group-item">
-                            <input class="form-check-input me-2" type="checkbox"> Watch Tutorial on Number Patterns
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Performance Summary -->
-            <div class="card mt-4">
-                <div class="card-body text-center">
-                    <h5 class="card-title">Performance Summary</h5>
-                    <p class="text-muted">You have completed <strong>5 out of 10</strong> assignments this week.</p>
-                    <p class="text-muted">Keep up the great work!</p>
-                </div>
-            </div>
-
-        </div>
-    </main>
-
-    <footer th:replace="~{fragments/footer :: footer}"></footer>
-
+    <footer th:replace="~{fragments/footer :: footer}" style="position: fixed; bottom: 0;"></footer>
 
     <!-- Bootstrap JS -->
     <script src="js/bootstrap.bundle.min.js"></script>
+
+    <!-- JavaScript to Fetch Data -->
+    <!-- <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const studentId = 1; // Replace with dynamic student ID
+            const tableBody = document.getElementById("mcq-attempts-body");
+            const noAttemptsMessage = document.getElementById("no-attempts-message");
+    
+            fetch(`/api/exercise-attempts/${studentId}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log("Fetched Data:", data); // Debugging: Check fetched data in Console
+    
+                    if (!data || data.length === 0) {
+                        console.warn("No exercise attempts found");
+                        noAttemptsMessage.style.display = "block";
+                        tableBody.innerHTML = "";
+                        return;
+                    }
+    
+                    noAttemptsMessage.style.display = "none";
+    
+                    tableBody.innerHTML = data.map(attempt => `
+                        <tr>
+                            <td>${attempt.questionCategory}</td>
+                            <td>${attempt.score}</td>
+                            <td>${attempt.attemptCount}</td>
+                            <td>${new Date(attempt.dateAttempted).toLocaleDateString()}</td>
+                        </tr>
+                    `).join("");
+                })
+                .catch(error => {
+                    console.error("Error fetching data:", error);
+                    tableBody.innerHTML = `<tr><td colspan="4" class="text-danger">Failed to load data</td></tr>`;
+                });
+        });
+    </script> -->
+    
+
 
 </body>
 

@@ -4,6 +4,7 @@ import com.example.eLearningDyscalculiaDisability.model.Student;
 import com.example.eLearningDyscalculiaDisability.service.StudentService;
 import com.example.eLearningDyscalculiaDisability.repository.StudentRepository;
 
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -24,14 +25,13 @@ public class StudentController {
         this.studentService = studentService;
     }
 
-    // ✅ Page redirection (NO API prefix)
     @GetMapping("/student")
     @ResponseBody
     public List<Student> getStudents() {
         return studentRepository.findAll();
     }
 
-    // ✅ API endpoints (Should be under `/api`)
+    // ✅ API endpoints for users
     @GetMapping("/api/users")
     @ResponseBody
     public List<Student> getAllUsers() {
@@ -62,5 +62,27 @@ public class StudentController {
     @ResponseBody
     public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
         return studentService.deleteUser(id) ? ResponseEntity.ok().build() : ResponseEntity.notFound().build();
+    }
+
+    // ✅ Fetch user info from session
+    @GetMapping("/api/session/user")
+    @ResponseBody
+    public ResponseEntity<Student> getUserFromSession(HttpSession session) {
+        Long studentId = (Long) session.getAttribute("studentId");
+        if (studentId == null) {
+            return ResponseEntity.status(401).body(null);
+        }
+        Optional<Student> user = studentService.getUserById(studentId);
+        return user.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    // ✅ Check if session exists
+    @GetMapping("/api/session/check")
+    @ResponseBody
+    public ResponseEntity<String> checkSession(HttpSession session) {
+        Long studentId = (Long) session.getAttribute("studentId");
+        return studentId != null
+                ? ResponseEntity.ok("Session active for Student ID: " + studentId)
+                : ResponseEntity.status(401).body("No active session");
     }
 }

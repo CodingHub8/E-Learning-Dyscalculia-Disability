@@ -48,8 +48,40 @@
 
     <!-- footer Fragment -->
     <footer th:replace="~{fragments/footer :: footer}"></footer>
-
     <script src="/js/script.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Get score and total questions from URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const correctAnswers = parseInt(urlParams.get("score")) || 0; // Default to 0
+            const totalQuestions = parseInt(urlParams.get("totalQuestions")) || 0; // Default to 0
+
+            // Calculate the score and display it
+            const scoreText = `${correctAnswers}/${totalQuestions}`;
+            document.getElementById("score").textContent = scoreText;
+
+            // Select the message and emoji elements
+            const resultMessage = document.getElementById("result-message");
+            const emoji = document.getElementById("emoji");
+
+            // Determine the message and emoji based on the score
+            if (correctAnswers === totalQuestions) {
+                resultMessage.textContent = "Perfect score! You're a math wizard! 🧙‍♂️";
+                emoji.textContent = "🏆";
+            } else if (correctAnswers >= totalQuestions * 0.8) {
+                resultMessage.textContent = "Great job! You did amazing!";
+                emoji.textContent = "🎉";
+            } else if (correctAnswers >= totalQuestions * 0.5) {
+                resultMessage.textContent = "Not bad! Keep practicing!";
+                emoji.textContent = "👍";
+            } else {
+                resultMessage.textContent = "Oops! Better luck next time!";
+                emoji.textContent = "😅";
+            }
+        });
+
+
+    </script>
 </body>
 
 </html>
