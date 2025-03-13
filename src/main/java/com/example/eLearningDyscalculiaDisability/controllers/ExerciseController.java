@@ -41,6 +41,4 @@ public class ExerciseController {
         ExerciseAttempt attempt = exerciseService.submitAttempt(studentId, questionId, selectedAnswer);
         return ResponseEntity.ok(attempt);
     }
-
-    
 }

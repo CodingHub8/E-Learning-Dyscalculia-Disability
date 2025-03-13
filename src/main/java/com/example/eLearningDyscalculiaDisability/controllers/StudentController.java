@@ -25,7 +25,6 @@ public class StudentController {
         this.studentService = studentService;
     }
 
-    // ✅ Get all students
     @GetMapping("/student")
     @ResponseBody
     public List<Student> getStudents() {
@@ -51,7 +50,6 @@ public class StudentController {
     public Student createUser(@RequestBody Student user) {
         return studentService.createUser(user);
     }
-    
 
     @PutMapping("/api/users/{id}")
     @ResponseBody

@@ -6,25 +6,29 @@ import lombok.Setter;
 
 @Setter
 @Getter
-@Entity
+@Entity @Table(name = "student")
 public class Student {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true, nullable = false)
+    @Column(unique = true, nullable = false, name = "username")
     private String username;
+    @Column(name = "password")
     private String password;
+
+    @Column(name = "email")
     private String email;
-    private String gradeLevel;
+
+    @Column(name = "grade_level")
+    private String grade_level;
 
     // Constructors
     public Student() {}
 
-    public Student(String username, String password, String email, String gradeLevel) {
+    public Student(String username, String email, String password) {
         this.username = username;
-        this.password = password;
         this.email = email;
-        this.gradeLevel = gradeLevel;
+        this.password = password;
+        this.grade_level = null;
     }
 }

@@ -56,7 +56,7 @@
       const optionsList = document.getElementById('options-list');
       optionsList.innerHTML = ''; // Clear previous options
 
-      // Split answers and create radio buttons for each
+      // Split answers by comma and create radio buttons for each
       quiz.answers.split(',').forEach((answer, index) => {
         const li = document.createElement('li');
         const input = document.createElement('input');
@@ -69,7 +69,6 @@
         if (selectedAnswers[currentQuestionIndex] === answer) {
           input.checked = true;
         }
-
         const label = document.createElement('label');
         label.htmlFor = `answer${index}`;
         label.textContent = answer;
@@ -209,8 +208,6 @@
           alert("Failed to submit quiz. Please try again.");
         });
     }
-
-
   </script>
 
   <script src="js/timer.js"></script>
