@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
-import com.example.eLearningDyscalculiaDisability.model.Admin;
 import com.example.eLearningDyscalculiaDisability.model.Student;
-import com.example.eLearningDyscalculiaDisability.repository.AdminRepository;
+import com.example.eLearningDyscalculiaDisability.model.Admin;
 import com.example.eLearningDyscalculiaDisability.repository.StudentRepository;
+import com.example.eLearningDyscalculiaDisability.repository.AdminRepository;
 
 import jakarta.servlet.http.HttpSession;
 

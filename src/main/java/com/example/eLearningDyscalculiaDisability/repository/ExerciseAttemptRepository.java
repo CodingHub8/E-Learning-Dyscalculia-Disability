@@ -1,12 +1,11 @@
 package com.example.eLearningDyscalculiaDisability.repository;
 
-import java.util.List;
-
+import com.example.eLearningDyscalculiaDisability.model.ExerciseAttempt;
+import com.example.eLearningDyscalculiaDisability.model.Question;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.example.eLearningDyscalculiaDisability.model.ExerciseAttempt;
-import com.example.eLearningDyscalculiaDisability.model.Question;
+import java.util.List;
 
 @Repository
 public interface ExerciseAttemptRepository extends JpaRepository<ExerciseAttempt, Long> {

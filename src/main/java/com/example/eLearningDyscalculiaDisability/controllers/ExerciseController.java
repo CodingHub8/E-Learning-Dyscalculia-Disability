@@ -1,18 +1,13 @@
 package com.example.eLearningDyscalculiaDisability.controllers;
-import java.util.List;
-
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.example.eLearningDyscalculiaDisability.model.ExerciseAttempt;
 import com.example.eLearningDyscalculiaDisability.model.Question;
 import com.example.eLearningDyscalculiaDisability.service.ExerciseService;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/exercise")
