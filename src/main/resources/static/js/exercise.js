@@ -3,11 +3,25 @@
     const fetchButton = document.getElementById("fetch-questions");
     const questionContainer = document.getElementById("question-container");
 
+    let studentId = null;
+
+    // Fetch session data on page load
+    fetch('/session')
+      .then(response => response.json())
+      .then(data => {
+        if (data.studentId) {
+          studentId = data.studentId; // Store the student ID
+        } else {
+          alert("Not authenticated. Please log in.");
+          window.location.href = "/login"; // Redirect if not authenticated
+        }
+      })
+      .catch(error => console.error('Error fetching session data:', error));
+
     fetchButton.addEventListener("click", () => {
-        const category = document.getElementById("category").value;
         const difficulty = document.getElementById("difficulty").value;
 
-        fetch(`/exercise/questions?category=${category}&difficulty=${difficulty}`)
+        fetch(`/exercise/questions?difficulty=${difficulty}`)
             .then(response => response.json())
             .then(questions => {
                 questionContainer.innerHTML = ""; 
@@ -55,7 +69,7 @@
 
                     document.querySelectorAll(".mcq-option.active").forEach(selected => {
                         attempts.push({
-                            studentId: 1,  // test je
+                            studentId,  // test je
                             questionId: selected.dataset.questionId,
                             selectedAnswer: selected.dataset.answer
                         });

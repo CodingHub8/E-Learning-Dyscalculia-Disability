@@ -16,4 +16,9 @@ public class AdminPageController {
     public String showManageQuestionPage() {
         return "/admin/update_question";
     }
+
+    @GetMapping("/admin/update_quiz")
+    public String showManageQuizPage() {
+        return "/admin/update_quiz";
+    }
 }

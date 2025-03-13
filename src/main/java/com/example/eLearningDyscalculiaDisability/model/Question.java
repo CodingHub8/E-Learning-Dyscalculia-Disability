@@ -21,7 +21,6 @@ public class Question {
     @Column(nullable = false)
     private String question;
 
-    private String category;
     private String difficulty;
 
     @Column(columnDefinition = "TEXT")  // Store as JSON in DB

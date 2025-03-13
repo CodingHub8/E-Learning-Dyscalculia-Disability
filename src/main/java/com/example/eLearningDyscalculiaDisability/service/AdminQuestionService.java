@@ -31,7 +31,6 @@ public class AdminQuestionService {
         if (optionalQuestion.isPresent()) {
             Question existingQuestion = optionalQuestion.get();
             existingQuestion.setQuestion(questionDetails.getQuestion());
-            existingQuestion.setCategory(questionDetails.getCategory());
             existingQuestion.setDifficulty(questionDetails.getDifficulty());
             existingQuestion.setOptions(questionDetails.getOptions());  // ✅ Update options
             existingQuestion.setCorrectAnswer(questionDetails.getCorrectAnswer());

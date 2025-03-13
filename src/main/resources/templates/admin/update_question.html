@@ -13,7 +13,7 @@
         <div th:include="fragments/admin_header :: admin_header"></div>
         <!-- Main Content -->
         <div id="page-content-wrapper" class="container mt-4">
-            <h2 class="mb-4">Manage Question Bank</h2>
+            <h2 class="mb-4">Manage Question Bank (For MCQ Exercise)</h2>
 
             <!-- Add Question Button -->
             <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addQuestionModal">
@@ -26,7 +26,6 @@
                     <tr>
                         <th>ID</th>
                         <th>Questions</th>
-                        <th>Category</th>
                         <th>Difficulty</th>
                         <th>Options</th>
                         <th>Answer</th>
@@ -73,17 +72,7 @@
                         <label>Question</label>
                         <input type="text" name="question" class="form-control" placeholder="Write a question..." required>
                     </div>
-                    
-                    <div class="mb-3">
-                        <label>Category</label>
-                        <select class="form-control" name="category" required>
-                            <option disabled selected>Select Category</option>
-                            <option>Math</option>
-                            <option>Science</option>
-                            <option>English</option>
-                        </select>
-                    </div>
-                    
+                  
                     <div class="mb-3">
                         <label>Difficulty</label>
                         <select class="form-control" name="difficulty" required>
@@ -129,14 +118,7 @@
                             <input type="text" name="question"id="editQuestionText" class="form-control" placeholder="Write a question..." required>
 
                         </div>
-                        <div class="mb-3">
-                            <label>Category</label>
-                            <select id="editCategory" class="form-control" required>
-                                <option>Math</option>
-                                <option>Science</option>
-                                <option>English</option>
-                            </select>
-                        </div>
+                
                         <div class="mb-3">
                             <label>Difficulty</label>
                             <select id="editDifficulty" class="form-control" required>

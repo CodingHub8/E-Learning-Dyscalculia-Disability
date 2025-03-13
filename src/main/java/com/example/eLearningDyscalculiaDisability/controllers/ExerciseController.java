@@ -27,8 +27,8 @@ public class ExerciseController {
 
     @GetMapping("/questions")
     @ResponseBody
-    public ResponseEntity<List<Question>> getQuestions(@RequestParam String category, @RequestParam String difficulty) {
-        return ResponseEntity.ok(exerciseService.getQuestions(category, difficulty));
+    public ResponseEntity<List<Question>> getQuestions( @RequestParam String difficulty) {
+        return ResponseEntity.ok(exerciseService.getQuestions( difficulty));
     }
 
     @PostMapping("/submitAttempt")

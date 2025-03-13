@@ -13,8 +13,6 @@ public class ExerciseAttemptDTO {
     @JsonProperty("attempt_id")
     private Long attemptId;
 
-    @JsonProperty("question_category")
-    private String questionCategory;
 
     @JsonProperty("question_difficulty")
     private String questionDifficulty;
@@ -46,7 +44,6 @@ public class ExerciseAttemptDTO {
     public ExerciseAttemptDTO(ExerciseAttempt attempt) {
         if (attempt != null && attempt.getQuestion() != null) {
             this.attemptId = attempt.getId();
-            this.questionCategory = attempt.getQuestion().getCategory();
             this.questionDifficulty = attempt.getQuestion().getDifficulty();
             this.question = attempt.getQuestion().getQuestion();
             this.options = attempt.getQuestion().getOptions();
@@ -60,12 +57,11 @@ public class ExerciseAttemptDTO {
     }
 
     // New Constructor for Direct DTO Creation
-    public ExerciseAttemptDTO(Long attemptId, String questionCategory, String questionDifficulty, 
+    public ExerciseAttemptDTO(Long attemptId, String questionDifficulty, 
                               String question, List<String> options, String selectedAnswer, 
                               String correctAnswer, boolean isCorrect, int attemptCount, 
                               int score, LocalDateTime dateAttempted) {
         this.attemptId = attemptId;
-        this.questionCategory = questionCategory;
         this.questionDifficulty = questionDifficulty;
         this.question = question;
         this.options = options;
@@ -82,9 +78,7 @@ public class ExerciseAttemptDTO {
         return attemptId;
     }
 
-    public String getQuestionCategory() {
-        return questionCategory;
-    }
+
 
     public String getQuestionDifficulty() {
         return questionDifficulty;
@@ -127,9 +121,6 @@ public class ExerciseAttemptDTO {
         this.attemptId = attemptId;
     }
 
-    public void setQuestionCategory(String questionCategory) {
-        this.questionCategory = questionCategory;
-    }
 
     public void setQuestionDifficulty(String questionDifficulty) {
         this.questionDifficulty = questionDifficulty;

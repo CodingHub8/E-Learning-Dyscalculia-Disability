@@ -20,10 +20,6 @@
 
   <!-- Timer -->
   <div id="quiz-timer">⏰ Time Remaining: 5:00</div>
-<<<<<<< HEAD
-=======
-
->>>>>>> 57133f82322e04600a9af32f366f5bc5e4e15efd
 
   <!-- Quiz Container -->
   <div class="quiz-container">
@@ -34,10 +30,6 @@
         <ul id="options-list">
           <!-- Answers will be dynamically inserted here -->
         </ul>
-<<<<<<< HEAD
-=======
-
->>>>>>> 57133f82322e04600a9af32f366f5bc5e4e15efd
       </div>
     </div>
 
@@ -49,32 +41,6 @@
   </div>
 
   <script th:inline="javascript">
-<<<<<<< HEAD
-    const quizzes = [[${quizzes}]]; // Correct syntax for Thymeleaf. DO NOT CHANGE!
-    let currentQuestionIndex = 0;
-
-    // Function to update the quiz question and options
-    function updateQuiz() {
-      const quiz = quizzes[currentQuestionIndex];
-      document.getElementById('question').textContent = quiz.question;
-
-      const optionsList = document.getElementById('options-list');
-      optionsList.innerHTML = ''; // Clear previous options
-
-      // Split answers by comma and create radio buttons for each
-      quiz.answers.split(',').forEach((answer, index) => {
-        const li = document.createElement('li');
-        const input = document.createElement('input');
-        input.type = 'radio';
-        input.name = 'answer';
-        input.value = answer;
-        input.id = `answer${index}`;
-
-        const label = document.createElement('label');
-        label.htmlFor = `answer${index}`;
-        label.textContent = answer;
-
-=======
     /*<![CDATA[*/
     const quizzes = /*[[${quizzes}]]*/[];
     /*]]>*/ // Correct syntax for Thymeleaf. DO NOT CHANGE!
@@ -90,28 +56,29 @@
       const optionsList = document.getElementById('options-list');
       optionsList.innerHTML = ''; // Clear previous options
 
-      // Split answers and create radio buttons for each
-      quiz.answers.split(',').forEach((answer, index) => {
+      const answers = quiz.answers;  // This should be an array now
+
+      answers.forEach((answer, index) => {
         const li = document.createElement('li');
+        
         const input = document.createElement('input');
         input.type = 'radio';
-        input.name = `question_${currentQuestionIndex}`;
+        input.name = `question_${currentQuestionIndex}`; // Unique name for each question
         input.value = answer;
         input.id = `answer${index}`;
 
         // Restore selected answer if previously chosen
         if (selectedAnswers[currentQuestionIndex] === answer) {
-          input.checked = true;
+          input.checked = true;  // If the current answer matches the selected answer, mark as checked
         }
 
         const label = document.createElement('label');
         label.htmlFor = `answer${index}`;
-        label.textContent = answer;
+        label.textContent = answer;  // Set the label text to the answer
 
->>>>>>> 57133f82322e04600a9af32f366f5bc5e4e15efd
-        li.appendChild(input);
-        li.appendChild(label);
-        optionsList.appendChild(li);
+        li.appendChild(input);  // Add the input to the list item
+        li.appendChild(label);  // Add the label to the list item
+        optionsList.appendChild(li);  // Add the list item to the options list
       });
 
       // Enable/disable Previous button
@@ -123,8 +90,6 @@
       updateQuiz(); // Load the first question
 
       document.getElementById("next-btn").addEventListener("click", () => {
-<<<<<<< HEAD
-=======
         // Store selected answer before moving to the next question
         const selectedOption = document.querySelector(`input[name="question_${currentQuestionIndex}"]:checked`);
         if (selectedOption) {
@@ -134,16 +99,11 @@
           return; // Prevent moving forward without an answer
         }
 
->>>>>>> 57133f82322e04600a9af32f366f5bc5e4e15efd
         if (currentQuestionIndex < quizzes.length - 1) {
           currentQuestionIndex++;
           updateQuiz();
         } else {
-<<<<<<< HEAD
-          submitQuiz(); // Only submit if it's the last question
-=======
           submitQuiz(); // Submit when on the last question
->>>>>>> 57133f82322e04600a9af32f366f5bc5e4e15efd
         }
       });
 
@@ -153,21 +113,6 @@
           updateQuiz();
         }
       });
-<<<<<<< HEAD
-    });
-
-    // Function to submit the quiz
-    function submitQuiz() {
-      const selectedAnswers = [];
-      quizzes.forEach((quiz, index) => {
-        const selectedAnswer = document.querySelector(`input[name="answer"]:checked`);
-        if (selectedAnswer) {
-          selectedAnswers.push(selectedAnswer.value);
-        } else {
-          selectedAnswers.push(null); // Push null if no answer is selected
-        }
-      });
-=======
 
       startTimer();
     });
@@ -237,28 +182,12 @@
         quizIds: quizIds,
         answers: answers
       };
->>>>>>> 57133f82322e04600a9af32f366f5bc5e4e15efd
 
       fetch('/submit-quiz', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-<<<<<<< HEAD
-        body: JSON.stringify({
-          timeRemaining: timeRemaining,
-          answers: selectedAnswers, // Send selected answers to the server
-        }),
-      })
-        .then(response => response.json())
-        .then(data => {
-          window.location.href = '/result'; // Redirect to results page
-        })
-        .catch(error => {
-          console.error('Error submitting quiz:', error);
-        });
-    }
-=======
         body: JSON.stringify(requestData),
       })
         .then(response => response.json())
@@ -284,7 +213,6 @@
     }
 
 
->>>>>>> 57133f82322e04600a9af32f366f5bc5e4e15efd
   </script>
 
   <script src="js/timer.js"></script>

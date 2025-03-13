@@ -20,7 +20,7 @@ public class Student {
     private String email;
 
     @Column(name = "grade_level")
-    private String grade_level;
+    private String gradeLevel;
 
     // Constructors
     public Student() {}
@@ -29,6 +29,6 @@ public class Student {
         this.username = username;
         this.email = email;
         this.password = password;
-        this.grade_level = null;
+        this.gradeLevel = null;
     }
 }

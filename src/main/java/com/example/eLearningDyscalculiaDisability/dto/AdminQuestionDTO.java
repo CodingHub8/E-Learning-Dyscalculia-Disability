@@ -9,7 +9,6 @@ import java.util.List;
 public class AdminQuestionDTO {
     private Long id;
     private String question;
-    private String category;
     private String difficulty;
     private List<String> options;
     private String correctAnswer;

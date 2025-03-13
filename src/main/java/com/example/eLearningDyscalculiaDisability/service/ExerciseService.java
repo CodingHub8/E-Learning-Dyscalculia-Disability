@@ -21,8 +21,8 @@ public class ExerciseService {
     }
 
     // Fetch questions based on category and difficulty
-    public List<Question> getQuestions(String category, String difficulty) {
-        return questionRepository.findByCategoryAndDifficulty(category, difficulty);
+    public List<Question> getQuestions(String difficulty) {
+        return questionRepository.findByDifficulty(difficulty);
     }
 
     // Save student attempt

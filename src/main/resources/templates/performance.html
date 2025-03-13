@@ -83,7 +83,7 @@
                         <table class="table table-striped" th:if="${exerciseAttempts != null and !#lists.isEmpty(exerciseAttempts)}">
                             <thead>
                                 <tr>
-                                    <th>Question Category</th>
+                                    <th>Question Difficulty</th>
                                     <th>Score</th>
                                     <th>Attempts</th>
                                     <th>Date Attempted</th>
@@ -91,7 +91,7 @@
                             </thead>
                             <tbody>
                                 <tr th:each="attempt : ${exerciseAttempts}">
-                                    <td th:text="${attempt.questionCategory}"></td>
+                                    <td th:text="${attempt.questionDifficulty}"></td>
                                     <td th:text="${attempt.score}"></td>
                                     <td th:text="${attempt.attemptCount}"></td>
                                     <td th:text="${#temporals.format(attempt.dateAttempted, 'yyyy-MM-dd')}"></td>

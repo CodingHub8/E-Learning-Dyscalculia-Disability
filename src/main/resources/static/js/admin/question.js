@@ -36,7 +36,6 @@ document.addEventListener("DOMContentLoaded", function () {
         const options = Array.from(optionInputs)
             .map(input => input.value.trim())
             .filter(option => option !== "");
-console.log(options)
         // Populate dropdown
         options.forEach(option => {
             const newOption = document.createElement("option");
@@ -66,7 +65,6 @@ console.log(options)
                 row.innerHTML = `
                     <td>${index+1}</td>
                     <td>${question.question}</td>
-                    <td>${question.category}</td>
                     <td>${question.difficulty}</td>
                     <td>${question.options}</td>
                     <td>${question.correctAnswer}</td>
@@ -74,7 +72,6 @@ console.log(options)
                     <td>
                         <button class="btn btn-warning btn-sm edit-btn" data-id="${question.id}" 
                             data-question="${question.question}" 
-                            data-category="${question.category}" 
                             data-difficulty="${question.difficulty}" 
                             data-options="${question.options}" 
                             data-correctAnswer="${question.correctAnswer}" 
@@ -100,7 +97,6 @@ console.log(options)
             button.addEventListener("click", function () {
                 document.querySelector("#editQuestionId").value = this.dataset.id;
                 document.querySelector("#editQuestionText").value = this.dataset.question;
-                document.querySelector("#editCategory").value = this.dataset.category;
                 document.querySelector("#editDifficulty").value = this.dataset.difficulty;
     
                 const optionInputs = document.querySelectorAll(".editOption-input");
@@ -169,7 +165,6 @@ console.log(options)
 
         const formData = new FormData(this);
         const question = formData.get("question");
-        const category = formData.get("category");
         const difficulty = formData.get("difficulty");
         const correctAnswer = formData.get("correctAnswer");
     
@@ -182,7 +177,7 @@ console.log(options)
             const response = await fetch(API_URL, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ question, category, difficulty, options, correctAnswer }),
+                body: JSON.stringify({ question, difficulty, options, correctAnswer }),
             });
     
             if (!response.ok) throw new Error("Failed to add question");
@@ -201,7 +196,6 @@ console.log(options)
 
         const id = document.querySelector("#editQuestionId").value;
         const question = document.querySelector("#editQuestionText").value;
-        const category = document.querySelector("#editCategory").value;
         const difficulty = document.querySelector("#editDifficulty").value;
         // const options = document.querySelector("#editOptions").value.split(",").map(opt => opt.trim());
         const options = Array.from(document.querySelectorAll(".editOption-input"))
@@ -214,7 +208,7 @@ console.log(options)
             const response = await fetch(`${API_URL}/${id}`, {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ question, category, difficulty,options,correctAnswer }),
+                body: JSON.stringify({ question, difficulty,options,correctAnswer }),
             });
 
             if (!response.ok) throw new Error("Failed to update question");

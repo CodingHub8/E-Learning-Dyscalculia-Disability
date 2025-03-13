@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Question Bank</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/admin.css"> <!-- Custom CSS for Sidebar -->
+</head>
+<body>
+
+    <div class="d-flex" id="wrapper">
+        <div th:include="fragments/admin_header :: admin_header"></div>
+        <!-- Main Content -->
+        <div id="page-content-wrapper" class="container mt-4">
+            <h2 class="mb-4">Manage Question Bank (For Quizzes)</h2>
+
+            <!-- Add Question Button -->
+            <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addQuizModal">
+                + Add Quiz
+            </button>
+
+            <!-- Quiz Table -->
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Topic</th>
+                        <th>Question</th>
+                        <th>Options</th>
+                        <th>Correct Answer</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Quiz data will be dynamically added here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Add Quiz Modal -->
+    <div class="modal fade" id="addQuizModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Create New Quiz</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addQuizForm">
+                        <div class="mb-3">
+                            <label>Topic</label>
+                            <select class="form-control" name="topic" required>
+                                <option disabled selected>Select Topic</option>
+                                <option value="multiplication">Multiplication</option>
+                                <option value="division">Division</option>
+                                <option value="addition">Addition</option>
+                                <option value="subtraction">Subtraction</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label>Question</label>
+                            <input type="text" name="question" class="form-control" placeholder="Write your question..." required>
+                        </div>
+
+                        <label>Options:</label>
+                        <input type="text" class="option-input form-control" placeholder="Option 1" required />
+                        <input type="text" class="option-input form-control" placeholder="Option 2" required />
+                        <input type="text" class="option-input form-control" placeholder="Option 3" required/>
+                        <input type="text" class="option-input form-control" placeholder="Option 4" required />
+    
+                        <label>Correct Answer:</label>
+                        <select name="correctAnswer" id="correctAnswer" class="form-control" required>
+                            <option value="">Select Correct Answer</option>
+                        </select>
+
+                        <button type="submit" class="btn btn-success w-100">Create Quiz</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Quiz Modal -->
+    <div class="modal fade" id="editQuizModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit Quiz</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editQuizForm">
+                        <input type="hidden" id="editQuizId">
+                        
+                        <div class="mb-3">
+                            <label>Topic</label>
+                            <select class="form-control" name="editTopic" id="editTopic" required>
+                                <option disabled selected>Select Topic</option>
+                                <option value="multiplication">Multiplication</option>
+                                <option value="division">Division</option>
+                                <option value="addition">Addition</option>
+                                <option value="subtraction">Subtraction</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label>Question</label>
+                            <input type="text" name="editQuestion" id="editQuestion" class="form-control" required />
+                        </div>
+
+                        <label>Options:</label>
+                        <input type="text" class="editOption-input form-control" placeholder="Option 1" required />
+                        <input type="text" class="editOption-input form-control" placeholder="Option 2" required />
+                        <input type="text" class="editOption-input form-control" placeholder="Option 3" required/>
+                        <input type="text" class="editOption-input form-control" placeholder="Option 4" required />
+    
+                        <label>Correct Answer:</label>
+                        <select  id="editCorrectAnswer" class="form-control" required>
+                            <option value="">Select Correct Answer</option>
+                        </select>
+
+                        <button type="submit" class="btn btn-success w-100">Update Quiz</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div class="modal fade" id="deleteQuizModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Delete Quiz</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to delete this quiz?</p>
+                    <button type="button" class="btn btn-danger w-100">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer th:replace="~{fragments/admin_footer :: admin_footer}"></footer>
+    
+    <script src="/js/admin/quiz.js"></script>
+    <script src="/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

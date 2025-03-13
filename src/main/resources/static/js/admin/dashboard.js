@@ -2,13 +2,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
       // Sample data for quiz performance chart
       const ctx = document.getElementById('quizChart').getContext('2d');
+
+      fetch("http://localhost:8080/api/dashboard")
+      .then(response => response.json())
+      .then(data => {
+          // Replace static data with dynamic data
+          const totalQuizzes = data.totalQuizzes;
+          const quizzesAttempted = data.quizzesAttempted;
+
       new Chart(ctx, {
           type: 'bar',
           data: {
-              labels: ['Easy', 'Medium', 'Hard'],
+              labels: ['Quiz Answered', 'Quiz Total'],
               datasets: [{
                   label: 'Questions Answered',
-                  data: [50, 45, 25],
+                  data: [quizzesAttempted, totalQuizzes],
                   backgroundColor: ['#007bff', '#ffc107', '#dc3545']
               }]
           },
@@ -19,6 +27,8 @@ document.addEventListener("DOMContentLoaded", function () {
               }
           }
       });
+
+    });
      
             const sidebar = document.getElementById('sidebar');
             const toggleBtn = document.getElementById('toggleBtn');
@@ -50,6 +60,8 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(response => response.json())
         .then(data => {
             document.getElementById("total-questions").textContent = data.totalQuestions;
+            document.getElementById("total-quizzes").textContent = data.totalQuizzes;
+
             document.getElementById("total-users").textContent = data.totalUsers;
             document.getElementById("quizzes-attempted").textContent = data.quizzesAttempted;
             document.getElementById("avg-score").textContent = data.avgScore + "%";
