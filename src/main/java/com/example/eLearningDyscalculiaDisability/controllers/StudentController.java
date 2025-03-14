@@ -51,7 +51,7 @@ public class StudentController {
     public Student createUser(@RequestBody Student user) {
         return studentService.createUser(user);
     }
-    
+
 
     @PutMapping("/api/users/{id}")
     @ResponseBody

@@ -20,14 +20,20 @@
     /*<![CDATA[*/
     // Check if the session username is null (user is not logged in)
     if (/*[[${session.username == null}]]*/ false) {
+
       alert("You are not logged in. Redirecting to the login page..."); // Show alert
       window.location.href = /*[[@{/login}]]*/ "/login"; // Redirect to login page
+
+      //  alert("You are not logged in. Redirecting to the login page..."); // Show alert
+        //window.location.href = /*[[@{/login}]]*/ "/login"; // Redirect to login page
+
     }
     /*]]>*/
   </script>
 
   <!-- Header Fragment -->
   <header th:replace="~{fragments/header :: header}"></header>
+
 
   <!-- Sidebar -->
   <aside id="Msidenav" class="Msidenav">
@@ -39,6 +45,18 @@
     <h3>Student Dashboard</h3>
 
     <!-- Sidebar links get overwritten by the header fragment
+
+    <!-- Sidebar -->
+<!--     <aside id="Msidenav" class="Msidenav"> -->
+      <!-- Close Button (X) -->
+<!--       <button id="Mclose-btn" class="Mclose-btn">
+      <i class="material-icons">close</i>
+      </button>
+      
+      <h3>Student Dashboard</h3>
+       -->
+      <!-- Sidebar links get overwritten by the header fragment
+
       <div class="navbar-content">
       <a href="#">Profile</a>
       <a href="window.history.back()">Back</a>
@@ -46,7 +64,9 @@
       -->
 
     </div>
+
   </aside>
+
 
   <!-- Main content -->
   <div id="Mcontent" class="Mcontent">
@@ -60,18 +80,34 @@
       <!-- Flex container for four smaller boxes -->
       <div id="Mcontent-boxes" class="Mcontent-boxes">
         <div id="Mquiz-box" class="rounded-box">
+
           <h4>Quizzes</h4>
         </div>
         <div id="Mmcq-box" class="rounded-box">
-          <h4>MCQ Based Exercise</h4>
+            <h4>MCQ Based Exercise</h4>
         </div>
         <div id="Mhistory-box" class="rounded-box">
-          <h4>View Learning History</h4>
+            <h4>View Learning History</h4>
         </div>
         <div id="Mexplanation-box" class="rounded-box">
-          <h4>Step-by-step Explanations</h4>
+            <h4>Step-by-step Explanations</h4>
         </div>
       </div>
+
+    </div>
+
+      <!-- Quiz Stats Cards -->
+<!--       <div class="quiz-stats-container">
+        <div class="quiz-stats-card">
+          <h3>12</h3>
+          <p>Total Assigned Quiz</p>
+        </div>
+        <div class="quiz-stats-card">
+          <h3>8</h3>
+          <p>Completed</p>
+        </div>
+      </div> -->
+
     </div>
 
   <!-- Quiz Stats Cards -->

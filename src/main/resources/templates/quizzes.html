@@ -56,7 +56,9 @@
       const optionsList = document.getElementById('options-list');
       optionsList.innerHTML = ''; // Clear previous options
 
+
       // Split answers and create radio buttons for each
+
       quiz.answers.split(',').forEach((answer, index) => {
         const li = document.createElement('li');
         const input = document.createElement('input');
@@ -209,7 +211,6 @@
           alert("Failed to submit quiz. Please try again.");
         });
     }
-
 
   </script>
 
