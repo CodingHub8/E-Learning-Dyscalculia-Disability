@@ -1308,6 +1308,9 @@ blockquote {
   box-shadow: 4px 0 10px rgba(0, 0, 0, 0.3);
   border-radius: 0 15px 15px 0;
   z-index: 1100;
+
+  /* Higher z-index than the hamburger button when open */
+
 }
 
 /* Sidebar Open State */
@@ -1585,6 +1588,7 @@ blockquote {
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
+
 /* Ensure sidebar toggle button doesn't overlap */
 @media (max-width: 768px) {
   .profile-container {
@@ -1761,6 +1765,7 @@ blockquote {
   color: #13547a;
   margin-bottom: 20px;
   text-align: center;
+
 }
 /*END OF quiz.html */
 
@@ -1924,7 +1929,21 @@ blockquote {
   margin: 0;
 }
 
+.quiz-options ul {
+  list-style-type: none;
+  padding: 0;
+}
 
+.quiz-options li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 0;
+}
+
+.quiz-options input[type="radio"] {
+  margin: 0;
+}
 
 .quiz-options label {
   display: flex;
@@ -1942,6 +1961,7 @@ blockquote {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   flex: 1; /* Allow the content to grow and take up remaining space */
 }
+
 
 /* Adjust width for larger screens */
 @media (min-width: 768px) {
@@ -1962,6 +1982,7 @@ blockquote {
   margin-bottom: 20px;
 }
   
+
 /* Quiz Navigation */
 .quiz-navigation {
   display: flex;

@@ -19,8 +19,10 @@ public class Student {
     @Column(name = "email")
     private String email;
 
-    @Column(name = "grade_level")
-    private String grade_level;
+
+//     @Column(name = "grade_level")
+//     private String grade_level;
+
 
     // Constructors
     public Student() {}
